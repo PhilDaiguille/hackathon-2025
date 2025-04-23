@@ -2,52 +2,42 @@
 
 namespace App\Entity;
 
-use App\Repository\RoomRepository;
+use App\Repository\PredefinedExtrasRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: RoomRepository::class)]
-class Room
+#[ORM\Entity(repositoryClass: PredefinedExtrasRepository::class)]
+class PredefinedExtras
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(inversedBy: 'rooms')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Hotel $idHotel = null;
-
     #[ORM\Column(length: 255)]
-    private ?string $type = null;
+    private ?string $name = null;
 
-    #[ORM\Column]
-    private ?float $basePrice = null;
-
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column]
-    private ?\DateTimeImmutable $updatedAt = null;
-
-    #[ORM\OneToOne(mappedBy: 'idRoom', cascade: ['persist', 'remove'])]
-    private ?Offer $offer = null;
-
     /**
      * @var Collection<int, Extras>
      */
-    #[ORM\OneToMany(targetEntity: Extras::class, mappedBy: 'idRoom', orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: Extras::class, mappedBy: 'idPredefinedExtras')]
     private Collection $extras;
+
+    #[ORM\Column(length: 2048)]
+    private ?string $image = null;
 
     /**
      * @var Collection<int, Experiences>
      */
-    #[ORM\OneToMany(targetEntity: Experiences::class, mappedBy: 'idRoom', orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: Experiences::class, mappedBy: 'idPredefinedExtra')]
     private Collection $experiences;
 
     public function __construct()
@@ -61,38 +51,14 @@ class Room
         return $this->id;
     }
 
-    public function getIdHotel(): ?Hotel
+    public function getName(): ?string
     {
-        return $this->idHotel;
+        return $this->name;
     }
 
-    public function setIdHotel(?Hotel $idHotel): static
+    public function setName(string $name): static
     {
-        $this->idHotel = $idHotel;
-
-        return $this;
-    }
-
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    public function setType(string $type): static
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    public function getBasePrice(): ?float
-    {
-        return $this->basePrice;
-    }
-
-    public function setBasePrice(float $basePrice): static
-    {
-        $this->basePrice = $basePrice;
+        $this->name = $name;
 
         return $this;
     }
@@ -102,7 +68,7 @@ class Room
         return $this->description;
     }
 
-    public function setDescription(string $description): static
+    public function setDescription(?string $description): static
     {
         $this->description = $description;
 
@@ -121,35 +87,6 @@ class Room
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeImmutable
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    public function getOffer(): ?Offer
-    {
-        return $this->offer;
-    }
-
-    public function setOffer(Offer $offer): static
-    {
-        // set the owning side of the relation if necessary
-        if ($offer->getIdRoom() !== $this) {
-            $offer->setIdRoom($this);
-        }
-
-        $this->offer = $offer;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Extras>
      */
@@ -162,7 +99,7 @@ class Room
     {
         if (!$this->extras->contains($extra)) {
             $this->extras->add($extra);
-            $extra->setIdRoom($this);
+            $extra->setIdPredefinedExtras($this);
         }
 
         return $this;
@@ -172,10 +109,22 @@ class Room
     {
         if ($this->extras->removeElement($extra)) {
             // set the owning side to null (unless already changed)
-            if ($extra->getIdRoom() === $this) {
-                $extra->setIdRoom(null);
+            if ($extra->getIdPredefinedExtras() === $this) {
+                $extra->setIdPredefinedExtras(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): static
+    {
+        $this->image = $image;
 
         return $this;
     }
@@ -192,7 +141,7 @@ class Room
     {
         if (!$this->experiences->contains($experience)) {
             $this->experiences->add($experience);
-            $experience->setIdRoom($this);
+            $experience->setIdPredefinedExtra($this);
         }
 
         return $this;
@@ -202,8 +151,8 @@ class Room
     {
         if ($this->experiences->removeElement($experience)) {
             // set the owning side to null (unless already changed)
-            if ($experience->getIdRoom() === $this) {
-                $experience->setIdRoom(null);
+            if ($experience->getIdPredefinedExtra() === $this) {
+                $experience->setIdPredefinedExtra(null);
             }
         }
 
