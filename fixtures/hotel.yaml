@@ -1,0 +1,13 @@
+App\Entity\Hotel:
+    hotel_{1..5}:
+        name: <company()>
+        description: <sentence()>
+        streetName: <streetName()>
+        streetNumber: <buildingNumber()>
+        postalCode: <postcode()>
+        city: <city()>
+        country: <country()>
+        rating: <randomFloat(1, 1, 5)>
+        adminEmail: <email()>
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>

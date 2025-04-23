@@ -1,0 +1,9 @@
+App\Entity\User:
+    user_{1..5}:
+        firstname: <firstName()>
+        lastname: <lastName()>
+        email: <email()>
+        password: <password()>
+        isActive: <boolean()>
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>
