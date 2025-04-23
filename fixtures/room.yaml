@@ -38,3 +38,11 @@ App\Entity\Room:
         description: 'Chambre économique parfaite pour les routards visitant Madrid.'
         createdAt: <dateTimeBetween('-1 year', 'now')>
         updatedAt: <dateTimeBetween('-1 year', 'now')>
+        
+    room_6:
+        idHotel: '@hotel_6'
+        type: 'Chambre de Luxe'
+        basePrice: 400.00
+        description: 'Chambre avec vue sur la mer, idéale pour une escapade romantique.'
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>

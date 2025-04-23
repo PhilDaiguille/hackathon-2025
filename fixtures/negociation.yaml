@@ -1,40 +1,24 @@
 App\Entity\Negociation:
     negociation_1:
-        idBooking: '@booking_1'
-        newPrice: 275.00
-        responseDeadline: <dateTimeBetween('now', '+1 week')>
-        createdAt: <dateTimeBetween('-1 year', 'now')>
-        updatedAt: <dateTimeBetween('-1 year', 'now')>
-        status: 'PENDING'
-
-    negociation_2:
         idBooking: '@booking_2'
-        newPrice: 180.50
-        responseDeadline: <dateTimeBetween('now', '+1 week')>
-        createdAt: <dateTimeBetween('-1 year', 'now')>
-        updatedAt: <dateTimeBetween('-1 year', 'now')>
-        status: 'ACCEPTED'
-
-    negociation_3:
-        idBooking: '@booking_3'
-        newPrice: 320.00
-        responseDeadline: <dateTimeBetween('now', '+1 week')>
-        createdAt: <dateTimeBetween('-1 year', 'now')>
-        updatedAt: <dateTimeBetween('-1 year', 'now')>
-        status: 'REJECTED'
-
-    negociation_4:
-        idBooking: '@booking_4'
-        newPrice: 150.75
-        responseDeadline: <dateTimeBetween('now', '+1 week')>
-        createdAt: <dateTimeBetween('-1 year', 'now')>
-        updatedAt: <dateTimeBetween('-1 year', 'now')>
-        status: 'PENDING'
-
-    negociation_5:
+        newPrice: 190.00
+        createdAt: <dateTimeBetween('-2 days', '-1 days')>
+        updatedAt: <dateTimeBetween('-2 days', '-1 days')>
+        responseDeadline: <dateTimeBetween('-2 days +3 hours', '-1 days +3 hours')>
+        status: 'pending'
+    
+    negociation_2:
         idBooking: '@booking_5'
         newPrice: 99.99
-        responseDeadline: <dateTimeBetween('now', '+1 week')>
-        createdAt: <dateTimeBetween('-1 year', 'now')>
-        updatedAt: <dateTimeBetween('-1 year', 'now')>
-        status: 'ACCEPTED'
+        createdAt: <dateTimeBetween('-1 day', 'now')>
+        updatedAt: <dateTimeBetween('-1 day', 'now')>
+        responseDeadline: <dateTimeBetween('-1 day +3 hours', 'now +3 hours')>
+        status: 'accepted'
+    
+    negociation_3:
+        idBooking: '@booking_3'
+        newPrice: 240.00
+        createdAt: <dateTimeBetween('-3 days', '-2 days')>
+        updatedAt: <dateTimeBetween('-3 days', '-2 days')>
+        responseDeadline: <dateTimeBetween('-3 days +3 hours', '-2 days +3 hours')>
+        status: 'refused'

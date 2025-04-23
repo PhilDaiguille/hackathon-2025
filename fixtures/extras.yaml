@@ -3,48 +3,98 @@ App\Entity\Extras:
         idRoom: '@room_1'
         isPredefined: true
         idPredefinedExtras: '@predefined_extra_1'
-        customName: ''
-        customDescription: ''
-        customImage: ''
+        customName: ~
+        customDescription: ~
+        customImage: ~
         price: 15.00
         createdAt: <dateTimeBetween('-1 year', 'now')>
-
+    
     extra_2:
         idRoom: '@room_2'
         isPredefined: true
         idPredefinedExtras: '@predefined_extra_3'
-        customName: ''
-        customDescription: ''
-        customImage: ''
+        customName: ~
+        customDescription: ~
+        customImage: ~
         price: 30.00
         createdAt: <dateTimeBetween('-1 year', 'now')>
-
+    
     extra_3:
         idRoom: '@room_3'
         isPredefined: false
-        idPredefinedExtras: '@predefined_extra_2'
+        idPredefinedExtras: ~
         customName: 'Pack romantique'
         customDescription: 'Décoration spéciale, bouteille de champagne et pétales de rose.'
         customImage: 'https://via.placeholder.com/150?text=Romantique'
         price: 45.50
         createdAt: <dateTimeBetween('-1 year', 'now')>
-
+    
     extra_4:
         idRoom: '@room_4'
         isPredefined: false
-        idPredefinedExtras: '@predefined_extra_4'
+        idPredefinedExtras: ~
         customName: 'Départ tardif'
-        customDescription: 'Prolongez votre séjour jusqu\'à 14h.'
+        customDescription: 'Heure de depart prolongée jusqu’à 15h.'
         customImage: 'https://via.placeholder.com/150?text=Late+checkout'
         price: 20.00
         createdAt: <dateTimeBetween('-1 year', 'now')>
-
+    
     extra_5:
         idRoom: '@room_5'
         isPredefined: true
         idPredefinedExtras: '@predefined_extra_5'
-        customName: ''
-        customDescription: ''
-        customImage: ''
+        customName: ~
+        customDescription: ~
+        customImage: ~
         price: 12.00
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+
+    extra_6:
+        idRoom: '@room_1'
+        isPredefined: false
+        idPredefinedExtras: ~
+        customName: 'Petit-déjeuner en chambre'
+        customDescription: 'Service de petit-déjeuner directement dans votre chambre à l’heure de votre choix.'
+        customImage: 'https://via.placeholder.com/150?text=Breakfast+in+bed'
+        price: 18.00
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+    
+    extra_7:
+        idRoom: '@room_2'
+        isPredefined: true
+        idPredefinedExtras: '@predefined_extra_5'
+        customName: ~
+        customDescription: ~
+        customImage: ~
+        price: 10.00
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+    
+    extra_8:
+        idRoom: '@room_3'
+        isPredefined: false
+        idPredefinedExtras: ~
+        customName: 'Bouquet de fleurs'
+        customDescription: 'Un joli bouquet de fleurs fraîches vous attendra à votre arrivée.'
+        customImage: 'https://via.placeholder.com/150?text=Fleurs'
+        price: 25.00
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+    
+    extra_9:
+        idRoom: '@room_4'
+        isPredefined: true
+        idPredefinedExtras: '@predefined_extra_4'
+        customName: ~
+        customDescription: ~
+        customImage: ~
+        price: 8.50
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+    
+    extra_10:
+        idRoom: '@room_5'
+        isPredefined: false
+        idPredefinedExtras: ~
+        customName: 'Massage relaxant'
+        customDescription: 'Massage de 45 minutes effectué en chambre par un professionnel.'
+        customImage: 'https://via.placeholder.com/150?text=Massage'
+        price: 60.00
         createdAt: <dateTimeBetween('-1 year', 'now')>
