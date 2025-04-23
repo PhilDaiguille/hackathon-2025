@@ -53,6 +53,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: BlockedBooking::class, mappedBy: 'idUser', orphanRemoval: true)]
     private Collection $blockedBookings;
 
+    /**
+     * @var array<string>
+     */
+    #[ORM\Column]
     private array $roles = [];
 
     #[ORM\Column(type: 'boolean', options: ['default' => false])]
@@ -62,6 +66,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->bookings = new ArrayCollection();
         $this->blockedBookings = new ArrayCollection();
+        $this->roles = ['ROLE_USER'];
     }
 
     public function getId(): ?int
