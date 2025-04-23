@@ -28,3 +28,4 @@ App\Entity\PredefinedExtras:
         description: 'Place de parking sécurisée et couverte réservée à votre nom.'
         createdAt: <dateTimeBetween('-1 year', 'now')>
         image: 'https://via.placeholder.com/150?text=Parking'
+        

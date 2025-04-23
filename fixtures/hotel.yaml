@@ -9,7 +9,6 @@ App\Entity\Hotel:
         country: 'Pays-Bas'
         rating: 4.5
         adminEmail: 'royal@hotel.com'
-        equipment: ['piscine', 'wifi', 'spa']
         createdAt: <dateTimeBetween('-1 year', 'now')>
         updatedAt: <dateTimeBetween('-1 year', 'now')>
 
@@ -23,7 +22,6 @@ App\Entity\Hotel:
         country: 'Pays-Bas'
         rating: 3.9
         adminEmail: 'contact@auberge-tranquille.com'
-        equipment: ['parking', 'wifi']
         createdAt: <dateTimeBetween('-1 year', 'now')>
         updatedAt: <dateTimeBetween('-1 year', 'now')>
 
@@ -37,7 +35,6 @@ App\Entity\Hotel:
         country: 'France'
         rating: 4.8
         adminEmail: 'spa@parisien.com'
-        equipment: ['spa', 'wifi', 'piscine']
         createdAt: <dateTimeBetween('-1 year', 'now')>
         updatedAt: <dateTimeBetween('-1 year', 'now')>
 
@@ -51,7 +48,6 @@ App\Entity\Hotel:
         country: 'Allemagne'
         rating: 4.2
         adminEmail: 'info@business-inn.de'
-        equipment: ['wifi', 'parking']
         createdAt: <dateTimeBetween('-1 year', 'now')>
         updatedAt: <dateTimeBetween('-1 year', 'now')>
 
@@ -65,6 +61,18 @@ App\Entity\Hotel:
         country: 'Espagne'
         rating: 3.5
         adminEmail: 'contact@hostel-madrid.es'
-        equipment: ['wifi']
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>
+    
+    hotel_6:
+        name: 'Hôtel de Luxe Nice'
+        description: 'Un hôtel 5 étoiles avec vue sur la mer à Nice.'
+        streetName: 'Promenade des Anglais'
+        streetNumber: '45'
+        postalCode: '06000'
+        city: 'Nice'
+        country: 'France'
+        rating: 4.9
+        adminEmail: 'contact@hotel-nice.fr'
         createdAt: <dateTimeBetween('-1 year', 'now')>
         updatedAt: <dateTimeBetween('-1 year', 'now')>

@@ -3,48 +3,59 @@ App\Entity\Booking:
         idUser: '@user_1'
         idOffer: '@offer_1'
         finalPrice: 320.00
-        createdAt: <dateTimeBetween('-1 year', 'now')>
-        updatedAt: <dateTimeBetween('-1 year', 'now')>
+        createdAt: <dateTimeBetween('-6 months', '-2 months')>
+        updatedAt: <dateTimeBetween('-6 months', '-2 months')>
         startDate: <dateTimeBetween('now', '+1 month')>
         endDate: <dateTimeBetween('+1 month', '+2 months')>
-        status: 'CONFIRMED'
-
+        status: 'accepted'
+    
     booking_2:
         idUser: '@user_2'
         idOffer: '@offer_2'
         finalPrice: 180.50
-        createdAt: <dateTimeBetween('-1 year', 'now')>
-        updatedAt: <dateTimeBetween('-1 year', 'now')>
+        createdAt: <dateTimeBetween('-4 months', '-1 months')>
+        updatedAt: <dateTimeBetween('-4 months', '-1 months')>
         startDate: <dateTimeBetween('now', '+1 month')>
         endDate: <dateTimeBetween('+1 month', '+2 months')>
-        status: 'PENDING'
-
+        status: 'pending'
+    
     booking_3:
         idUser: '@user_3'
         idOffer: '@offer_3'
         finalPrice: 250.00
-        createdAt: <dateTimeBetween('-1 year', 'now')>
-        updatedAt: <dateTimeBetween('-1 year', 'now')>
+        createdAt: <dateTimeBetween('-3 months', '-1 months')>
+        updatedAt: <dateTimeBetween('-3 months', '-1 months')>
         startDate: <dateTimeBetween('now', '+1 month')>
         endDate: <dateTimeBetween('+1 month', '+2 months')>
-        status: 'CANCELLED'
-
+        status: 'refused'
+    
     booking_4:
         idUser: '@user_4'
         idOffer: '@offer_4'
         finalPrice: 400.00
-        createdAt: <dateTimeBetween('-1 year', 'now')>
-        updatedAt: <dateTimeBetween('-1 year', 'now')>
+        createdAt: <dateTimeBetween('-3 months', 'now')>
+        updatedAt: <dateTimeBetween('-3 months', 'now')>
         startDate: <dateTimeBetween('now', '+1 month')>
         endDate: <dateTimeBetween('+1 month', '+2 months')>
-        status: 'CONFIRMED'
-
+        status: 'accepted'
+    
     booking_5:
         idUser: '@user_5'
         idOffer: '@offer_5'
         finalPrice: 95.99
-        createdAt: <dateTimeBetween('-1 year', 'now')>
-        updatedAt: <dateTimeBetween('-1 year', 'now')>
+        createdAt: <dateTimeBetween('-2 months', 'now')>
+        updatedAt: <dateTimeBetween('-2 months', 'now')>
         startDate: <dateTimeBetween('now', '+1 month')>
         endDate: <dateTimeBetween('+1 month', '+2 months')>
-        status: 'PENDING'
+        status: 'pending'
+        
+    booking_6:
+        idUser: '@user_1'
+        idOffer: '@offer_6'
+        finalPrice: 140.00
+        createdAt: <dateTimeBetween('-1 months', 'now')>
+        updatedAt: <dateTimeBetween('-1 months', 'now')>
+        startDate: <dateTimeBetween('now', '+10 days')>
+        endDate: <dateTimeBetween('+10 days', '+15 days')>
+        status: 'blocked'
+
