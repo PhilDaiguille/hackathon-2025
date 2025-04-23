@@ -8,6 +8,7 @@ App\Entity\User:
         createdAt: <dateTimeBetween('-1 year', 'now')>
         updatedAt: <dateTimeBetween('-1 year', 'now')>
         isVerified: true
+        roles: ['ROLE_USER']
 
     user_2:
         firstname: 'Mehdi'
@@ -18,6 +19,7 @@ App\Entity\User:
         createdAt: <dateTimeBetween('-1 year', 'now')>
         updatedAt: <dateTimeBetween('-1 year', 'now')>
         isVerified: false
+        roles: ['ROLE_USER']
 
     user_3:
         firstname: 'Claire'
@@ -28,6 +30,7 @@ App\Entity\User:
         createdAt: <dateTimeBetween('-1 year', 'now')>
         updatedAt: <dateTimeBetween('-1 year', 'now')>
         isVerified: true
+        roles: ['ROLE_USER']
 
     user_4:
         firstname: 'Luca'
@@ -38,6 +41,7 @@ App\Entity\User:
         createdAt: <dateTimeBetween('-1 year', 'now')>
         updatedAt: <dateTimeBetween('-1 year', 'now')>
         isVerified: false
+        roles: ['ROLE_USER']
 
     user_5:
         firstname: 'Sophie'
@@ -48,3 +52,4 @@ App\Entity\User:
         createdAt: <dateTimeBetween('-1 year', 'now')>
         updatedAt: <dateTimeBetween('-1 year', 'now')>
         isVerified: true
+        roles: ['ROLE_USER']
