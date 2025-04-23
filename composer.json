@@ -22,6 +22,8 @@
         "symfony/mailer": "7.2.*",
         "symfony/runtime": "7.2.*",
         "symfony/security-bundle": "7.2.*",
+        "symfony/ux-leaflet-map": "^2.24",
+        "symfony/ux-map": "^2.24",
         "symfony/validator": "7.2.*",
         "symfony/yaml": "7.2.*",
         "symfonycasts/tailwind-bundle": "^0.10.0",
