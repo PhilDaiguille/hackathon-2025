@@ -2,7 +2,12 @@
 {% block title %}Welcome!{% endblock %}
 
 {% block body %}
-    <p>test</p>
+    {% if app.user %}
+        <p>Coucou {{ app.user.firstname }} {{ app.user.roles[0] }}</p>
+        <div>
+            {{ ux_map(map, {style: 'height: 600px;'}) }}
+        </div>
+    {% endif %}
     <div id="smart-search">
         <input type="text" id="search-input" placeholder="Ex : Hôtel avec piscine à Rotterdam" />
     </div>
