@@ -1,0 +1,8 @@
+App\Entity\Room:
+    room_{1..5}:
+        idHotel: '@hotel_*'
+        type: <word()>
+        basePrice: <randomFloat(2, 50, 500)>
+        description: <sentence()>
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>

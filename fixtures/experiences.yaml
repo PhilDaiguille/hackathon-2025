@@ -1,0 +1,9 @@
+App\Entity\Experiences:
+    experience_{1..5}:
+        idRoom: '@room_*'
+        idPredefinedExtra: '@predefined_extra_*'
+        isPredefined: <boolean()>
+        customName: <word()>
+        customDescription: <sentence()>
+        customImage: <imageUrl()>
+        createdAt: <dateTimeBetween('-1 year', 'now')>

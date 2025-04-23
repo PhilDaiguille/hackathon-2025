@@ -1,0 +1,10 @@
+App\Entity\Extras:
+    extra_{1..5}:
+        idRoom: '@room_*'
+        isPredefined: <boolean()>
+        idPredefinedExtras: '@predefined_extra_*'
+        customName: <word()>
+        customDescription: <sentence()>
+        customImage: <imageUrl()>
+        price: <randomFloat(2, 10, 100)>
+        createdAt: <dateTimeBetween('-1 year', 'now')>

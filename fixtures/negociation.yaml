@@ -1,0 +1,8 @@
+App\Entity\Negociation:
+    negociation_{1..5}:
+        idBooking: '@booking_*'
+        newPrice: <randomFloat(2, 30, 400)>
+        responseDeadline: <dateTimeBetween('now', '+1 week')>
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>
+        status: <randomElement(['PENDING', 'ACCEPTED', 'REJECTED'])>

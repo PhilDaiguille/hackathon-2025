@@ -1,0 +1,6 @@
+App\Entity\HotelImages:
+    hotel_image_{1..5}:
+        idHotel: '@hotel_*'
+        url: <imageUrl()>
+        type: <randomElement(['interior', 'exterior', 'room', 'lobby'])>
+        createdAt: <dateTimeBetween('-1 year', 'now')>

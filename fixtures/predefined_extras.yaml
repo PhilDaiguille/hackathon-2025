@@ -1,0 +1,6 @@
+App\Entity\PredefinedExtras:
+    predefined_extra_{1..5}:
+        name: <word()>
+        description: <sentence()>
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        image: <imageUrl()>

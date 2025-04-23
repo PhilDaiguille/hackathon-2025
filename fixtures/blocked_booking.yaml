@@ -1,0 +1,6 @@
+App\Entity\BlockedBooking:
+    blocked_booking_{1..5}:
+        idUser: '@user_*'
+        idHotel: '@hotel_*'
+        blockedUntil: <dateTimeBetween('now', '+10 days')>
+        createdAt: <dateTimeBetween('-1 year', 'now')>
