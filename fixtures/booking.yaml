@@ -1,10 +1,50 @@
 App\Entity\Booking:
-    booking_{1..5}:
-        idUser: '@user_*'
-        idOffer: '@offer_*'
-        finalPrice: <randomFloat(2, 50, 500)>
+    booking_1:
+        idUser: '@user_1'
+        idOffer: '@offer_1'
+        finalPrice: 320.00
         createdAt: <dateTimeBetween('-1 year', 'now')>
         updatedAt: <dateTimeBetween('-1 year', 'now')>
         startDate: <dateTimeBetween('now', '+1 month')>
         endDate: <dateTimeBetween('+1 month', '+2 months')>
-        status: <randomElement(['PENDING', 'CONFIRMED', 'CANCELLED'])>
+        status: 'CONFIRMED'
+
+    booking_2:
+        idUser: '@user_2'
+        idOffer: '@offer_2'
+        finalPrice: 180.50
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>
+        startDate: <dateTimeBetween('now', '+1 month')>
+        endDate: <dateTimeBetween('+1 month', '+2 months')>
+        status: 'PENDING'
+
+    booking_3:
+        idUser: '@user_3'
+        idOffer: '@offer_3'
+        finalPrice: 250.00
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>
+        startDate: <dateTimeBetween('now', '+1 month')>
+        endDate: <dateTimeBetween('+1 month', '+2 months')>
+        status: 'CANCELLED'
+
+    booking_4:
+        idUser: '@user_4'
+        idOffer: '@offer_4'
+        finalPrice: 400.00
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>
+        startDate: <dateTimeBetween('now', '+1 month')>
+        endDate: <dateTimeBetween('+1 month', '+2 months')>
+        status: 'CONFIRMED'
+
+    booking_5:
+        idUser: '@user_5'
+        idOffer: '@offer_5'
+        finalPrice: 95.99
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>
+        startDate: <dateTimeBetween('now', '+1 month')>
+        endDate: <dateTimeBetween('+1 month', '+2 months')>
+        status: 'PENDING'

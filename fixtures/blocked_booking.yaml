@@ -1,6 +1,30 @@
 App\Entity\BlockedBooking:
-    blocked_booking_{1..5}:
-        idUser: '@user_*'
-        idHotel: '@hotel_*'
+    blocked_booking_1:
+        idUser: '@user_1'
+        idHotel: '@hotel_3'
+        blockedUntil: <dateTimeBetween('now', '+10 days')>
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+
+    blocked_booking_2:
+        idUser: '@user_2'
+        idHotel: '@hotel_1'
+        blockedUntil: <dateTimeBetween('now', '+10 days')>
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+
+    blocked_booking_3:
+        idUser: '@user_3'
+        idHotel: '@hotel_4'
+        blockedUntil: <dateTimeBetween('now', '+10 days')>
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+
+    blocked_booking_4:
+        idUser: '@user_4'
+        idHotel: '@hotel_2'
+        blockedUntil: <dateTimeBetween('now', '+10 days')>
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+
+    blocked_booking_5:
+        idUser: '@user_5'
+        idHotel: '@hotel_5'
         blockedUntil: <dateTimeBetween('now', '+10 days')>
         createdAt: <dateTimeBetween('-1 year', 'now')>

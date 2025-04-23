@@ -1,9 +1,45 @@
 App\Entity\User:
-    user_{1..5}:
-        firstname: <firstName()>
-        lastname: <lastName()>
-        email: <email()>
-        password: <password()>
-        isActive: <boolean()>
+    user_1:
+        firstname: 'Alice'
+        lastname: 'Dupont'
+        email: 'alice.dupont@example.com'
+        password: '$2y$13$eXEMULATEDHASHEDPASSWORD123456'  # hashé avec bcrypt par exemple
+        isActive: true
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>
+
+    user_2:
+        firstname: 'Mehdi'
+        lastname: 'Ben Salah'
+        email: 'mehdi.bs@example.com'
+        password: '$2y$13$eXEMULATEDHASHEDPASSWORD654321'
+        isActive: true
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>
+
+    user_3:
+        firstname: 'Claire'
+        lastname: 'Martin'
+        email: 'claire.martin@example.com'
+        password: '$2y$13$eXEMULATEDHASHEDPASSWORDABCDEF'
+        isActive: false
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>
+
+    user_4:
+        firstname: 'Luca'
+        lastname: 'Rossi'
+        email: 'luca.rossi@example.com'
+        password: '$2y$13$eXEMULATEDHASHEDPASSWORD987654'
+        isActive: true
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>
+
+    user_5:
+        firstname: 'Sophie'
+        lastname: 'Dubois'
+        email: 'sophie.dubois@example.com'
+        password: '$2y$13$eXEMULATEDHASHEDPASSWORDZXCVBN'
+        isActive: false
         createdAt: <dateTimeBetween('-1 year', 'now')>
         updatedAt: <dateTimeBetween('-1 year', 'now')>

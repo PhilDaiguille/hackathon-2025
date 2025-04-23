@@ -1,13 +1,70 @@
 App\Entity\Hotel:
-    hotel_{1..5}:
-        name: <company()>
-        description: <sentence()>
-        streetName: <streetName()>
-        streetNumber: <buildingNumber()>
-        postalCode: <postcode()>
-        city: <city()>
-        country: <country()>
-        rating: <randomFloat(1, 1, 5)>
-        adminEmail: <email()>
+    hotel_1:
+        name: 'Hôtel Royal Piscine'
+        description: 'Un hôtel luxueux avec piscine à Rotterdam.'
+        streetName: 'Rue du Canal'
+        streetNumber: '12'
+        postalCode: '3011'
+        city: 'Rotterdam'
+        country: 'Pays-Bas'
+        rating: 4.5
+        adminEmail: 'royal@hotel.com'
+        equipment: ['piscine', 'wifi', 'spa']
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>
+
+    hotel_2:
+        name: 'Auberge Tranquille'
+        description: 'Charmante auberge à Rotterdam avec parking.'
+        streetName: 'Avenue Verte'
+        streetNumber: '78'
+        postalCode: '3012'
+        city: 'Rotterdam'
+        country: 'Pays-Bas'
+        rating: 3.9
+        adminEmail: 'contact@auberge-tranquille.com'
+        equipment: ['parking', 'wifi']
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>
+
+    hotel_3:
+        name: 'Hotel Spa Parisien'
+        description: 'Détente et bien-être à Paris.'
+        streetName: 'Rue de Paris'
+        streetNumber: '5'
+        postalCode: '75001'
+        city: 'Paris'
+        country: 'France'
+        rating: 4.8
+        adminEmail: 'spa@parisien.com'
+        equipment: ['spa', 'wifi', 'piscine']
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>
+
+    hotel_4:
+        name: 'Business Inn Berlin'
+        description: 'Hôtel moderne au cœur de Berlin.'
+        streetName: 'Alexanderplatz'
+        streetNumber: '9'
+        postalCode: '10178'
+        city: 'Berlin'
+        country: 'Allemagne'
+        rating: 4.2
+        adminEmail: 'info@business-inn.de'
+        equipment: ['wifi', 'parking']
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>
+
+    hotel_5:
+        name: 'Hostel Madrid Centro'
+        description: 'Convivial et économique, parfait pour les jeunes.'
+        streetName: 'Calle Mayor'
+        streetNumber: '23'
+        postalCode: '28013'
+        city: 'Madrid'
+        country: 'Espagne'
+        rating: 3.5
+        adminEmail: 'contact@hostel-madrid.es'
+        equipment: ['wifi']
         createdAt: <dateTimeBetween('-1 year', 'now')>
         updatedAt: <dateTimeBetween('-1 year', 'now')>

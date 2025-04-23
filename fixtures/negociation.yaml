@@ -1,8 +1,40 @@
 App\Entity\Negociation:
-    negociation_{1..5}:
-        idBooking: '@booking_*'
-        newPrice: <randomFloat(2, 30, 400)>
+    negociation_1:
+        idBooking: '@booking_1'
+        newPrice: 275.00
         responseDeadline: <dateTimeBetween('now', '+1 week')>
         createdAt: <dateTimeBetween('-1 year', 'now')>
         updatedAt: <dateTimeBetween('-1 year', 'now')>
-        status: <randomElement(['PENDING', 'ACCEPTED', 'REJECTED'])>
+        status: 'PENDING'
+
+    negociation_2:
+        idBooking: '@booking_2'
+        newPrice: 180.50
+        responseDeadline: <dateTimeBetween('now', '+1 week')>
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>
+        status: 'ACCEPTED'
+
+    negociation_3:
+        idBooking: '@booking_3'
+        newPrice: 320.00
+        responseDeadline: <dateTimeBetween('now', '+1 week')>
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>
+        status: 'REJECTED'
+
+    negociation_4:
+        idBooking: '@booking_4'
+        newPrice: 150.75
+        responseDeadline: <dateTimeBetween('now', '+1 week')>
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>
+        status: 'PENDING'
+
+    negociation_5:
+        idBooking: '@booking_5'
+        newPrice: 99.99
+        responseDeadline: <dateTimeBetween('now', '+1 week')>
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>
+        status: 'ACCEPTED'
