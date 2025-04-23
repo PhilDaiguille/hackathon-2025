@@ -4,6 +4,55 @@
 {% block body %}
     <p>test</p>
     <div id="smart-search">
-        <input type="text" id="search-input" placeholder="Ex : Hôtel avec piscine à Rotterdam" />
+        <input type="text" id="search-input" placeholder="Ex : Hôtel avec piscine à Paris" />
     </div>
+
+    <div id="results" style="margin-top: 20px;"></div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        function renderResults(hotels) {
+            const container = document.getElementById('results');
+            container.innerHTML = '';
+            if (hotels.length === 0) {
+                container.innerHTML = '<p>Aucun hôtel trouvé.</p>';
+                return;
+            }
+            hotels.forEach(hotel => {
+                const div = document.createElement('div');
+                div.innerHTML = `<strong>${hotel.name}</strong> - ${hotel.city}<br><small>Équipements : ${hotel.equipment.join(', ')}</small>`;
+                container.appendChild(div);
+            });
+        }
+
+        document.getElementById('search-input').addEventListener('input', function (e) {
+            const query = e.target.value.toLowerCase();
+            const filters = { type: null, equipment: [], location: null };
+
+            if (query.includes('hôtel')) filters.type = 'hôtel';
+            if (query.includes('auberge')) filters.type = 'auberge';
+
+            const equipments = ['piscine', 'spa', 'wifi', 'parking'];
+            equipments.forEach(eq => {
+                if (query.includes(eq)) filters.equipment.push(eq);
+            });
+
+            const regexLocation = /à\\s([a-zA-Z\u00C0-\u017F\\s]+)/;
+            const match = query.match(regexLocation);
+            if (match) {
+                filters.location = match[1].trim();
+            }
+
+            fetch('/api/search-hotels', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(filters)
+            })
+                .then(res => res.json())
+                .then(data => renderResults(data))
+                .catch(err => console.error('Erreur fetch :', err));
+        });
+    </script>
 {% endblock %}
