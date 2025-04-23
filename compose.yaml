@@ -35,7 +35,16 @@ services:
 # Mercure is installed as a Caddy module, prevent the Flex recipe from installing another service
 ###> symfony/mercure-bundle ###
 ###< symfony/mercure-bundle ###
-
+  adminer:
+    image: adminer:latest
+    restart: unless-stopped
+    environment:
+        ADMINER_DEFAULT_SERVER: database
+        ADMINER_DEFAULT_USERNAME: ${POSTGRES_USER:-app}
+        ADMINER_DEFAULT_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
+    ports:
+        - target: 8080
+          protocol: tcp
 ###> doctrine/doctrine-bundle ###
   database:
     image: postgres:${POSTGRES_VERSION:-16}-alpine
@@ -54,7 +63,7 @@ services:
       # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
       # - ./docker/db/data:/var/lib/postgresql/data:rw
 ###< doctrine/doctrine-bundle ###
-
+    
 volumes:
   caddy_data:
   caddy_config:
