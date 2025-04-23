@@ -67,11 +67,18 @@ class Hotel
     #[ORM\OneToMany(targetEntity: BlockedBooking::class, mappedBy: 'idHotel', orphanRemoval: true)]
     private Collection $blockedBookings;
 
+    /**
+     * @var Collection<int, HotelImages>
+     */
+    #[ORM\OneToMany(targetEntity: HotelImages::class, mappedBy: 'idHotel')]
+    private Collection $hotelImages;
+
     public function __construct()
     {
         $this->rooms = new ArrayCollection();
         $this->offers = new ArrayCollection();
         $this->blockedBookings = new ArrayCollection();
+        $this->hotelImages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -295,6 +302,36 @@ class Hotel
             // set the owning side to null (unless already changed)
             if ($blockedBooking->getIdHotel() === $this) {
                 $blockedBooking->setIdHotel(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, HotelImages>
+     */
+    public function getHotelImages(): Collection
+    {
+        return $this->hotelImages;
+    }
+
+    public function addHotelImage(HotelImages $hotelImage): static
+    {
+        if (!$this->hotelImages->contains($hotelImage)) {
+            $this->hotelImages->add($hotelImage);
+            $hotelImage->setIdHotel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHotelImage(HotelImages $hotelImage): static
+    {
+        if ($this->hotelImages->removeElement($hotelImage)) {
+            // set the owning side to null (unless already changed)
+            if ($hotelImage->getIdHotel() === $this) {
+                $hotelImage->setIdHotel(null);
             }
         }
 
