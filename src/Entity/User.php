@@ -67,6 +67,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 2048, nullable: true)]
     private ?string $avatar = null;
 
+    #[ORM\ManyToOne(inversedBy: 'users')]
+    private ?Hotel $idHotel = null;
+
     public function __construct()
     {
         $this->bookings = new ArrayCollection();
@@ -298,6 +301,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getHashPassword(): string
     {
         return $this->hashPassword;
+    }
+
+    public function getIdHotel(): ?Hotel
+    {
+        return $this->idHotel;
+    }
+
+    public function setIdHotel(?Hotel $idHotel): static
+    {
+        $this->idHotel = $idHotel;
+
+        return $this;
     }
 
 }
