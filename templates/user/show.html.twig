@@ -1,62 +1,40 @@
 {% extends 'base-bo.html.twig' %}
 
-{% block title %}User{% endblock %}
+{% block title %}Fiche utilisateur{% endblock %}
 
 {% block body %}
-    <h1>User</h1>
+    <div class="user-card" style="max-width: 800px; margin: 0 auto; background: #fff; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+        <h1 style="margin-bottom: 1.5rem; font-size: 2rem; color: #333;">Fiche utilisateur</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
-            </tr>
-            <tr>
-                <th>Firstname</th>
-                <td>{{ user.firstname }}</td>
-            </tr>
-            <tr>
-                <th>Lastname</th>
-                <td>{{ user.lastname }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ user.email }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
-            </tr>
-            <tr>
-                <th>IsActive</th>
-                <td>{{ user.isActive ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>CreatedAt</th>
-                <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>UpdatedAt</th>
-                <td>{{ user.updatedAt ? user.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Roles</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-            </tr>
-            <tr>
-                <th>IsVerified</th>
-                <td>{{ user.isVerified ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>Avatar</th>
-                <td>{{ user.avatar }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <div style="display: flex; gap: 2rem;">
+            {% if user.avatar %}
+                <img src="{{ user.avatar }}" alt="Avatar" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%; border: 2px solid #ccc;" />
+            {% else %}
+                <div style="width: 150px; height: 150px; background: #eee; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #888;">
+                    Pas d'avatar
+                </div>
+            {% endif %}
 
-    <a href="{{ path('app_user_index') }}">back to list</a>
+            <table style="flex: 1; border-collapse: collapse; width: 100%;">
+                <tr><th style="text-align: left;">ID</th><td>{{ user.id }}</td></tr>
+                <tr><th style="text-align: left;">Prénom</th><td>{{ user.firstname }}</td></tr>
+                <tr><th style="text-align: left;">Nom</th><td>{{ user.lastname }}</td></tr>
+                <tr><th style="text-align: left;">Email</th><td>{{ user.email }}</td></tr>
+                <tr><th style="text-align: left;">Mot de passe</th><td>••••••••</td></tr>
+                <tr><th style="text-align: left;">Actif</th><td>{{ user.isActive ? 'Oui' : 'Non' }}</td></tr>
+                <tr><th style="text-align: left;">Vérifié</th><td>{{ user.isVerified ? 'Oui' : 'Non' }}</td></tr>
+                <tr><th style="text-align: left;">Rôles</th><td><code>{{ user.roles ? user.roles|join(', ') : 'Aucun' }}</code></td></tr>
+                <tr><th style="text-align: left;">Créé le</th><td>{{ user.createdAt ? user.createdAt|date('d/m/Y H:i') : '' }}</td></tr>
+                <tr><th style="text-align: left;">Modifié le</th><td>{{ user.updatedAt ? user.updatedAt|date('d/m/Y H:i') : '' }}</td></tr>
+            </table>
+        </div>
+    </div>
 
-    <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
-
-    {{ include('user/_delete_form.html.twig') }}
+    <div style="max-width: 800px; margin: 2rem auto 0; display: flex; justify-content: space-between; gap: 1rem;">
+        <a href="{{ path('app_user_index') }}" class="btn btn-secondary">← Retour à la liste</a>
+        <div>
+            <a href="{{ path('app_user_edit', {'id': user.id}) }}" class="btn btn-primary" style="margin-right: 1rem;">✎ Modifier</a>
+            {{ include('user/_delete_form.html.twig') }}
+        </div>
+    </div>
 {% endblock %}

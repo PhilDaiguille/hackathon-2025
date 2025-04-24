@@ -1,0 +1,45 @@
+{% extends 'base-bo.html.twig' %}
+
+{% block title %}Bookings{% endblock %}
+
+{% block body %}
+    <h1>Bookings</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>FinalPrice</th>
+            <th>CreatedAt</th>
+            <th>UpdatedAt</th>
+            <th>StartDate</th>
+            <th>EndDate</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for booking in bookings %}
+            <tr>
+                <td>{{ booking.id }}</td>
+                <td>{{ booking.finalPrice }}</td>
+                <td>{{ booking.createdAt ? booking.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ booking.updatedAt ? booking.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ booking.startDate ? booking.startDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ booking.endDate ? booking.endDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ booking.status.label() }}</td> <!-- Utilisation de la méthode label() de l'enum BookingStatus -->
+                <td>
+                    <a href="{{ path('app_booking_show', {'id': booking.id}) }}">Show</a>
+                    <a href="{{ path('app_booking_edit', {'id': booking.id}) }}">Edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">No bookings found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_booking_new') }}">Create new booking</a>
+{% endblock %}

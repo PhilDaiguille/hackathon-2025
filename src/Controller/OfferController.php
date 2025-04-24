@@ -12,6 +12,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Service\SmartSearchService;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
+use App\Entity\User;
+use App\Entity\Hotel;
+
 
 #[Route('/admin/offer')]
 final class OfferController extends AbstractController
@@ -20,10 +25,25 @@ final class OfferController extends AbstractController
     #[Route(name: 'app_offer_index', methods: ['GET'])]
     public function index(OfferRepository $offerRepository): Response
     {
+        $user = $this->getUser();
+
+        // Vérifie si l'utilisateur a le rôle ADMIN
+        if ($this->isGranted('ROLE_ADMIN')) {
+            $offers = $offerRepository->findAll();
+        } elseif ($this->isGranted('ROLE_OWNER')) {
+            // Pour un OWNER, on suppose que l'utilisateur est lié à un hôtel
+            $hotel = $user->getIdHotel(); // ou un autre nom selon ta relation
+            $offers = $offerRepository->findBy(['idHotel' => $hotel]);
+        } else {
+            // Aucun rôle pertinent → renvoyer une page vide ou une erreur
+            $offers = [];
+        }
+
         return $this->render('offer/index.html.twig', [
-            'offers' => $offerRepository->findAll(),
+            'offers' => $offers,
         ]);
     }
+
 
     #[Route('/new', name: 'app_offer_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
