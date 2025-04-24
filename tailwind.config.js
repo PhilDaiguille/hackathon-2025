@@ -11,6 +11,11 @@ module.exports = {
       colors: {
         primary: '#eadcd1',
         secondary: '#f1e8d5',
+        tertiery1: '#f7f4f1',
+        tertiery2: '#473A1F',
+        ctaSurvol: '#EADDD1',
+        cta: '#BC946F',
+        fondGrey: '#1F1F1F',
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
