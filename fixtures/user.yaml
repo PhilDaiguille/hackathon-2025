@@ -19,7 +19,7 @@ App\Entity\User:
         isActive: true
         createdAt: <dateTimeBetween('-1 year', 'now')>
         updatedAt: <dateTimeBetween('-1 year', 'now')>
-        isVerified: false
+        isVerified: falsea
         roles: ['ROLE_USER']
         avatar: 'https://randomuser.me/api/portraits/men/32.jpg'
 

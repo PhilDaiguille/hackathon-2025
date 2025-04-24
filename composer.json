@@ -86,6 +86,7 @@
         }
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^4.1",
         "hautelook/alice-bundle": "^2.15.1",
         "symfony/maker-bundle": "^1.62.1",
         "symfony/web-profiler-bundle": "^7.2.4"

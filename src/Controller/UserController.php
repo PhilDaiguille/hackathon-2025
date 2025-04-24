@@ -4,12 +4,15 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Form\ClientProfileType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+
 
 final class UserController extends AbstractController
 {
@@ -27,7 +30,6 @@ final class UserController extends AbstractController
         $user = new User();
         $user->setRoles(['ROLE_OWNER']);
 
-        // Définir les champs createdAt et updatedAt à la date actuelle
         $now = new \DateTimeImmutable();
         $user->setCreatedAt($now);
         $user->setUpdatedAt($now);
@@ -84,4 +86,52 @@ final class UserController extends AbstractController
 
         return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/profil', name: 'app_user_profil', methods: ['GET', 'POST'])]
+    public function profil(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $hasher): Response
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        $form = $this->createForm(ClientProfileType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $newPassword = $form->get('password')->getData();
+
+            if ($newPassword) {
+                $hashedPassword = $hasher->hashPassword($user, $newPassword);
+                $user->setPassword($hashedPassword);
+            }
+
+            $user->setUpdatedAt(new \DateTimeImmutable());
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Profil mis à jour avec succès.');
+
+            return $this->redirectToRoute('app_user_profil');
+        }
+
+
+
+        return $this->render('client/client_profil.html.twig', [
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/profil/delete', name: 'app_user_delete_account', methods: ['POST'])]
+    public function deleteAccount(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $user = $this->getUser();
+
+        if ($this->isCsrfTokenValid('delete_account', $request->request->get('_token'))) {
+            $entityManager->remove($user);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_logout');
+        }
+
+        return $this->redirectToRoute('app_user_profil');
+    }
+
 }
