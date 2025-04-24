@@ -3,7 +3,7 @@
 {% block title %}Détail de l'Offre{% endblock %}
 
 {% block body %}
-    <div class="max-w-5xl mx-auto px-4 py-8 rounded-xl space-y-6">
+    <div class="max-w-5xl mx-auto rounded-xl space-y-6">
 
         <h1 class="text-3xl font-bold text-black">Détail de l'Offre</h1>
 
@@ -24,19 +24,19 @@
                 </tr>
                 <tr class="border-b">
                     <th class="py-2 px-4 font-semibold bg-[#F7F4F1]">Disponible à partir de</th>
-                    <td class="py-2 px-4">{{ offer.availableFrom ? offer.availableFrom|date('Y-m-d H:i') : '' }}</td>
+                    <td class="py-2 px-4">{{ offer.availableFrom ? offer.availableFrom|date('d/m/Y') : '' }}</td>
                 </tr>
                 <tr class="border-b">
                     <th class="py-2 px-4 font-semibold bg-[#F7F4F1]">Disponible jusqu'à</th>
-                    <td class="py-2 px-4">{{ offer.availableUntil ? offer.availableUntil|date('Y-m-d H:i') : '' }}</td>
+                    <td class="py-2 px-4">{{ offer.availableUntil ? offer.availableUntil|date('d/m/Y') : '' }}</td>
                 </tr>
                 <tr class="border-b">
                     <th class="py-2 px-4 font-semibold bg-[#F7F4F1]">Créé le</th>
-                    <td class="py-2 px-4">{{ offer.createdAt ? offer.createdAt|date('Y-m-d H:i') : '' }}</td>
+                    <td class="py-2 px-4">{{ offer.createdAt ? offer.createdAt|date('d/m/Y H:i') : '' }}</td>
                 </tr>
                 <tr>
                     <th class="py-2 px-4 font-semibold bg-[#F7F4F1]">Mis à jour le</th>
-                    <td class="py-2 px-4">{{ offer.updatedAt ? offer.updatedAt|date('Y-m-d H:i') : '' }}</td>
+                    <td class="py-2 px-4">{{ offer.updatedAt ? offer.updatedAt|date('d/m/Y H:i') : '' }}</td>
                 </tr>
                 </tbody>
             </table>
