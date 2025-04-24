@@ -82,6 +82,12 @@ class Hotel
     #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'idHotel')]
     private Collection $users;
 
+    /**
+     * @var Collection<int, Wishlist>
+     */
+    #[ORM\OneToMany(targetEntity: Wishlist::class, mappedBy: 'hotel')]
+    private Collection $wishlists;
+
 
     public function __construct()
     {
@@ -90,6 +96,7 @@ class Hotel
         $this->blockedBookings = new ArrayCollection();
         $this->hotelImages = new ArrayCollection();
         $this->users = new ArrayCollection();
+        $this->wishlists = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -384,6 +391,36 @@ class Hotel
             // set the owning side to null (unless already changed)
             if ($user->getIdHotel() === $this) {
                 $user->setIdHotel(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Wishlist>
+     */
+    public function getWishlists(): Collection
+    {
+        return $this->wishlists;
+    }
+
+    public function addWishlist(Wishlist $wishlist): static
+    {
+        if (!$this->wishlists->contains($wishlist)) {
+            $this->wishlists->add($wishlist);
+            $wishlist->setHotel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeWishlist(Wishlist $wishlist): static
+    {
+        if ($this->wishlists->removeElement($wishlist)) {
+            // set the owning side to null (unless already changed)
+            if ($wishlist->getHotel() === $this) {
+                $wishlist->setHotel(null);
             }
         }
 

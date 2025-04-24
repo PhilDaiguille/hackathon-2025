@@ -73,6 +73,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToOne(mappedBy: 'preferenceUser', cascade: ['persist', 'remove'])]
     private ?Preference $preference = null;
 
+    /**
+     * @var Collection<int, Wishlist>
+     */
+    #[ORM\OneToMany(targetEntity: Wishlist::class, mappedBy: 'client')]
+    private Collection $wishlists;
+
     public function __construct()
     {
         $this->bookings = new ArrayCollection();
@@ -81,6 +87,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = new \DateTimeImmutable();
+        $this->wishlists = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -339,6 +346,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         $this->preference = $preference;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Wishlist>
+     */
+    public function getWishlists(): Collection
+    {
+        return $this->wishlists;
+    }
+
+    public function addWishlist(Wishlist $wishlist): static
+    {
+        if (!$this->wishlists->contains($wishlist)) {
+            $this->wishlists->add($wishlist);
+            $wishlist->setClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeWishlist(Wishlist $wishlist): static
+    {
+        if ($this->wishlists->removeElement($wishlist)) {
+            // set the owning side to null (unless already changed)
+            if ($wishlist->getClient() === $this) {
+                $wishlist->setClient(null);
+            }
+        }
 
         return $this;
     }
