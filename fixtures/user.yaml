@@ -3,7 +3,7 @@ App\Entity\User:
         firstname: 'Alice'
         lastname: 'Dupont'
         email: 'alice.dupont@example.com'
-        password: 'pass'  # hashé avec bcrypt par exemple
+        hashpassword: 'password123' 
         isActive: true
         createdAt: <dateTimeBetween('-1 year', 'now')>
         updatedAt: <dateTimeBetween('-1 year', 'now')>
@@ -14,7 +14,7 @@ App\Entity\User:
         firstname: 'Mehdi'
         lastname: 'Ben Salah'
         email: 'mehdi.bs@example.com'
-        password: 'pass'
+        hashpassword: 'password123'
         isActive: true
         createdAt: <dateTimeBetween('-1 year', 'now')>
         updatedAt: <dateTimeBetween('-1 year', 'now')>
@@ -25,7 +25,7 @@ App\Entity\User:
         firstname: 'Claire'
         lastname: 'Martin'
         email: 'claire.martin@example.com'
-        password: 'pass'
+        hashpassword: 'password123'
         isActive: false
         createdAt: <dateTimeBetween('-1 year', 'now')>
         updatedAt: <dateTimeBetween('-1 year', 'now')>
@@ -36,7 +36,7 @@ App\Entity\User:
         firstname: 'Luca'
         lastname: 'Rossi'
         email: 'luca.rossi@example.com'
-        password: 'pass'
+        hashpassword: 'password123'
         isActive: true
         createdAt: <dateTimeBetween('-1 year', 'now')>
         updatedAt: <dateTimeBetween('-1 year', 'now')>
@@ -47,7 +47,7 @@ App\Entity\User:
         firstname: 'Sophie'
         lastname: 'Dubois'
         email: 'sophie.dubois@example.com'
-        password: 'pass'
+        hashpassword: 'password123'
         isActive: false
         createdAt: <dateTimeBetween('-1 year', 'now')>
         updatedAt: <dateTimeBetween('-1 year', 'now')>

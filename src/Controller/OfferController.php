@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Offer;
 use App\Form\OfferType;
 use App\Repository\OfferRepository;
+use App\Service\MapService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,12 +16,40 @@ use App\Service\SmartSearchService;
 #[Route('/admin/offer')]
 final class OfferController extends AbstractController
 {
-
+    public function __construct(
+        private MapService $mapService
+    )
+    {
+    }
     #[Route(name: 'app_offer_index', methods: ['GET'])]
     public function index(OfferRepository $offerRepository): Response
     {
-        return $this->render('offer/index.html.twig', [
+        $map = $this->mapService->createDefaultMap();
+
+        $this->mapService->addMarkers($map, [
+            [
+                'lat' => 45.7534031,
+                'lng' => 4.8295061,
+                'title' => 'Lyon',
+                'content' => '<p>Thank you <a href="https://github.com/Kocal">@Kocal</a> for this component!</p>'
+            ],
+            [
+                'lat' => 42.7534031,
+                'lng' => 6.8295061,
+                'title' => 'Lyon',
+                'content' => '<p>Thank you <a href="https://github.com/Kocal">@Kocal</a> for this component!</p>'
+            ],
+            [
+                'lat' => 44.7534031,
+                'lng' => 5.8295061,
+                'title' => 'Lyon',
+                'content' => '<p>Thank you <a href="https://github.com/Kocal">@Kocal</a> for this component!</p>'
+            ],
+        ]);
+
+        return $this->render('client/home_client/index.html.twig', [
             'offers' => $offerRepository->findAll(),
+            'map' => $map,
         ]);
     }
 
@@ -92,15 +121,6 @@ final class OfferController extends AbstractController
         return $this->render('offer/index.html.twig', [
             'offers' => $offers,
             'query' => $query,
-        ]);
-    }
-
-    #[Route('/offers')]
-    public function indexClient(): Response
-    {
-
-        return $this->render('client/home_client/index.html.twig',[
-
         ]);
     }
 }
