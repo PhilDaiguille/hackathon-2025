@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Offer{% endblock %}
+
+{% block body %}
+    <h1>Offer</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ offer.id }}</td>
+            </tr>
+            <tr>
+                <th>AcceptanceThreshold</th>
+                <td>{{ offer.acceptanceThreshold }}</td>
+            </tr>
+            <tr>
+                <th>RefusalThreshold</th>
+                <td>{{ offer.refusalThreshold }}</td>
+            </tr>
+            <tr>
+                <th>AvailableFrom</th>
+                <td>{{ offer.availableFrom ? offer.availableFrom|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>AvailableUntil</th>
+                <td>{{ offer.availableUntil ? offer.availableUntil|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ offer.createdAt ? offer.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ offer.updatedAt ? offer.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_offer_index') }}">back to list</a>
+
+    <a href="{{ path('app_offer_edit', {'id': offer.id}) }}">edit</a>
+
+    {{ include('offer/_delete_form.html.twig') }}
+{% endblock %}

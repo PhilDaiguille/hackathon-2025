@@ -1,0 +1,37 @@
+{# components/smart_search.html.twig #}
+<div class="w-full max-w-xl mx-auto mb-5">
+    <form
+        id="{{ form_id|default('smart-search-form') }}"
+        action="{{ action|default(path('app_offer_search')) }}"
+        method="get"
+        class="flex items-center gap-2"
+    >
+        <input
+            type="text"
+            id="{{ input_id|default('smart-search-input') }}"
+            name="query"
+            value="{{ value|default('') }}"
+            placeholder="{{ placeholder|default('Hôtel avec piscine à Marseille') }}"
+            class="w-full px-4 py-2 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+            aria-label="Barre de recherche intelligente"
+        />
+        <button
+            type="submit"
+            class="px-4 py-2 bg-blue-600 text-white rounded-2xl hover:bg-blue-700 transition"
+            aria-label="Lancer la recherche"
+        >
+            🔍
+        </button>
+
+        {% if withVoice|default(true) %}
+            <button
+                type="button"
+                id="{{ voice_btn_id|default('voice-search-btn') }}"
+                class="px-4 py-2 bg-gray-100 text-gray-800 rounded-2xl hover:bg-gray-200 transition"
+                aria-label="Recherche vocale"
+            >
+                🎙️
+            </button>
+        {% endif %}
+    </form>
+</div>

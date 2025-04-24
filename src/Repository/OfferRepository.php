@@ -16,6 +16,31 @@ class OfferRepository extends ServiceEntityRepository
         parent::__construct($registry, Offer::class);
     }
 
+    public function findBySmartCriteria(array $criteria): array
+    {
+        $qb = $this->createQueryBuilder('o')
+            ->leftJoin('o.idHotel', 'h')
+            ->leftJoin('o.idRoom', 'r')
+            ->addSelect('h', 'r');
+
+        // Recherche par ville si précisée
+        if (!empty($criteria['city'])) {
+            $qb->andWhere('h.city LIKE :city')
+                ->setParameter('city', '%' . $criteria['city'] . '%');
+        }
+
+        if (!empty($criteria['features'])) {
+            foreach ($criteria['features'] as $index => $feature) {
+                $param = "feature$index";
+                $qb->andWhere("(h.description LIKE :$param OR r.description LIKE :$param)")
+                    ->setParameter($param, '%' . $feature . '%');
+            }
+        }
+
+
+        return $qb->getQuery()->getResult();
+    }
+
     //    /**
     //     * @return Offer[] Returns an array of Offer objects
     //     */

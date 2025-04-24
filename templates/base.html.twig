@@ -11,6 +11,50 @@
 
     {% block javascripts %}
         {% block importmap %}{{ importmap('app') }}{% endblock %}
+
+            {% block importmap %}{{ importmap('app') }}{% endblock %}
+
+            <script>
+                const voiceBtn = document.getElementById('{{ voice_btn_id|default("voice-search-btn") }}');
+                const input = document.getElementById('{{ input_id|default("smart-search-input") }}');
+                const form = document.getElementById('{{ form_id|default("smart-search-form") }}');
+
+                if (voiceBtn && 'webkitSpeechRecognition' in window) {
+                    voiceBtn.addEventListener('click', () => {
+                        const recognition = new webkitSpeechRecognition();
+                        recognition.lang = 'fr-FR';
+                        recognition.interimResults = false;
+                        recognition.maxAlternatives = 1;
+
+                        recognition.onstart = () => {
+                            voiceBtn.innerText = '🎙️ Écoute...';
+                        };
+
+                        recognition.onerror = (event) => {
+                            console.error("Erreur reconnaissance vocale :", event.error);
+                            alert("Erreur reconnaissance vocale : " + event.error);
+                            voiceBtn.innerText = '🎙️';
+                        };
+
+                        recognition.onend = () => {
+                            voiceBtn.innerText = '🎙️';
+                        };
+
+                        recognition.onresult = (event) => {
+                            const transcript = event.results[0][0].transcript;
+                            input.value = transcript;
+                            form.submit();
+                        };
+
+                        navigator.mediaDevices.getUserMedia({ audio: true })
+                            .then(() => recognition.start())
+                            .catch(err => alert("Permission micro refusée : " + err.message));
+                    });
+                } else {
+                    console.warn('Reconnaissance vocale non supportée.');
+                    if (voiceBtn) voiceBtn.disabled = true;
+                }
+            </script>
     {% endblock %}
 </head>
 <body>
