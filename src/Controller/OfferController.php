@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Service\SmartSearchService;
 
-#[Route('/offer')]
+#[Route('/admin/offer')]
 final class OfferController extends AbstractController
 {
     public function __construct(
@@ -123,5 +123,4 @@ final class OfferController extends AbstractController
             'query' => $query,
         ]);
     }
-
 }

@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/room')]
+#[Route('/admin/room')]
 final class RoomController extends AbstractController
 {
     #[Route(name: 'app_room_index', methods: ['GET'])]
