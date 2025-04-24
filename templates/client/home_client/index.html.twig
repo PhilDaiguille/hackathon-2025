@@ -1,0 +1,11 @@
+{% extends "base.html.twig" %}
+{% block title %}Welcome!{% endblock %}
+
+{% block body %}
+    {% if app.user %}
+        <p>Coucou {{ app.user.firstname }} {{ app.user.roles[0] }}</p>
+        <div>
+            {{ ux_map(map, {style: 'height: 600px;'}) }}
+        </div>
+    {% endif %}
+{% endblock %}
