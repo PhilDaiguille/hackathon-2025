@@ -2,19 +2,9 @@
 {% block title %}Welcome!{% endblock %}
 
 {% block body %}
-
-
-    {% if app.user %}
-        <p>Coucou {{ app.user.firstname }} {{ app.user.roles[0] }}</p>
-        <div>
-            {{ ux_map(map, {style: 'height: 300px; width: 300px'}) }}
-        </div>
-
-
-    {% endif %}
-
-    <div class="bg-black-500">
-        {% include 'components/search.html.twig' %}
+    {% include "home/hero.html.twig" %}
+    <div id="smart-search">
+        <input type="text" id="search-input" placeholder="Ex : Hôtel avec piscine à Rotterdam"/>
     </div>
 
 

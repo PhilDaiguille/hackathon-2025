@@ -93,5 +93,13 @@ final class OfferController extends AbstractController
             'query' => $query,
         ]);
     }
+  
+    #[Route('/offers')]
+    public function indexClient(): Response
+    {
 
+        return $this->render('client/home_client/index.html.twig',[
+
+        ]);
+    }
 }
