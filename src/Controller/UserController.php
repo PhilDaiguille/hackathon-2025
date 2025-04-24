@@ -31,6 +31,7 @@ final class UserController extends AbstractController
         $now = new \DateTimeImmutable();
         $user->setCreatedAt($now);
         $user->setUpdatedAt($now);
+        $user->setIsActive(true);
 
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
