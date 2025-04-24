@@ -4,7 +4,21 @@
 
 {% block body %}
 
-    {% include 'components/search.html.twig' %}
+    {% set input_id = 'my-input' %}
+    {% set form_id = 'my-form' %}
+    {% set voice_btn_id = 'my-voice-btn' %}
+
+    {% include 'components/search.html.twig' with {
+        placeholder: 'Rechercher un hébergement',
+        action: path('app_offer_search'),
+        value: query|default(''),
+        withVoice: true,
+        input_id: input_id,
+        form_id: form_id,
+        voice_btn_id: voice_btn_id
+    } %}
+
+
 
     <div class="container mt-5">
         <h1 class="mb-4">Available Offers</h1>
@@ -22,7 +36,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Offer #{{ offer.id }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">
-                                {{ offer.idHotel.name ?? 'Unknown Hotel' }}
+                                {{ offer.idHotel.name ?? 'Unknown Hotel' }} - {{ offer.idHotel.city ?? 'Unknown City' }} ({{ offer.idHotel.country ?? 'Unknown Country' }})
                             </h6>
 
                             <p class="mb-1">

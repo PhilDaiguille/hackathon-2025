@@ -1,11 +1,17 @@
+{# components/smart_search.html.twig #}
 <div class="w-full max-w-xl mx-auto mb-5">
-    <form id="smart-search-form" action="{{ path('app_offer_search') }}" method="get" class="flex items-center gap-2">
+    <form
+        id="{{ form_id|default('smart-search-form') }}"
+        action="{{ action|default(path('app_offer_search')) }}"
+        method="get"
+        class="flex items-center gap-2"
+    >
         <input
             type="text"
-            id="smart-search-input"
+            id="{{ input_id|default('smart-search-input') }}"
             name="query"
-            value="{{ query|default('') }}"
-            placeholder="Hôtel avec piscine à Marseille"
+            value="{{ value|default('') }}"
+            placeholder="{{ placeholder|default('Hôtel avec piscine à Marseille') }}"
             class="w-full px-4 py-2 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500"
             aria-label="Barre de recherche intelligente"
         />
@@ -16,29 +22,16 @@
         >
             🔍
         </button>
-        <button
-            type="button"
-            id="voice-search-btn"
-            class="px-4 py-2 bg-gray-100 text-gray-800 rounded-2xl hover:bg-gray-200 transition"
-            aria-label="Recherche vocale"
-        >
-            🎙️
-        </button>
+
+        {% if withVoice|default(true) %}
+            <button
+                type="button"
+                id="{{ voice_btn_id|default('voice-search-btn') }}"
+                class="px-4 py-2 bg-gray-100 text-gray-800 rounded-2xl hover:bg-gray-200 transition"
+                aria-label="Recherche vocale"
+            >
+                🎙️
+            </button>
+        {% endif %}
     </form>
 </div>
-
-
-<script>
-    document.getElementById('voice-search-btn')?.addEventListener('click', () => {
-        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-        recognition.lang = 'fr-FR';
-
-        recognition.onresult = (event) => {
-            const transcript = event.results[0][0].transcript;
-            document.getElementById('smart-search-input').value = transcript;
-            document.getElementById('smart-search-form').submit();
-        };
-
-        recognition.start();
-    });
-</script>

@@ -29,16 +29,14 @@ class OfferRepository extends ServiceEntityRepository
                 ->setParameter('city', '%' . $criteria['city'] . '%');
         }
 
-        // Recherche par mots-clés dans description de l’hôtel ou de la chambre
-        if (!empty($criteria['keywords'])) {
-            $i = 0;
-            foreach ($criteria['keywords'] as $keyword) {
-                $param = "kw$i";
+        if (!empty($criteria['features'])) {
+            foreach ($criteria['features'] as $index => $feature) {
+                $param = "feature$index";
                 $qb->andWhere("(h.description LIKE :$param OR r.description LIKE :$param)")
-                    ->setParameter($param, '%' . $keyword . '%');
-                $i++;
+                    ->setParameter($param, '%' . $feature . '%');
             }
         }
+
 
         return $qb->getQuery()->getResult();
     }
