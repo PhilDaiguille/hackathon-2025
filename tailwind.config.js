@@ -16,6 +16,7 @@ module.exports = {
         ctaSurvol: '#EADDD1',
         cta: '#BC946F',
         fondGrey: '#1F1F1F',
+        fondGrey2: '#6B7479',
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
