@@ -9,25 +9,27 @@
         "php": ">=8.3.20",
         "ext-ctype": "*",
         "ext-iconv": "*",
-        "doctrine/dbal": "^3",
+        "doctrine/dbal": "^3.9.4",
         "doctrine/doctrine-bundle": "^2.14",
-        "doctrine/doctrine-migrations-bundle": "^3.4",
-        "doctrine/orm": "^3.3",
+        "doctrine/doctrine-migrations-bundle": "^3.4.1",
+        "doctrine/orm": "^3.3.2",
         "runtime/frankenphp-symfony": "^0.2.0",
+        "symfony/asset": "7.2.*",
         "symfony/console": "7.2.*",
         "symfony/dotenv": "7.2.*",
-        "symfony/flex": "^2",
+        "symfony/flex": "^2.5",
         "symfony/form": "7.2.*",
         "symfony/framework-bundle": "7.2.*",
         "symfony/mailer": "7.2.*",
         "symfony/runtime": "7.2.*",
         "symfony/security-bundle": "7.2.*",
+        "symfony/ux-icons": "^2.24",
         "symfony/ux-leaflet-map": "^2.24",
         "symfony/ux-map": "^2.24",
         "symfony/validator": "7.2.*",
         "symfony/yaml": "7.2.*",
         "symfonycasts/tailwind-bundle": "^0.10.0",
-        "symfonycasts/verify-email-bundle": "^1.17"
+        "symfonycasts/verify-email-bundle": "^1.17.3"
     },
     "config": {
         "allow-plugins": {
@@ -82,8 +84,8 @@
         }
     },
     "require-dev": {
-        "hautelook/alice-bundle": "^2.15",
-        "symfony/maker-bundle": "^1.62",
-        "symfony/web-profiler-bundle": "^7.2"
+        "hautelook/alice-bundle": "^2.15.1",
+        "symfony/maker-bundle": "^1.62.1",
+        "symfony/web-profiler-bundle": "^7.2.4"
     }
 }
