@@ -1,0 +1,48 @@
+App\Entity\Room:
+    room_1:
+        idHotel: '@hotel_1'
+        type: 'Suite Luxe'
+        basePrice: 350.00
+        description: 'Une suite luxueuse avec vue sur le canal et accès direct à la piscine.'
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>
+
+    room_2:
+        idHotel: '@hotel_2'
+        type: 'Chambre Double'
+        basePrice: 120.00
+        description: 'Confortable et calme, idéale pour un séjour en couple à Rotterdam.'
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>
+
+    room_3:
+        idHotel: '@hotel_3'
+        type: 'Chambre Spa'
+        basePrice: 200.00
+        description: 'Chambre élégante avec accès au spa de l’hôtel Parisien.'
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>
+
+    room_4:
+        idHotel: '@hotel_4'
+        type: 'Bureau & Nuitée'
+        basePrice: 180.00
+        description: 'Chambre moderne équipée pour les professionnels en déplacement à Berlin.'
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>
+
+    room_5:
+        idHotel: '@hotel_5'
+        type: 'Lit Simple'
+        basePrice: 60.00
+        description: 'Chambre économique parfaite pour les routards visitant Madrid.'
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>
+        
+    room_6:
+        idHotel: '@hotel_6'
+        type: 'Chambre de Luxe'
+        basePrice: 400.00
+        description: 'Chambre avec vue sur la mer, idéale pour une escapade romantique.'
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>

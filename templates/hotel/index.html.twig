@@ -1,0 +1,81 @@
+{% extends 'base-bo.html.twig' %}
+
+{% block title %}Liste des Hôtels{% endblock %}
+
+{% block body %}
+
+    {% set input_id = 'my-input' %}
+    {% set form_id = 'my-form' %}
+    {% set voice_btn_id = 'my-voice-btn' %}
+
+    {# Composant de recherche #}
+    {% include 'components/search.html.twig' with {
+        placeholder: 'Rechercher un hébergement',
+        action: path('app_offer_search'),
+        value: query|default(''),
+        withVoice: true,
+        input_id: input_id,
+        form_id: form_id,
+        voice_btn_id: voice_btn_id
+    } %}
+
+    <div class="max-w-7xl mx-auto px-6 py-10 space-y-8">
+        <div class="flex justify-between items-center">
+            <h1 class="text-3xl font-bold text-black">Hôtels</h1>
+            <a href="{{ path('app_hotel_new') }}"
+               class="inline-flex items-center gap-2 bg-[#BC946F] text-white text-sm font-semibold px-4 py-2 rounded-md hover:bg-[#EADDD1] hover:text-black transition">
+                + Ajouter un hôtel
+            </a>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-md p-6">
+            <div class="overflow-x-auto">
+                <table class="w-full table-auto border border-gray-200 text-sm text-left">
+                    <thead class="bg-[#F7F4F1] text-black">
+                    <tr>
+                        <th class="px-4 py-2">Id</th>
+                        <th class="px-4 py-2">Nom</th>
+                        <th class="px-4 py-2">Description</th>
+                        <th class="px-4 py-2">Adresse</th>
+                        <th class="px-4 py-2">Code Postal</th>
+                        <th class="px-4 py-2">Ville</th>
+                        <th class="px-4 py-2">Pays</th>
+                        <th class="px-4 py-2">Note</th>
+                        <th class="px-4 py-2">Email</th>
+                        <th class="px-4 py-2">Créé</th>
+                        <th class="px-4 py-2">Mis à jour</th>
+                        <th class="px-4 py-2">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for hotel in hotels %}
+                        <tr class="border-t">
+                            <td class="px-4 py-2">{{ hotel.id }}</td>
+                            <td class="px-4 py-2">{{ hotel.name }}</td>
+                            <td class="px-4 py-2">{{ hotel.description }}</td>
+                            <td class="px-4 py-2">{{ hotel.streetName }} {{ hotel.streetNumber }}</td>
+                            <td class="px-4 py-2">{{ hotel.postalCode }}</td>
+                            <td class="px-4 py-2">{{ hotel.city }}</td>
+                            <td class="px-4 py-2">{{ hotel.country }}</td>
+                            <td class="px-4 py-2">{{ hotel.rating }}</td>
+                            <td class="px-4 py-2">{{ hotel.adminEmail }}</td>
+                            <td class="px-4 py-2">{{ hotel.createdAt ? hotel.createdAt|date('Y-m-d H:i') : '' }}</td>
+                            <td class="px-4 py-2">{{ hotel.updatedAt ? hotel.updatedAt|date('Y-m-d H:i') : '' }}</td>
+                            <td class="px-4 py-2">
+                                <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+                                    <a href="{{ path('app_hotel_show', {'id': hotel.id}) }}" class="text-[#1F1F1F] font-medium hover:underline">Voir</a>
+                                    <a href="{{ path('app_hotel_edit', {'id': hotel.id}) }}" class="text-[#BC946F] font-medium hover:underline">Modifier</a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="12" class="text-center py-4 text-gray-500">Aucun hôtel trouvé.</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

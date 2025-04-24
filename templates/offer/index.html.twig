@@ -1,0 +1,83 @@
+{% extends 'base-bo.html.twig' %}
+
+{% block title %}Offres{% endblock %}
+
+{% block body %}
+
+    {% set input_id = 'my-input' %}
+    {% set form_id = 'my-form' %}
+    {% set voice_btn_id = 'my-voice-btn' %}
+
+    {# Composant de recherche #}
+    {% include 'components/search.html.twig' with {
+        placeholder: 'Rechercher un hébergement',
+        action: path('app_offer_search'),
+        value: query|default(''),
+        withVoice: true,
+        input_id: input_id,
+        form_id: form_id,
+        voice_btn_id: voice_btn_id
+    } %}
+
+    <div class="max-w-7xl mx-auto px-6 py-10 space-y-8">
+
+        <div class="flex justify-between items-center">
+            <h1 class="text-3xl font-bold text-black">Offres disponibles</h1>
+
+            <a href="{{ path('app_offer_new') }}"
+               class="inline-flex items-center gap-2 bg-[#BC946F] text-white text-sm font-semibold px-4 py-2 rounded-md hover:bg-[#EADDD1] transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                </svg>
+                Nouvelle offre
+            </a>
+
+        </div>
+
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {% for offer in offers %}
+                <div class="bg-white border border-gray-200 shadow-md rounded-xl flex flex-col justify-between">
+                    <div class="p-5 space-y-2">
+                        <h2 class="text-lg font-semibold text-black">Offre #{{ offer.id }}</h2>
+                        <p class="text-sm text-gray-600">
+                            {{ offer.idHotel.name ?? 'Hôtel inconnu' }} – {{ offer.idHotel.city ?? 'Ville inconnue' }} ({{ offer.idHotel.country ?? 'Pays inconnu' }})
+                        </p>
+
+                        <p class="text-sm"><strong>Chambre :</strong>
+                            {{ offer.idRoom ? offer.idRoom.idHotel.name ~ ' - ' ~ offer.idRoom.type : 'Type inconnu' }}
+                        </p>
+
+                        <p class="text-sm"><strong>Du :</strong> {{ offer.availableFrom ? offer.availableFrom|date('Y-m-d H:i') : 'N/A' }}</p>
+                        <p class="text-sm"><strong>Au :</strong> {{ offer.availableUntil ? offer.availableUntil|date('Y-m-d H:i') : 'N/A' }}</p>
+
+                        <p class="text-sm">
+                            <strong>Seuil acceptation :</strong> {{ offer.acceptanceThreshold }}<br>
+                            <strong>Seuil refus :</strong> {{ offer.refusalThreshold }}
+                        </p>
+
+                        <p class="text-xs text-gray-500">
+                            Créé : {{ offer.createdAt ? offer.createdAt|date('Y-m-d H:i') : '' }}<br>
+                            Modifié : {{ offer.updatedAt ? offer.updatedAt|date('Y-m-d H:i') : '' }}
+                        </p>
+                    </div>
+
+                    <div class="flex justify-between items-center px-5 py-3 border-t border-gray-100">
+                        <a href="{{ path('app_offer_show', {'id': offer.id}) }}"
+                           class="text-sm text-[#1F1F1F] font-medium hover:underline">
+                            Voir
+                        </a>
+                        <a href="{{ path('app_offer_edit', {'id': offer.id}) }}"
+                           class="text-sm text-[#BC946F] font-medium hover:underline">
+                            Modifier
+                        </a>
+                    </div>
+                </div>
+            {% else %}
+                <div class="col-span-3 text-center text-gray-500 text-sm">
+                    Aucune offre trouvée.
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

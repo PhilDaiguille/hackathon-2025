@@ -1,0 +1,52 @@
+{% extends 'base-bo.html.twig' %}
+
+{% block title %}Liste des Chambres{% endblock %}
+
+{% block body %}
+    <div class="max-w-7xl mx-auto space-y-8">
+        <div class="flex justify-between items-center">
+            <h1 class="text-3xl font-bold text-black">Chambres</h1>
+            <a href="{{ path('app_room_new') }}"
+               class="inline-flex items-center gap-2 bg-[#BC946F] text-white text-sm font-semibold px-4 py-2 rounded-md hover:bg-[#EADDD1] hover:text-black transition">
+                Ajouter une chambre
+            </a>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-md p-6">
+            <div class="overflow-x-auto">
+                <table class="w-full table-auto border border-gray-200 text-sm text-left">
+                    <thead class="bg-[#F7F4F1] text-black">
+                    <tr>
+                        <th class="px-4 py-2">Type</th>
+                        <th class="px-4 py-2">Prix de base</th>
+                        <th class="px-4 py-2">Description</th>
+                        <th class="px-4 py-2">Créé le</th>
+                        <th class="px-4 py-2">Mis à jour</th>
+                        <th class="px-4 py-2">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for room in rooms %}
+                        <tr class="border-t">
+                            <td class="px-4 py-2">{{ room.type }}</td>
+                            <td class="px-4 py-2">{{ room.basePrice }}</td>
+                            <td class="px-4 py-2">{{ room.description }}</td>
+                            <td class="px-4 py-2">{{ room.createdAt ? room.createdAt|date('d/m/Y') : 'N/A' }}</td>
+                            <td class="px-4 py-2">
+                                <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+                                    <a href="{{ path('app_room_show', {'id': room.id}) }}" class="text-[#1F1F1F] font-medium hover:underline">Voir</a>
+                                    <a href="{{ path('app_room_edit', {'id': room.id}) }}" class="text-[#BC946F] font-medium hover:underline">Modifier</a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="7" class="text-center py-4 text-gray-500">Aucune chambre trouvée.</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "base.html.twig" %}
+{% block title %}Welcome!{% endblock %}
+
+{% block header %}
+    {% include 'includes/header_client.html.twig' %}
+{% endblock %}
+{% block body %}
+    <div class="px-4 py-8 sm:px-6 lg:px-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Mes négociations/réservations</h2>
+        <div class="overflow-x-auto relative">
+            <table class="w-full text-sm text-left">
+                <thead class="text-xs text-black uppercase border-b">
+                <tr>
+                    <th scope="col" class="py-3 px-6">Hôtel</th>
+                    <th scope="col" class="py-3 px-6">Date de début</th>
+                    <th scope="col" class="py-3 px-6">Date de fin</th>
+                    <th scope="col" class="py-3 px-6">Prix final</th>
+                    <th scope="col" class="py-3 px-6">Statut</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for reservation in reservations %}
+                    <tr class="bg-white border-b hover:bg-gray-50">
+                        <td class="py-4 px-6 font-medium text-gray-900">{{ reservation.idOffer.idHotel.name|default('N/A') }}</td>
+                        <td class="py-4 px-6">{{ reservation.startDate|date('d/m/Y') }}</td>
+                        <td class="py-4 px-6">{{ reservation.endDate|date('d/m/Y') }}</td>
+                        <td class="py-4 px-6">{{ reservation.finalPrice }} €</td>
+                        <td class="py-4 px-6">
+                            {% if reservation.status.value == 'accepted' %}
+                                <span class="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded">Acceptée</span>
+                            {% elseif reservation.status.value == 'pending' %}
+                                <span class="bg-yellow-100 text-yellow-800 text-xs font-semibold px-2.5 py-0.5 rounded">En attente</span>
+                            {% elseif reservation.status.value == 'refused' %}
+                                <span class="bg-red-100 text-red-800 text-xs font-semibold px-2.5 py-0.5 rounded">Refusée</span>
+                            {% else %}
+                                <span
+                                    class="bg-gray-100 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded">{{ reservation.status.value }}</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr class="bg-white border-b">
+                        <td colspan="6" class="py-4 px-6 text-center text-gray-500">
+                            Aucune réservation trouvée
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

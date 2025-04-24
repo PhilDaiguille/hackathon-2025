@@ -1,0 +1,59 @@
+{% extends 'base-bo.html.twig' %}
+
+{% block title %}Détail de la Chambre{% endblock %}
+
+{% block body %}
+    <div class="max-w-5xl mx-auto px-4 py-8 rounded-xl space-y-6">
+
+        <h1 class="text-3xl font-bold text-black">Détail de la Chambre</h1>
+
+        <div class="space-y-6 bg-white p-8 rounded-2xl shadow-md">
+            <table class="w-full text-sm text-left text-black border border-gray-200">
+                <tbody>
+                <tr class="border-b">
+                    <th class="py-2 px-4 font-semibold bg-[#F7F4F1] w-1/3">Id</th>
+                    <td class="py-2 px-4">{{ room.id }}</td>
+                </tr>
+                <tr class="border-b">
+                    <th class="py-2 px-4 font-semibold bg-[#F7F4F1]">Type</th>
+                    <td class="py-2 px-4">{{ room.type }}</td>
+                </tr>
+                <tr class="border-b">
+                    <th class="py-2 px-4 font-semibold bg-[#F7F4F1]">Prix de base</th>
+                    <td class="py-2 px-4">{{ room.basePrice }}</td>
+                </tr>
+                <tr class="border-b">
+                    <th class="py-2 px-4 font-semibold bg-[#F7F4F1]">Description</th>
+                    <td class="py-2 px-4">{{ room.description }}</td>
+                </tr>
+                <tr class="border-b">
+                    <th class="py-2 px-4 font-semibold bg-[#F7F4F1]">Créé le</th>
+                    <td class="py-2 px-4">{{ room.createdAt ? room.createdAt|date('Y-m-d H:i') : '' }}</td>
+                </tr>
+                <tr>
+                    <th class="py-2 px-4 font-semibold bg-[#F7F4F1]">Mis à jour le</th>
+                    <td class="py-2 px-4">{{ room.updatedAt ? room.updatedAt|date('Y-m-d H:i') : '' }}</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="pt-4">
+                <a href="{{ path('app_room_edit', {'id': room.id}) }}"
+                   class="inline-block bg-[#BC946F] text-white text-sm font-semibold px-4 py-2 rounded-md hover:bg-[#EADDD1] transition">
+                    Modifier
+                </a>
+            </div>
+        </div>
+
+        <div class="max-w-5xl mx-auto px-4 py-6 flex justify-between items-center">
+            <a href="{{ path('app_room_index') }}"
+               class="inline-block bg-[#1F1F1F] text-white text-sm font-semibold px-4 py-2 rounded-md hover:bg-black transition">
+                ← Retour à la liste
+            </a>
+
+            <div class="flex gap-3">
+                {{ include('room/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

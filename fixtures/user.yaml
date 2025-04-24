@@ -1,0 +1,60 @@
+App\Entity\User:
+    user_1:
+        firstname: 'Alice'
+        lastname: 'Dupont'
+        email: 'alice.dupont@example.com'
+        hashpassword: 'password123'
+        isActive: true
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>
+        isVerified: true
+        roles: ['ROLE_USER']
+        avatar: 'https://randomuser.me/api/portraits/women/44.jpg'
+
+    user_2:
+        firstname: 'Mehdi'
+        lastname: 'Ben Salah'
+        email: 'mehdi.bs@example.com'
+        hashpassword: 'password123'
+        isActive: true
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>
+        isVerified: falsea
+        roles: ['ROLE_USER']
+        avatar: 'https://randomuser.me/api/portraits/men/32.jpg'
+
+    user_3:
+        firstname: 'Claire'
+        lastname: 'Martin'
+        email: 'claire.martin@example.com'
+        hashpassword: 'password123'
+        isActive: false
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>
+        isVerified: true
+        roles: ['ROLE_USER']
+        avatar: 'https://randomuser.me/api/portraits/women/67.jpg'
+
+    user_4:
+        firstname: 'Luca'
+        lastname: 'Rossi'
+        email: 'luca.rossi@example.com'
+        hashpassword: 'password123'
+        isActive: true
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>
+        isVerified: false
+        roles: ['ROLE_USER']
+        avatar: 'https://randomuser.me/api/portraits/men/55.jpg'
+
+    user_5:
+        firstname: 'Sophie'
+        lastname: 'Dubois'
+        email: 'sophie.dubois@example.com'
+        hashpassword: 'password123'
+        isActive: false
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>
+        isVerified: true
+        roles: ['ROLE_USER']
+        avatar: 'https://randomuser.me/api/portraits/women/22.jpg'

@@ -1,0 +1,22 @@
+{% extends 'base-bo.html.twig' %}
+
+{% block title %}Modifier la Chambre{% endblock %}
+
+{% block body %}
+    <div class="max-w-5xl mx-auto rounded-xl space-y-6">
+
+        <h1 class="text-3xl font-bold text-black">Modifier la Chambre</h1>
+
+            {{ include('room/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+        <div class="flex justify-between items-center pt-4">
+            <a href="{{ path('app_room_index') }}"
+               class="inline-block bg-[#1F1F1F] text-white text-sm font-semibold px-4 py-2 rounded-md hover:bg-black transition">
+                ← Retour à la liste
+            </a>
+
+            {{ include('room/_delete_form.html.twig') }}
+        </div>
+
+    </div>
+{% endblock %}

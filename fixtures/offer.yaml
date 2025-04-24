@@ -1,0 +1,10 @@
+App\Entity\Offer:
+    offer_{1..6}:
+        idHotel: '@hotel_<current()>'
+        idRoom: '@room_<current()>'
+        acceptanceThreshold: <numberBetween(80, 100)>
+        refusalThreshold: <numberBetween(0, 50)>
+        availableFrom: <dateTimeBetween('-1 month', '+1 week')>
+        availableUntil: <dateTimeBetween('+1 month', '+3 months')>
+        createdAt: <dateTimeBetween('-2 months', 'now')>
+        updatedAt: <dateTimeBetween('-1 month', 'now')>

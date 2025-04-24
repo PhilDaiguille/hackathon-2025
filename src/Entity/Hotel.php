@@ -43,6 +43,9 @@ class Hotel
     #[ORM\Column(length: 255)]
     private ?string $adminEmail = null;
 
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private ?int $stars = null;
+
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
@@ -73,12 +76,20 @@ class Hotel
     #[ORM\OneToMany(targetEntity: HotelImages::class, mappedBy: 'idHotel')]
     private Collection $hotelImages;
 
+    /**
+     * @var Collection<int, User>
+     */
+    #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'idHotel')]
+    private Collection $users;
+
+
     public function __construct()
     {
         $this->rooms = new ArrayCollection();
         $this->offers = new ArrayCollection();
         $this->blockedBookings = new ArrayCollection();
         $this->hotelImages = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -191,6 +202,17 @@ class Hotel
     {
         $this->adminEmail = $adminEmail;
 
+        return $this;
+    }
+
+    public function getStars(): ?int
+    {
+        return $this->stars;
+    }
+
+    public function setStars(?int $stars): self
+    {
+        $this->stars = $stars;
         return $this;
     }
 
@@ -332,6 +354,36 @@ class Hotel
             // set the owning side to null (unless already changed)
             if ($hotelImage->getIdHotel() === $this) {
                 $hotelImage->setIdHotel(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): static
+    {
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+            $user->setIdHotel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): static
+    {
+        if ($this->users->removeElement($user)) {
+            // set the owning side to null (unless already changed)
+            if ($user->getIdHotel() === $this) {
+                $user->setIdHotel(null);
             }
         }
 

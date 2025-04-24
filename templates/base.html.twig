@@ -1,17 +1,72 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}MatchRoom{% endblock %}</title>
+    <link rel="icon"
+          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+    {% block stylesheets %}
+    {% endblock %}
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+    {% block javascripts %}
+        {% block importmap %}{{ importmap('app') }}{% endblock %}
+
+            <script>
+                const voiceBtn = document.getElementById('{{ voice_btn_id|default("voice-search-btn") }}');
+                const input = document.getElementById('{{ input_id|default("smart-search-input") }}');
+                const form = document.getElementById('{{ form_id|default("smart-search-form") }}');
+
+                if (voiceBtn && 'webkitSpeechRecognition' in window) {
+                    voiceBtn.addEventListener('click', () => {
+                        const recognition = new webkitSpeechRecognition();
+                        recognition.lang = 'fr-FR';
+                        recognition.interimResults = false;
+                        recognition.maxAlternatives = 1;
+
+                        recognition.onstart = () => {
+                            voiceBtn.innerText = '🎙️ Écoute...';
+                        };
+
+                        recognition.onerror = (event) => {
+                            console.error("Erreur reconnaissance vocale :", event.error);
+                            alert("Erreur reconnaissance vocale : " + event.error);
+                            voiceBtn.innerText = '🎙️';
+                        };
+
+                        recognition.onend = () => {
+                            voiceBtn.innerText = '🎙️';
+                        };
+
+                        recognition.onresult = (event) => {
+                            const transcript = event.results[0][0].transcript;
+                            input.value = transcript;
+                            form.submit();
+                        };
+
+                        navigator.mediaDevices.getUserMedia({ audio: true })
+                            .then(() => recognition.start())
+                            .catch(err => alert("Permission micro refusée : " + err.message));
+                    });
+                } else {
+                    console.warn('Reconnaissance vocale non supportée.');
+                    if (voiceBtn) voiceBtn.disabled = true;
+                }
+            </script>
+    {% endblock %}
+</head>
+<body>
+{% block header %}
+    {% include 'includes/header.html.twig' %}
+{% endblock %}
+
+<div class=" w-full mx-auto">
+    {% block body %}{% endblock %}
+</div>
+{% block footer %}
+    {% include 'includes/footer.html.twig' %}
+{% endblock %}
+
+<script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+</body>
 </html>

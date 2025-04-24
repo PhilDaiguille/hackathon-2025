@@ -1,0 +1,31 @@
+App\Entity\PredefinedExtras:
+    predefined_extra_1:
+        name: 'Petit-déjeuner'
+        description: 'Un buffet complet servi chaque matin avec des produits locaux.'
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        image: 'https://via.placeholder.com/150?text=Petit+dej'
+
+    predefined_extra_2:
+        name: 'Massage'
+        description: 'Massage relaxant de 60 minutes avec huiles essentielles.'
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        image: 'https://via.placeholder.com/150?text=Massage'
+
+    predefined_extra_3:
+        name: 'Navette Aéroport'
+        description: 'Transport privé vers/depuis l’aéroport disponible sur demande.'
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        image: 'https://via.placeholder.com/150?text=Navette'
+
+    predefined_extra_4:
+        name: 'Accès Spa'
+        description: 'Accès illimité au spa de l’hôtel, sauna et hammam inclus.'
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        image: 'https://via.placeholder.com/150?text=Spa'
+
+    predefined_extra_5:
+        name: 'Parking Privé'
+        description: 'Place de parking sécurisée et couverte réservée à votre nom.'
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        image: 'https://via.placeholder.com/150?text=Parking'
+        

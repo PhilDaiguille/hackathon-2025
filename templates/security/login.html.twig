@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion - MatchRoom{% endblock %}
+
+{% block body %}
+<div class="flex items-center justify-center min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow-md">
+        <div class="text-center">
+            <a href="{{ path('app_home_index') }}" class="text-xl font-bold">
+                <img src="{{ asset('icons/logo.svg') }}" alt="Logo" class="w-full h-8 mr-2">
+            </a>
+            <h1 class="text-2xl font-bold text-gray-900">Bienvenue sur MatchRoom</h1>
+            <p class="mt-2 text-sm text-gray-600">Accédez à votre espace pour gérer vos réservations.</p>
+        </div>
+
+        <div class="mt-8">
+            {% if error %}
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                </div>
+            {% endif %}
+
+            {% if app.user %}
+                <div class="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded mb-4">
+                    Vous êtes connecté en tant que {{ app.user.userIdentifier }},
+                    <a href="{{ path('app_logout') }}" class="font-medium text-blue-600 hover:text-blue-500">
+                        Déconnexion
+                    </a>
+                </div>
+            {% endif %}
+
+            <form method="post" class="space-y-6">
+                <div>
+                    <label for="username" class="block text-sm font-medium text-gray-700">Email</label>
+                    <div class="mt-1">
+                        <input id="username" name="_username" type="email" value="{{ last_username }}" required autofocus
+                            class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+                            placeholder="Mon email">
+                    </div>
+                </div>
+
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700">Mot de passe</label>
+                    <div class="mt-1">
+                        <input id="password" name="_password" type="password" required
+                            class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+                            placeholder="••••••••">
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <input id="remember_me" name="_remember_me" type="checkbox"
+                            class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+                        <label for="remember_me" class="ml-2 block text-sm text-gray-700">
+                            Se souvenir de moi
+                        </label>
+                    </div>
+
+                    <div class="text-sm">
+                        <a href="{{ path('app_forgot_password_request') }}" class="font-medium text-cta hover:text-ctaSurvol">
+                            Mot de passe oublié?
+                        </a>
+                    </div>
+                </div>
+
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                <div>
+                    <button type="submit"
+                        class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-black bg-cta hover:bg-ctaSurvol focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                        Se connecter
+                    </button>
+                </div>
+            </form>
+
+            <div class="mt-6 text-center">
+                <p class="text-sm text-gray-600">
+                    Je n'ai pas de compte ?
+                    <a href="{{ path('app_register') }}" class="font-medium text-cta hover:text-ctaSurvol">
+                        &nbsp;S'inscrire
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+<div class="flex items-center justify-center min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow-md">
+    <h1>Hi! Please confirm your email!</h1>
+
+    <p>
+        Please confirm your email address by clicking the following link: <br><br>
+        <a href="{{ signedUrl|raw }}">Confirm my Email</a>.
+        This link will expire in {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
+    </p>
+
+    <p>
+        Cheers!
+    </p>
+    </div>
+</div>

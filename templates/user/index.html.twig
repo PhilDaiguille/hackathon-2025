@@ -1,0 +1,63 @@
+{% extends 'base-bo.html.twig' %}
+
+{% block title %}Liste des Utilisateurs{% endblock %}
+
+{% block body %}
+    <div class="max-w-7xl mx-auto space-y-8">
+        <div class="flex justify-between items-center">
+            <h1 class="text-3xl font-bold text-black">Utilisateurs</h1>
+            <a href="{{ path('app_user_new') }}"
+               class="inline-flex items-center gap-2 bg-[#BC946F] text-white text-sm font-semibold px-4 py-2 rounded-md hover:bg-[#EADDD1] hover:text-black transition">
+                Ajouter un utilisateur
+            </a>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-md p-6">
+            <div class="overflow-x-auto">
+                <table class="w-full table-auto border border-gray-200 text-sm text-left">
+                    <thead class="bg-[#F7F4F1] text-black">
+                    <tr>
+                        <th class="px-4 py-2">ID</th>
+                        <th class="px-4 py-2">Prénom</th>
+                        <th class="px-4 py-2">Nom</th>
+                        <th class="px-4 py-2">Email</th>
+                        <th class="px-4 py-2">Actif</th>
+                        <th class="px-4 py-2">Créé le</th>
+                        <th class="px-4 py-2">Mis à jour</th>
+                        <th class="px-4 py-2">Rôles</th>
+                        <th class="px-4 py-2">Vérifié</th>
+                        <th class="px-4 py-2">Avatar</th>
+                        <th class="px-4 py-2">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for user in users %}
+                        <tr class="border-t">
+                            <td class="px-4 py-2">{{ user.id }}</td>
+                            <td class="px-4 py-2">{{ user.firstname }}</td>
+                            <td class="px-4 py-2">{{ user.lastname }}</td>
+                            <td class="px-4 py-2">{{ user.email }}</td>
+                            <td class="px-4 py-2">{{ user.isActive ? 'Oui' : 'Non' }}</td>
+                            <td class="px-4 py-2">{{ user.createdAt ? user.createdAt|date('d/m/Y') : 'N/A' }}</td>
+                            <td class="px-4 py-2">{{ user.updatedAt ? user.updatedAt|date('d/m/Y') : 'N/A' }}</td>
+                            <td class="px-4 py-2">{{ user.roles ? user.roles|json_encode : '' }}</td>
+                            <td class="px-4 py-2">{{ user.isVerified ? 'Oui' : 'Non' }}</td>
+                            <td class="px-4 py-2">{{ user.avatar }}</td>
+                            <td class="px-4 py-2">
+                                <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+                                    <a href="{{ path('app_user_show', {'id': user.id}) }}" class="text-[#1F1F1F] font-medium hover:underline">Voir</a>
+                                    <a href="{{ path('app_user_edit', {'id': user.id}) }}" class="text-[#BC946F] font-medium hover:underline">Modifier</a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="11" class="text-center py-4 text-gray-500">Aucun utilisateur trouvé.</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

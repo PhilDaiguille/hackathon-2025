@@ -1,0 +1,12 @@
+App\Entity\BlockedBooking:
+    blocked_booking_1:
+        idUser: '@user_3' # Booking 3: refused
+        idHotel: '@hotel_3'
+        createdAt: <dateTimeBetween('-2 days', '-1 days')>
+        blockedUntil: <dateTimeBetween('-2 days +24 hours', '-1 days +24 hours')>
+    
+    blocked_booking_2:
+        idUser: '@user_1' # Negotiation 3: rejected
+        idHotel: '@hotel_1'
+        createdAt: <dateTimeBetween('-3 days', '-2 days')>
+        blockedUntil: <dateTimeBetween('-3 days +24 hours', '-2 days +24 hours')>

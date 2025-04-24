@@ -1,0 +1,84 @@
+App\Entity\Hotel:
+    hotel_1:
+        name: 'Hôtel Royal Piscine'
+        description: 'Un hôtel luxueux avec piscine à Rotterdam.'
+        streetName: 'Rue du Canal'
+        streetNumber: '12'
+        postalCode: '3011'
+        city: 'Rotterdam'
+        country: 'Pays-Bas'
+        rating: 4.5
+        adminEmail: 'royal@hotel.com'
+        stars: 5
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>
+
+    hotel_2:
+        name: 'Auberge Tranquille'
+        description: 'Charmante auberge à Rotterdam avec parking.'
+        streetName: 'Avenue Verte'
+        streetNumber: '78'
+        postalCode: '3012'
+        city: 'Rotterdam'
+        country: 'Pays-Bas'
+        rating: 3.9
+        adminEmail: 'contact@auberge-tranquille.com'
+        stars: 3
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>
+
+    hotel_3:
+        name: 'Hotel Spa Parisien'
+        description: 'Détente et bien-être à Paris.'
+        streetName: 'Rue de Paris'
+        streetNumber: '5'
+        postalCode: '75001'
+        city: 'Paris'
+        country: 'France'
+        rating: 4.8
+        adminEmail: 'spa@parisien.com'
+        stars: 3
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>
+
+    hotel_4:
+        name: 'Business Inn Berlin'
+        description: 'Hôtel moderne au cœur de Berlin.'
+        streetName: 'Alexanderplatz'
+        streetNumber: '9'
+        postalCode: '10178'
+        city: 'Berlin'
+        country: 'Allemagne'
+        rating: 4.2
+        adminEmail: 'info@business-inn.de'
+        stars: 4
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>
+
+    hotel_5:
+        name: 'Hostel Madrid Centro'
+        description: 'Convivial et économique, parfait pour les jeunes.'
+        streetName: 'Calle Mayor'
+        streetNumber: '23'
+        postalCode: '28013'
+        city: 'Madrid'
+        country: 'Espagne'
+        rating: 3.5
+        adminEmail: 'contact@hostel-madrid.es'
+        stars: 3
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>
+    
+    hotel_6:
+        name: 'Hôtel de Luxe Nice'
+        description: 'Un hôtel 5 étoiles avec vue sur la mer à Nice.'
+        streetName: 'Promenade des Anglais'
+        streetNumber: '45'
+        postalCode: '06000'
+        city: 'Nice'
+        country: 'France'
+        rating: 4.9
+        adminEmail: 'contact@hotel-nice.fr'
+        stars: 4
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>

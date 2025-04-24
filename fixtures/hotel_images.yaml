@@ -1,0 +1,30 @@
+App\Entity\HotelImages:
+    hotel_image_1:
+        idHotel: '@hotel_1'
+        url: 'https://via.placeholder.com/300x200?text=Piscine'
+        type: 'exterior'
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+
+    hotel_image_2:
+        idHotel: '@hotel_2'
+        url: 'https://via.placeholder.com/300x200?text=Lobby'
+        type: 'lobby'
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+
+    hotel_image_3:
+        idHotel: '@hotel_3'
+        url: 'https://via.placeholder.com/300x200?text=Spa'
+        type: 'interior'
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+
+    hotel_image_4:
+        idHotel: '@hotel_4'
+        url: 'https://via.placeholder.com/300x200?text=Chambre+Deluxe'
+        type: 'room'
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+
+    hotel_image_5:
+        idHotel: '@hotel_5'
+        url: 'https://via.placeholder.com/300x200?text=Entrée'
+        type: 'exterior'
+        createdAt: <dateTimeBetween('-1 year', 'now')>

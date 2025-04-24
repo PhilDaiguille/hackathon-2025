@@ -1,0 +1,163 @@
+<section class=" mx-auto">
+    <div class="min-h-dvh flex flex-col justify-end items-start px-4 py-8 text-white"
+         style="background-image: url('{{ asset('images/background.jpg') }}'); background-size: cover; background-position: center;">
+        <div class="container mx-auto px-8 py-4 flex flex-col items-start justify-center gap-2">
+            <h1 class="text-5xl font-bold mb-4">
+                MatchRoom
+            </h1>
+            <div>
+                <p>Réservez votre chambre d’hôtel, à votre prix !</p>
+                <p>Recherchez et réservez une chambre d’hôtel selon vos dates et destinations et ajustez le prix à votre
+                    budget</p>
+            </div>
+
+            <a href="#"
+               class="bg-cta hover:bg-ctaSurvol text-black font-bold px-4 py-2 rounded-lg mt-4 inline-block">
+                Commencer
+            </a>
+        </div>
+
+    </div>
+</section>
+<section class=" mx-auto px-4 py-8 bg-primary flex justify-center items-center gap-12">
+    <div class="flex flex-col items-center gap-2 justify-center">
+        <div class="flex items-center justify-center w-8 h-8">
+            {{ ux_icon('lucide:arrow-left-right') }}
+        </div>
+        <span class="text-black text-2xl font-bold">100%</span>
+        <h2 class="text-sm font-bold text-center sm:text-md">
+            Taux de réponses des hôteliers
+        </h2>
+    </div>
+    <div class="flex flex-col items-center gap-2 justify-center">
+        <div class="flex items-center justify-center w-8 h-8">
+            {{ ux_icon('lucide:timer') }}
+        </div>
+        <span class="text-black text-2xl font-bold">< 3H</span>
+        <h2 class="text-sm font-bold text-center sm:text-md">
+            Temps de réponse moyen des hôteliers.
+        </h2>
+    </div>
+    <div class="flex flex-col items-center gap-2 justify-center">
+        <div class="flex items-center justify-center w-8 h-8">
+            {{ ux_icon('lucide:arrow-left-right') }}
+        </div>
+        <span class="text-black text-2xl font-bold">22%</span>
+        <h2 class="text-sm font-bold text-center sm:text-md">
+            Réduction moyenne (négociations).
+        </h2>
+    </div>
+</section>
+<section class="container mx-auto px-8 py-12">
+    <h2 class="text-3xl font-bold">Proposition de plusieurs hôtels français</h2>
+    <p class="text-lg pb-4">Un descriptif pour cette partie qui ferait deux lignes ou plus.</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center mx-auto">
+        <article class="max-w-md overflow-hidden rounded-lg shadow-lg bg-white">
+            <div class="relative">
+                <img
+                        src="https://img.freepik.com/photos-gratuite/suite-chambre-coucher-moderne-luxe-rendu-3d-dans-hotel-television-armoire_105762-2276.jpg?semt=ais_hybrid&w=740"
+                        alt="Chambre d'hôtel luxueuse"
+                        class="w-full h-64 object-cover"
+                />
+                <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
+                    <h2 class="text-white text-2xl font-bold">Titre Hotel badasse</h2>
+                </div>
+            </div>
+            <div class="p-4">
+                <div class="flex justify-between items-center mb-2">
+                    <div class="text-gray-800">Paris, France</div>
+                    <div class="flex items-center">
+                        {{ ux_icon('bi:star-fill', {class: 'w-4 h-4 text-yellow-500'} ) }}
+                        <span class="ml-1 text-gray-800 font-semibold">8.5</span>
+                        <span class="ml-1 text-gray-600 text-sm">(+100)</span>
+                    </div>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-800 mb-1">Hôtel Le Marais Paris</h3>
+                <div class="flex mb-2">
+                    <div class="flex color-yellow-500">
+                        {{ ux_icon('bi:star-fill', {class: 'w-4 h-4 text-yellow-500'} ) }}
+                        {{ ux_icon('bi:star-fill', {class: 'w-4 h-4 text-yellow-500'}) }}
+                        {{ ux_icon('bi:star-fill', {class: 'w-4 h-4 text-yellow-500'}) }}
+                        {{ ux_icon('bi:star-half', {class: 'w-4 h-4 text-yellow-500'}) }}
+                        {{ ux_icon('bi:star', {class: 'w-4 h-4 text-yellow-500'}) }}
+                    </div>
+                </div>
+                <p class="text-gray-600 text-sm">
+                    Idéalement situé au cœur de la ville, parfait pour les voyageurs
+                </p>
+            </div>
+        </article>
+        <article class="max-w-md overflow-hidden rounded-lg shadow-lg bg-white">
+            <div class="relative">
+                <img
+                        src="https://img.freepik.com/photos-gratuite/suite-chambre-coucher-moderne-luxe-rendu-3d-dans-hotel-television-armoire_105762-2276.jpg?semt=ais_hybrid&w=740"
+                        alt="Chambre d'hôtel luxueuse"
+                        class="w-full h-64 object-cover"
+                />
+                <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
+                    <h2 class="text-white text-2xl font-bold">Titre Hotel badasse</h2>
+                </div>
+            </div>
+            <div class="p-4">
+                <div class="flex justify-between items-center mb-2">
+                    <div class="text-gray-800">Paris, France</div>
+                    <div class="flex items-center">
+                        {{ ux_icon('bi:star-fill', {class: 'w-4 h-4 text-yellow-500'} ) }}
+                        <span class="ml-1 text-gray-800 font-semibold">8.5</span>
+                        <span class="ml-1 text-gray-600 text-sm">(+100)</span>
+                    </div>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-800 mb-1">Hôtel Le Marais Paris</h3>
+                <div class="flex mb-2">
+                    <div class="flex color-yellow-500">
+                        {{ ux_icon('bi:star-fill', {class: 'w-4 h-4 text-yellow-500'} ) }}
+                        {{ ux_icon('bi:star-fill', {class: 'w-4 h-4 text-yellow-500'}) }}
+                        {{ ux_icon('bi:star-fill', {class: 'w-4 h-4 text-yellow-500'}) }}
+                        {{ ux_icon('bi:star-half', {class: 'w-4 h-4 text-yellow-500'}) }}
+                        {{ ux_icon('bi:star', {class: 'w-4 h-4 text-yellow-500'}) }}
+                    </div>
+                </div>
+                <p class="text-gray-600 text-sm">
+                    Idéalement situé au cœur de la ville, parfait pour les voyageurs
+                </p>
+            </div>
+        </article>
+        <article class="max-w-md overflow-hidden rounded-lg shadow-lg bg-white">
+            <div class="relative">
+                <img
+                        src="https://img.freepik.com/photos-gratuite/suite-chambre-coucher-moderne-luxe-rendu-3d-dans-hotel-television-armoire_105762-2276.jpg?semt=ais_hybrid&w=740"
+                        alt="Chambre d'hôtel luxueuse"
+                        class="w-full h-64 object-cover"
+                />
+                <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
+                    <h2 class="text-white text-2xl font-bold">Titre Hotel badasse</h2>
+                </div>
+            </div>
+            <div class="p-4">
+                <div class="flex justify-between items-center mb-2">
+                    <div class="text-gray-800">Paris, France</div>
+                    <div class="flex items-center">
+                        {{ ux_icon('bi:star-fill', {class: 'w-4 h-4 text-yellow-500'} ) }}
+                        <span class="ml-1 text-gray-800 font-semibold">8.5</span>
+                        <span class="ml-1 text-gray-600 text-sm">(+100)</span>
+                    </div>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-800 mb-1">Hôtel Le Marais Paris</h3>
+                <div class="flex mb-2">
+                    <div class="flex color-yellow-500">
+                        {{ ux_icon('bi:star-fill', {class: 'w-4 h-4 text-yellow-500'} ) }}
+                        {{ ux_icon('bi:star-fill', {class: 'w-4 h-4 text-yellow-500'}) }}
+                        {{ ux_icon('bi:star-fill', {class: 'w-4 h-4 text-yellow-500'}) }}
+                        {{ ux_icon('bi:star-half', {class: 'w-4 h-4 text-yellow-500'}) }}
+                        {{ ux_icon('bi:star', {class: 'w-4 h-4 text-yellow-500'}) }}
+                    </div>
+                </div>
+                <p class="text-gray-600 text-sm">
+                    Idéalement situé au cœur de la ville, parfait pour les voyageurs
+                </p>
+            </div>
+        </article>
+    </div>
+
+</section>
+{{ include('home/faq.html.twig') }}

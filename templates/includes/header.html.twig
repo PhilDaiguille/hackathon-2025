@@ -1,0 +1,66 @@
+<header class="bg-white">
+    <nav class=" mx-auto px-4 py-5">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center">
+                <a href="{{ path('app_home_index') }}" class="text-xl font-bold">
+                    <img src="{{ asset('icons/logo.svg') }}" alt="Logo" class="w-full h-8 mr-2">
+                </a>
+            </div>
+
+            <div class="md:hidden">
+                <button id="mobile-menu-button" type="button"
+                        class="text-black hover:text-gray-700 focus:outline-none">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="{{ path('app_home_index') }}" class="text-gray-700 hover:text-primary font-medium">Accueil</a>
+
+                {% if app.user %}
+                    <div class="flex items-center space-x-2 ml-4">
+                        <a href="{{ path('app_offer_client') }}" class="text-gray-600">{{ app.user.firstname }}</a>
+                        <a href="{{ path('app_logout') }}"
+                           class="bg-cta hover:bg-ctaSurvol text-white px-4 py-2 rounded-lg">Déconnexion</a>
+                    </div>
+                {% else %}
+                    <a href="{{ path('app_login') }}"
+                       class="text-gray-700 hover:text-primary font-medium">Connexion</a>
+                    <a href="{{ path('app_register') }}"
+                       class="bg-cta hover:bg-ctaSurvol text-black px-4 py-2 rounded-lg">Inscription</a>
+                {% endif %}
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden mt-2 py-2">
+            <a href="{{ path('app_home_index') }}" class="text-gray-700 hover:text-primary font-medium">Accueil</a>
+
+            {% if app.user %}
+                <div class="flex items-center space-x-2 ml-4">
+                    <a href="{{ path('app_offer_client') }}" class="text-gray-600">{{ app.user.firstname }}</a>
+                    <a href="{{ path('app_logout') }}"
+                       class="bg-secondary hover:bg-primary text-white px-4 py-2 rounded-lg">Déconnexion</a>
+                </div>
+            {% else %}
+                <a href="{{ path('app_login') }}"
+                   class="text-gray-700 hover:text-primary font-medium">Connexion</a>
+                <a href="{{ path('app_register') }}"
+                   class="bg-cta hover:bg-ctaSurvol text-black px-4 py-2 rounded-lg">Inscription</a>
+            {% endif %}
+        </div>
+    </nav>
+</header>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', function () {
+            mobileMenu.classList.toggle('hidden');
+        });
+    });
+</script>

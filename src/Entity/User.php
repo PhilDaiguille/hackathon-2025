@@ -6,10 +6,14 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
-class User
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -49,10 +53,34 @@ class User
     #[ORM\OneToMany(targetEntity: BlockedBooking::class, mappedBy: 'idUser', orphanRemoval: true)]
     private Collection $blockedBookings;
 
+    /**
+     * @var array<string>
+     */
+    #[ORM\Column]
+    private array $roles = [];
+
+    private ?string $hashPassword = '';
+
+    #[ORM\Column(type: 'boolean', options: ['default' => false])]
+    private bool $isVerified = false;
+
+    #[ORM\Column(length: 2048, nullable: true)]
+    private ?string $avatar = null;
+
+    #[ORM\ManyToOne(inversedBy: 'users')]
+    private ?Hotel $idHotel = null;
+
+    #[ORM\OneToOne(mappedBy: 'preferenceUser', cascade: ['persist', 'remove'])]
+    private ?Preference $preference = null;
+
     public function __construct()
     {
         $this->bookings = new ArrayCollection();
         $this->blockedBookings = new ArrayCollection();
+        $this->roles = ['ROLE_USER'];
+
+        $this->createdAt = new \DateTimeImmutable();
+        $this->updatedAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int
@@ -95,6 +123,10 @@ class User
 
         return $this;
     }
+
+    /**
+     * @see PasswordAuthenticatedUserInterface
+     */
 
     public function getPassword(): ?string
     {
@@ -203,4 +235,112 @@ class User
 
         return $this;
     }
+
+    /**
+     * The public representation of the user (e.g. a username, an email address, etc.)
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->email;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials(): void
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
+    }
+
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): static
+    {
+        $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    public function getAvatar(): ?string
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar(?string $avatar): static
+    {
+        $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    public function setHashPassword(string $hashPassword): void
+    {
+        $this->hashPassword = $hashPassword;
+    }
+
+    public function getHashPassword(): string
+    {
+        return $this->hashPassword;
+    }
+
+    public function getIdHotel(): ?Hotel
+    {
+        return $this->idHotel;
+    }
+
+    public function setIdHotel(?Hotel $idHotel): static
+    {
+        $this->idHotel = $idHotel;
+
+        return $this;
+    }
+
+    public function getPreference(): ?Preference
+    {
+        return $this->preference;
+    }
+
+    public function setPreference(?Preference $preference): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($preference === null && $this->preference !== null) {
+            $this->preference->setPreferenceUser(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($preference !== null && $preference->getPreferenceUser() !== $this) {
+            $preference->setPreferenceUser($this);
+        }
+
+        $this->preference = $preference;
+
+        return $this;
+    }
+
 }
