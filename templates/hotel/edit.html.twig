@@ -1,13 +1,23 @@
-{% extends 'base.html.twig' %}
+{% extends 'base-bo.html.twig' %}
 
 {% block title %}Edit Hotel{% endblock %}
 
 {% block body %}
-    <h1>Edit Hotel</h1>
+    <div class="max-w-5xl mx-auto px-4 py-8 rounded-xl space-y-6">
+        <h1 class="text-3xl font-bold text-black">Modifier Hotel</h1>
+        {{ include('hotel/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    {{ include('hotel/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_hotel_index') }}">back to list</a>
+        <div class="flex justify-between items-center pt-4">
+            <a href="{{ path('app_hotel_index') }}"
+               class="inline-block bg-[#1F1F1F] text-white text-sm font-semibold px-4 py-2 rounded-md hover:bg-black transition">
+                ← Retour à la liste
+            </a>
+            {{ include('hotel/_delete_form.html.twig') }}
+        </div>
 
-    {{ include('hotel/_delete_form.html.twig') }}
+    </div>
+
+
+
 {% endblock %}

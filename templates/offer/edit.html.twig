@@ -1,13 +1,22 @@
-{% extends 'base.html.twig' %}
+{% extends 'base-bo.html.twig' %}
 
-{% block title %}Edit Offer{% endblock %}
+{% block title %}Modifier l'Offre{% endblock %}
 
 {% block body %}
-    <h1>Edit Offer</h1>
+    <div class="max-w-5xl mx-auto px-4 py-8 rounded-xl space-y-6">
 
-    {{ include('offer/_form.html.twig', {'button_label': 'Update'}) }}
+        <h1 class="text-3xl font-bold text-black">Modifier l'Offre</h1>
 
-    <a href="{{ path('app_offer_index') }}">back to list</a>
+        {{ include('offer/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    {{ include('offer/_delete_form.html.twig') }}
+        <div class="flex justify-between items-center pt-4">
+            <a href="{{ path('app_offer_index') }}"
+               class="inline-block bg-[#1F1F1F] text-white text-sm font-semibold px-4 py-2 rounded-md hover:bg-black transition">
+                ← Retour à la liste
+            </a>
+
+            {{ include('offer/_delete_form.html.twig') }}
+        </div>
+
+    </div>
 {% endblock %}

@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Service\SmartSearchService;
 
-#[Route('/hotel')]
+#[Route('/admin/hotel')]
 final class HotelController extends AbstractController
 {
     #[Route(name: 'app_hotel_index', methods: ['GET'])]

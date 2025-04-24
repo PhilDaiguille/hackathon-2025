@@ -12,9 +12,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Service\SmartSearchService;
 
-#[Route('/offer')]
+#[Route('/admin/offer')]
 final class OfferController extends AbstractController
 {
+
     #[Route(name: 'app_offer_index', methods: ['GET'])]
     public function index(OfferRepository $offerRepository): Response
     {
@@ -93,7 +94,7 @@ final class OfferController extends AbstractController
             'query' => $query,
         ]);
     }
-  
+
     #[Route('/offers')]
     public function indexClient(): Response
     {

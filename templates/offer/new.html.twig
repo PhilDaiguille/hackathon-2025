@@ -1,11 +1,19 @@
-{% extends 'base.html.twig' %}
+{% extends 'base-bo.html.twig' %}
 
 {% block title %}New Offer{% endblock %}
 
 {% block body %}
-    <h1>Create new Offer</h1>
+    <div class="max-w-5xl mx-auto px-4 py-8 rounded-xl space-y-6">
 
-    {{ include('offer/_form.html.twig') }}
+        <h1 class="text-3xl font-bold text-black">Nouvelle Offre</h1>
 
-    <a href="{{ path('app_offer_index') }}">back to list</a>
+            {{ include('offer/_form.html.twig') }}
+
+        <div class="flex justify-between items-center pt-4">
+            <a href="{{ path('app_offer_index') }}"
+               class="inline-block bg-[#1F1F1F] text-white text-sm font-semibold px-4 py-2 rounded-md hover:bg-black transition">
+                ← Retour à la liste
+            </a>
+        </div>
+    </div>
 {% endblock %}
