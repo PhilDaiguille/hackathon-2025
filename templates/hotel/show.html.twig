@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hotel{% endblock %}
+
+{% block body %}
+    <h1>Hotel</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ hotel.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ hotel.name }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ hotel.description }}</td>
+            </tr>
+            <tr>
+                <th>StreetName</th>
+                <td>{{ hotel.streetName }}</td>
+            </tr>
+            <tr>
+                <th>StreetNumber</th>
+                <td>{{ hotel.streetNumber }}</td>
+            </tr>
+            <tr>
+                <th>PostalCode</th>
+                <td>{{ hotel.postalCode }}</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>{{ hotel.city }}</td>
+            </tr>
+            <tr>
+                <th>Country</th>
+                <td>{{ hotel.country }}</td>
+            </tr>
+            <tr>
+                <th>Rating</th>
+                <td>{{ hotel.rating }}</td>
+            </tr>
+            <tr>
+                <th>AdminEmail</th>
+                <td>{{ hotel.adminEmail }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ hotel.createdAt ? hotel.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ hotel.updatedAt ? hotel.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_hotel_index') }}">back to list</a>
+
+    <a href="{{ path('app_hotel_edit', {'id': hotel.id}) }}">edit</a>
+
+    {{ include('hotel/_delete_form.html.twig') }}
+{% endblock %}

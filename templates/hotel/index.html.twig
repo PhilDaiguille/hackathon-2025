@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hotel index{% endblock %}
+
+{% block body %}
+    <h1>Hotel index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>StreetName</th>
+                <th>StreetNumber</th>
+                <th>PostalCode</th>
+                <th>City</th>
+                <th>Country</th>
+                <th>Rating</th>
+                <th>AdminEmail</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for hotel in hotels %}
+            <tr>
+                <td>{{ hotel.id }}</td>
+                <td>{{ hotel.name }}</td>
+                <td>{{ hotel.description }}</td>
+                <td>{{ hotel.streetName }}</td>
+                <td>{{ hotel.streetNumber }}</td>
+                <td>{{ hotel.postalCode }}</td>
+                <td>{{ hotel.city }}</td>
+                <td>{{ hotel.country }}</td>
+                <td>{{ hotel.rating }}</td>
+                <td>{{ hotel.adminEmail }}</td>
+                <td>{{ hotel.createdAt ? hotel.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ hotel.updatedAt ? hotel.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_hotel_show', {'id': hotel.id}) }}">show</a>
+                    <a href="{{ path('app_hotel_edit', {'id': hotel.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_hotel_new') }}">Create new</a>
+{% endblock %}

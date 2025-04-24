@@ -7,11 +7,15 @@
     {% if app.user %}
         <p>Coucou {{ app.user.firstname }} {{ app.user.roles[0] }}</p>
         <div>
-            {{ ux_map(map, {style: 'height: 600px;'}) }}
+            {{ ux_map(map, {style: 'height: 300px; width: 300px'}) }}
         </div>
+
+
     {% endif %}
 
-    <div class="bg-green-500">{% include 'components/search.html.twig' %}</div>
+    <div class="bg-black-500">
+        {% include 'components/search.html.twig' %}
+    </div>
 
 
 
