@@ -62,6 +62,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean', options: ['default' => false])]
     private bool $isVerified = false;
 
+    #[ORM\Column(length: 2048, nullable: true)]
+    private ?string $avatar = null;
+
     public function __construct()
     {
         $this->bookings = new ArrayCollection();
@@ -269,6 +272,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): static
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    public function getAvatar(): ?string
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar(?string $avatar): static
+    {
+        $this->avatar = $avatar;
 
         return $this;
     }
