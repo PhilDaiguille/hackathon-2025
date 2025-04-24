@@ -43,6 +43,9 @@ class Hotel
     #[ORM\Column(length: 255)]
     private ?string $adminEmail = null;
 
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private ?int $stars = null;
+
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
@@ -78,6 +81,7 @@ class Hotel
      */
     #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'idHotel')]
     private Collection $users;
+
 
     public function __construct()
     {
@@ -198,6 +202,17 @@ class Hotel
     {
         $this->adminEmail = $adminEmail;
 
+        return $this;
+    }
+
+    public function getStars(): ?int
+    {
+        return $this->stars;
+    }
+
+    public function setStars(?int $stars): self
+    {
+        $this->stars = $stars;
         return $this;
     }
 
