@@ -12,8 +12,6 @@
     {% block javascripts %}
         {% block importmap %}{{ importmap('app') }}{% endblock %}
 
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-
             <script>
                 const voiceBtn = document.getElementById('{{ voice_btn_id|default("voice-search-btn") }}');
                 const input = document.getElementById('{{ input_id|default("smart-search-input") }}');
@@ -72,7 +70,7 @@
     {% endfor %}
 {% endblock %}
 
-<div class="container mx-auto">
+<div class=" w-full mx-auto">
     {% block body %}{% endblock %}
 </div>
 {% block footer %}
