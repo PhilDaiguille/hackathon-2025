@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Profil - MatchRoom{% endblock %}
+
+{% block body %}
+    <div class="flex items-center justify-center py-6 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow-md">
+
+            {% for message in app.flashes('success') %}
+                <div class="text-[#BC946F] font-bold text-[28px] text-center mt-4">
+                    {{ message }}
+                </div>
+            {% endfor %}
+
+            <div class="text-center">
+                <img src="{{ app.user.avatar }}" alt="Avatar" class="mx-auto w-16 h-16 rounded-full shadow-md mb-2">
+                <h1 class="text-xl font-bold text-gray-900">Mon Profil</h1>
+            </div>
+
+
+            {% for message in app.flashes('success') %}
+                <p>FLASH: {{ message }}</p>
+            {% endfor %}
+
+
+
+            {{ form_start(form, {'attr': {'class': 'space-y-6'}}) }}
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                <div>
+                    {{ form_label(form.firstname, 'Prénom', {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
+                    {{ form_widget(form.firstname, {
+                        'attr': {
+                            'class': 'mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-secondary focus:border-secondary sm:text-sm',
+                            'placeholder': 'Votre prénom'
+                        }
+                    }) }}
+                </div>
+
+                <div>
+                    {{ form_label(form.lastname, 'Nom', {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
+                    {{ form_widget(form.lastname, {
+                        'attr': {
+                            'class': 'mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-secondary focus:border-secondary sm:text-sm',
+                            'placeholder': 'Votre nom'
+                        }
+                    }) }}
+                </div>
+            </div>
+
+            <div>
+                {{ form_label(form.email, 'Email', {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
+                {{ form_widget(form.email, {
+                    'attr': {
+                        'class': 'mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-secondary focus:border-secondary sm:text-sm',
+                        'placeholder': 'votre.email@exemple.com'
+                    }
+                }) }}
+            </div>
+
+            {% if form.preference is defined %}
+                <div class="mt-6">
+                    <h2 class="text-lg font-semibold text-gray-800 mb-2">Préférences</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        {% for checkbox in form.preference.categories %}
+                            <label class="inline-flex items-center space-x-2 text-sm text-gray-700">
+                                {{ form_widget(checkbox, {
+                                    'attr': {
+                                        'class': 'h-4 w-4 text-primary focus:ring-secondary border-gray-300 rounded'
+                                    }
+                                }) }}
+                                {{ form_label(checkbox) }}
+                            </label>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+
+            <div>
+                {{ form_label(form.password, 'Nouveau mot de passe', {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
+                {{ form_widget(form.password) }}
+            </div>
+
+            <div class="pt-4">
+                <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white font-bold bg-cta hover:bg-ctaSurvol focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                    Mettre à jour
+                </button>
+            </div>
+
+            <form method="post" action="{{ path('app_user_delete_account') }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.');" class="mt-4">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete_account') }}">
+                <button type="submit" class="bg-red-700 hover:bg-red-800 text-white font-semibold text-sm px-4 py-2 rounded-md shadow transition w-full">
+                    Supprimer mon compte
+                </button>
+            </form>
+
+            {{ form_end(form, { 'render_rest': false }) }}
+        </div>
+    </div>
+{% endblock %}

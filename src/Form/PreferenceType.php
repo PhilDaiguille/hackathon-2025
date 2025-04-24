@@ -12,24 +12,20 @@ class PreferenceType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->add('categories', ChoiceType::class, [
-            'label' => 'Vos préférences',
-            'choices' => [
-                'Campagne' => 'campagne',
-                'Mer' => 'mer',
-                'Montagnes' => 'montagnes',
-                'Spa' => 'spa',
-                'Petit-déjeuner inclus' => 'petit_dejeuner',
-                'Piscine' => 'piscine',
-            ],
-            'expanded' => true,
-            'multiple' => true,
-            'attr' => ['class' => 'space-y-2'],
-            'label_attr' => ['class' => 'block text-sm font-medium text-gray-700 mb-2'],
-            'choice_attr' => function ($choice, $key, $value) {
-                return ['class' => 'mr-2 text-black'];
-            },
-        ]);
+        $builder
+            ->add('categories', ChoiceType::class, [
+                'choices'  => [
+                    'Campagne' => 'campagne',
+                    'Mer' => 'mer',
+                    'Montagne' => 'montagne',
+                    'Spa' => 'spa',
+                    'Petit déjeuner inclus' => 'petit_dejeuner',
+                    'Piscine' => 'piscine',
+                ],
+                'expanded' => true, // pour afficher sous forme de checkbox
+                'multiple' => true, // pour permettre la sélection multiple
+                'label'    => 'Vos préférences',
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
