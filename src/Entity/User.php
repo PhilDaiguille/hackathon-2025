@@ -59,6 +59,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private array $roles = [];
 
+    private ?string $hashPassword = '';
+
     #[ORM\Column(type: 'boolean', options: ['default' => false])]
     private bool $isVerified = false;
 
@@ -288,5 +290,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function setHashPassword(string $hashPassword): void
+    {
+        $this->hashPassword = $hashPassword;
+    }
+
+    public function getHashPassword(): string
+    {
+        return $this->hashPassword;
+    }
 
 }
