@@ -3,12 +3,12 @@
 {% block title %}Liste des Chambres{% endblock %}
 
 {% block body %}
-    <div class="max-w-7xl mx-auto px-6 py-10 space-y-8">
+    <div class="max-w-7xl mx-auto space-y-8">
         <div class="flex justify-between items-center">
             <h1 class="text-3xl font-bold text-black">Chambres</h1>
             <a href="{{ path('app_room_new') }}"
                class="inline-flex items-center gap-2 bg-[#BC946F] text-white text-sm font-semibold px-4 py-2 rounded-md hover:bg-[#EADDD1] hover:text-black transition">
-                + Créer une chambre
+                Ajouter une chambre
             </a>
         </div>
 
@@ -17,7 +17,6 @@
                 <table class="w-full table-auto border border-gray-200 text-sm text-left">
                     <thead class="bg-[#F7F4F1] text-black">
                     <tr>
-                        <th class="px-4 py-2">Id</th>
                         <th class="px-4 py-2">Type</th>
                         <th class="px-4 py-2">Prix de base</th>
                         <th class="px-4 py-2">Description</th>
@@ -29,12 +28,10 @@
                     <tbody>
                     {% for room in rooms %}
                         <tr class="border-t">
-                            <td class="px-4 py-2">{{ room.id }}</td>
                             <td class="px-4 py-2">{{ room.type }}</td>
                             <td class="px-4 py-2">{{ room.basePrice }}</td>
                             <td class="px-4 py-2">{{ room.description }}</td>
-                            <td class="px-4 py-2">{{ room.createdAt ? room.createdAt|date('Y-m-d H:i') : '' }}</td>
-                            <td class="px-4 py-2">{{ room.updatedAt ? room.updatedAt|date('Y-m-d H:i') : '' }}</td>
+                            <td class="px-4 py-2">{{ room.createdAt ? room.createdAt|date('d/m/Y') : 'N/A' }}</td>
                             <td class="px-4 py-2">
                                 <div class="flex flex-col sm:flex-row sm:items-center gap-2">
                                     <a href="{{ path('app_room_show', {'id': room.id}) }}" class="text-[#1F1F1F] font-medium hover:underline">Voir</a>
