@@ -29,6 +29,7 @@
         "symfony/ux-map": "^2.24",
         "symfony/validator": "7.2.*",
         "symfony/yaml": "7.2.*",
+        "symfonycasts/reset-password-bundle": "^1.23",
         "symfonycasts/tailwind-bundle": "^0.10.0",
         "symfonycasts/verify-email-bundle": "^1.17.3"
     },
