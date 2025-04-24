@@ -8,3 +8,7 @@ body {
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
 }
+
+.linear-background {
+    background: linear-gradient(201deg, #1F1F1F 3.14%, #FFF 86.04%) !important;
+}
