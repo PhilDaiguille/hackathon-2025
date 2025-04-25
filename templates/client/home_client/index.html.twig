@@ -1,5 +1,5 @@
 {% extends "base.html.twig" %}
-{% block title %}Welcome!{% endblock %}
+{% block title %}Offres{% endblock %}
 
 {% block header %}
     {% include 'includes/header_client.html.twig' %}
@@ -93,7 +93,19 @@
                 {% endif %}
             </div>
         </section>
+        {% set input_id = 'my-input' %}
+        {% set form_id = 'my-form' %}
+        {% set voice_btn_id = 'my-voice-btn' %}
 
+        {% include 'components/search.html.twig' with {
+            placeholder: 'Rechercher un hébergement',
+            action: path('app_offer_client'),
+            value: query|default(''),
+            withVoice: true,
+            input_id: input_id,
+            form_id: form_id,
+            voice_btn_id: voice_btn_id
+        } %}
         <section class="container mx-auto px-8 py-12">
             <h2 class="text-3xl font-bold">Proposition de plusieurs hôtels français</h2>
             <p class="text-lg pb-4">Un descriptif pour cette partie qui ferait deux lignes ou plus.</p>
@@ -106,7 +118,7 @@
                             class="w-full h-64 object-cover"
                         />
                         <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
-                            <h2 class="text-white text-2xl font-bold">Titre Hotel badasse</h2>
+                            <h2 class="text-white text-2xl font-bold">Hôtel Le Marais Paris</h2>
                         </div>
                     </div>
                     <div class="p-4">
@@ -141,7 +153,7 @@
                             class="w-full h-64 object-cover"
                         />
                         <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
-                            <h2 class="text-white text-2xl font-bold">Titre Hotel badasse</h2>
+                            <h2 class="text-white text-2xl font-bold">Hôtel Le Marais Paris</h2>
                         </div>
                     </div>
                     <div class="p-4">
@@ -176,7 +188,7 @@
                             class="w-full h-64 object-cover"
                         />
                         <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
-                            <h2 class="text-white text-2xl font-bold">Titre Hotel badasse</h2>
+                            <h2 class="text-white text-2xl font-bold">Hôtel Le Marais Paris</h2>
                         </div>
                     </div>
                     <div class="p-4">
@@ -218,7 +230,7 @@
                             class="w-full h-64 object-cover"
                         />
                         <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
-                            <h2 class="text-white text-2xl font-bold">Titre Hotel badasse</h2>
+                            <h2 class="text-white text-2xl font-bold">Hôtel Le Marais Paris</h2>
                         </div>
                     </div>
                     <div class="p-4">
@@ -253,7 +265,7 @@
                             class="w-full h-64 object-cover"
                         />
                         <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
-                            <h2 class="text-white text-2xl font-bold">Titre Hotel badasse</h2>
+                            <h2 class="text-white text-2xl font-bold">Hôtel Le Marais Paris</h2>
                         </div>
                     </div>
                     <div class="p-4">
@@ -288,7 +300,7 @@
                             class="w-full h-64 object-cover"
                         />
                         <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
-                            <h2 class="text-white text-2xl font-bold">Titre Hotel badasse</h2>
+                            <h2 class="text-white text-2xl font-bold">Hôtel Le Marais Paris</h2>
                         </div>
                     </div>
                     <div class="p-4">
