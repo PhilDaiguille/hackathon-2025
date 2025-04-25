@@ -22,3 +22,4 @@ App\Entity\Negociation:
         updatedAt: <dateTimeBetween('-3 days', '-2 days')>
         responseDeadline: <dateTimeBetween('-3 days +3 hours', '-2 days +3 hours')>
         status: 'refused'
+        

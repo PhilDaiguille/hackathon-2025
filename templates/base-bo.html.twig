@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    <title>{% block title %}MatchRoom{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
     {{ encore_entry_link_tags('app') }}
-    <link rel="icon"
-          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+    <meta name="description" content="{% block description %}Bienvenue sur MatchRoom, votre plateforme de réservation d'hôtels en ligne. Trouvez l'hôtel idéal pour votre séjour, comparez les prix et réservez en toute simplicité. Profitez de nos offres exclusives et d'un service client dédié pour une expérience inoubliable. Rejoignez-nous dès maintenant !{% endblock %}">
+    <link rel="icon" href="{{ asset('icons/logo-simple.svg') }}" type="image/svg+xml">
     {% block stylesheets %}
     {% endblock %}
 
@@ -85,6 +85,7 @@
                     <span class="ms-3">Tableau de Board</span>
                 </a>
             </li>
+            {% if is_granted('ROLE_ADMIN') %}
             <li>
                 <a href="{{ path('app_hotel_index') }}" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 dark:text-white dark:hover:bg-gray-500 group">
                     <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-white group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
@@ -93,8 +94,20 @@
                     <span class="flex-1 ms-3 whitespace-nowrap">Hotels</span>
                 </a>
             </li>
+            {% endif %}
+            {% if 'ROLE_OWNER' in app.user.roles and 'ROLE_ADMIN' not in app.user.roles %}
+                <li>
+                    <a href="{{ path('owner_hotel') }}" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 dark:text-white dark:hover:bg-gray-500 group">
+                        <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-white group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
+                            <path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z"/>
+                        </svg>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Mon Hôtel</span>
+                    </a>
+                </li>
+            {% endif %}
+
             <li>
-                <a href="{{ path('app_hotel_index') }}" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 dark:text-white dark:hover:bg-gray-500 group">
+                <a href="{{ path('app_booking_index') }}" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 dark:text-white dark:hover:bg-gray-500 group">
                     <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-white group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                         <path d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z"/>
                     </svg>
@@ -102,7 +115,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ path('app_hotel_index') }}" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 dark:text-white dark:hover:bg-gray-500 group">
+                <a href="{{ path('app_negociation_index') }}" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 dark:text-white dark:hover:bg-gray-500 group">
                     <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-white group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
                         <path d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z"/>
                     </svg>
@@ -117,6 +130,7 @@
                     <span class="flex-1 ms-3 whitespace-nowrap">Offres</span>
                 </a>
             </li>
+            {% if is_granted('ROLE_ADMIN') %}
             <li>
                 <a href="{{ path('app_room_index') }}" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 dark:text-white dark:hover:bg-gray-500 group">
                     <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-white group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
@@ -125,48 +139,59 @@
                     <span class="flex-1 ms-3 whitespace-nowrap">Chambres</span>
                 </a>
             </li>
+            {% endif %}
+            {% if is_granted('ROLE_ADMIN') %}
+                <li>
+                    <a href="{{ path('app_user_index') }}" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 dark:text-white dark:hover:bg-gray-500 group">
+                        <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-white group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
+                            <path d="M17 5.923A1 1 0 0 0 16 5h-3V4a4 4 0 1 0-8 0v1H2a1 1 0 0 0-1 .923L.086 17.846A2 2 0 0 0 2.08 20h13.84a2 2 0 0 0 1.994-2.153L17 5.923ZM7 9a1 1 0 0 1-2 0V7h2v2Zm0-5a2 2 0 1 1 4 0v1H7V4Zm6 5a1 1 0 1 1-2 0V7h2v2Z"/>
+                        </svg>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Hôteliers</span>
+                    </a>
+                </li>
+            {% endif %}
+            <li>
+                <a href="{{ path('admin_profil') }}"
+                   class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 dark:text-white dark:hover:bg-gray-500 group">
+                    <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-white group-hover:text-gray-900 dark:group-hover:text-white"
+                         fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5Zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5Z" />
+                    </svg>
+                    <span class="flex-1 ms-3 whitespace-nowrap">Profil</span>
+                </a>
+            </li>
         </ul>
     </div>
-
     {% if app.user %}
-        <div class="p-8 absolute bottom-0 left-0 w-full " >
-            <div class="flex items-center space-x-3">
-                <img
-                    src="{{ app.user.avatar ?? asset('images/default-avatar.jpeg') }}"
-                    alt="Avatar"
-                    class="w-10 h-10 rounded-full object-cover"
-                >
-                <div class="text-sm font-medium text-black dark:text-white">
-                    <div class="text-m">{{ app.user.firstname }}</div>
-                    <div class="text-gray-500 dark:text-gray-200 text-xs">{{ app.user.lastname }}</div>
+        <div class="p-6 absolute bottom-0 left-0 w-full bg-white dark:bg-fondGrey border-t border-gray-200 dark:border-gray-700">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <img
+                        src="{{ app.user.avatar ?? asset('images/default-avatar.jpeg') }}"
+                        alt="Avatar"
+                        class="w-10 h-10 rounded-full object-cover"
+                    >
+                    <div class="text-sm font-medium text-gray-900 dark:text-white leading-tight">
+                        <div>{{ app.user.firstname }}</div>
+                        <div class="text-xs text-gray-500 dark:text-gray-300">{{ app.user.lastname }}</div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    {% else %}
-        <div class="absolute bottom-0 left-0 w-full p-8">
-            <div class="flex items-center space-x-3">
-                <img
-                    src="{{ asset('images/default-avatar.jpeg') }}"
-                    alt="Avatar"
-                    class="w-10 h-10 rounded-full object-cover"
-                >
-                <div class="text-sm font-medium text-black dark:text-white">
-                    <div class="text-m">Gnome</div>
-                    <div class="text-gray-500 dark:text-gray-200 text-xs">Anonim</div>
-                </div>
+                <form method="post" action="{{ path('app_logout') }}">
+                    <button type="submit"
+                            class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition">
+                        Déconnexion
+                    </button>
+                </form>
             </div>
         </div>
     {% endif %}
 
+
 </aside>
 
-<div class="px-12 py-20 sm:ml-64 bg-gray-100 dark:bg-gray-200 min-h-screen">
+<div class="px-4 py-10 sm:px-12 sm:py-20 sm:ml-64 bg-gray-100 dark:bg-gray-200 min-h-screen">
     {% block body %}{% endblock %}
 </div>
 <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 </body>
 </html>
-
-
-
-

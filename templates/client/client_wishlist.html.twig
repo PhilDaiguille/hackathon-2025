@@ -1,0 +1,46 @@
+{% extends "base.html.twig" %}
+{% block title %}Ma wishlist{% endblock %}
+
+{% block header %}
+    {% include 'includes/header_client.html.twig' %}
+{% endblock %}
+{% block body %}
+    <div class="px-4 py-8 sm:px-6 lg:px-8 pt-10">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6 pt-10">Ma wishlist</h2>
+        <div class="overflow-x-auto relative">
+            <table class="w-full text-sm text-left">
+                <thead class="text-xs text-black uppercase border-b">
+                <tr>
+                    <th scope="col" class="py-3 px-6">Hôtel</th>
+                    <th scope="col" class="py-3 px-6">Date d'ajout</th>
+                    <th scope="col" class="py-3 px-6">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for wishlist in wishlists %}
+                    <tr class="bg-white border-b hover:bg-gray-50">
+                        <td class="py-4 px-6 font-medium text-gray-900">
+                            {{ wishlist.hotel.name|default('N/A') }}
+                        </td>
+                        <td class="py-4 px-6">
+                            {{ wishlist.createdAt|date('d/m/Y H:i') }}
+                        </td>
+                        <td class="py-4 px-6">
+                            <form method="post" action="{{ path('api_wishlist_delete', {'id': wishlist.id}) }}" onsubmit="return confirm('Supprimer cette offre de la wishlist ?');">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ wishlist.id) }}">
+                                <button class="bg-red-500 hover:bg-red-700 text-black px-3 py-1 rounded" type="submit">Supprimer</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr class="bg-white border-b">
+                        <td colspan="3" class="py-4 px-6 text-center text-gray-500">
+                            Aucun hôtel dans votre wishlist
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

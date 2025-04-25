@@ -1,0 +1,64 @@
+{% extends 'base-bo.html.twig' %}
+
+{% block title %}Mon Hôtel{% endblock %}
+
+{% block body %}
+    <div class="max-w-5xl mx-auto px-4 py-8 rounded-xl space-y-6">
+
+        <h1 class="text-3xl font-bold text-black">Mon Hôtel</h1>
+
+        <div class="space-y-6 bg-white p-8 rounded-2xl shadow-md">
+            <table class="w-full text-sm text-left text-black border border-gray-200">
+                <tbody>
+                <tr class="border-b">
+                    <th class="py-2 px-4 font-semibold bg-[#F7F4F1] w-1/3">Nom</th>
+                    <td class="py-2 px-4">{{ hotel.name }}</td>
+                </tr>
+                <tr class="border-b">
+                    <th class="py-2 px-4 font-semibold bg-[#F7F4F1]">Description</th>
+                    <td class="py-2 px-4">{{ hotel.description }}</td>
+                </tr>
+                <tr class="border-b">
+                    <th class="py-2 px-4 font-semibold bg-[#F7F4F1]">Rue</th>
+                    <td class="py-2 px-4">{{ hotel.streetName }}</td>
+                </tr>
+                <tr class="border-b">
+                    <th class="py-2 px-4 font-semibold bg-[#F7F4F1]">Numéro</th>
+                    <td class="py-2 px-4">{{ hotel.streetNumber }}</td>
+                </tr>
+                <tr class="border-b">
+                    <th class="py-2 px-4 font-semibold bg-[#F7F4F1]">Code Postal</th>
+                    <td class="py-2 px-4">{{ hotel.postalCode }}</td>
+                </tr>
+                <tr class="border-b">
+                    <th class="py-2 px-4 font-semibold bg-[#F7F4F1]">Ville</th>
+                    <td class="py-2 px-4">{{ hotel.city }}</td>
+                </tr>
+                <tr class="border-b">
+                    <th class="py-2 px-4 font-semibold bg-[#F7F4F1]">Pays</th>
+                    <td class="py-2 px-4">{{ hotel.country }}</td>
+                </tr>
+                <tr class="border-b">
+                    <th class="py-2 px-4 font-semibold bg-[#F7F4F1]">Note</th>
+                    <td class="py-2 px-4">{{ hotel.rating }}</td>
+                </tr>
+                <tr class="border-b">
+                    <th class="py-2 px-4 font-semibold bg-[#F7F4F1]">Email</th>
+                    <td class="py-2 px-4">{{ hotel.adminEmail }}</td>
+                </tr>
+                <tr>
+                    <th class="py-2 px-4 font-semibold bg-[#F7F4F1]">Mis à jour le</th>
+                    <td class="py-2 px-4">{{ hotel.updatedAt ? hotel.updatedAt|date('Y-m-d H:i') : '' }}</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="pt-4">
+                <a href="{{ path('owner_hotel_edit') }}"
+                   class="inline-block bg-[#BC946F] text-white text-sm font-semibold px-4 py-2 rounded-md hover:bg-[#EADDD1] transition">
+                    Modifier
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

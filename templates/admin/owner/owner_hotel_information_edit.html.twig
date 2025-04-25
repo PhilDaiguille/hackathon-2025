@@ -1,0 +1,41 @@
+{% extends 'base-bo.html.twig' %}
+
+{% block title %}Modifier mon hôtel{% endblock %}
+
+{% block body %}
+    <h1 class="text-3xl font-bold text-black mb-6">Modifier mon Hôtel</h1>
+
+    {{ form_start(form, {
+        'attr': {
+            'class': 'space-y-6 bg-white p-8 rounded-2xl shadow-md max-w-5xl mx-auto mt-10'
+        }
+    }) }}
+
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {% for field in [
+            form.name, form.description,
+            form.streetName, form.streetNumber,
+            form.postalCode, form.city,
+            form.country, form.rating,
+            form.adminEmail, form.stars
+        ] %}
+            <div class="flex flex-col w-[90%] md:w-[80%]">
+                {{ form_label(field, null, {
+                    'label_attr': {'class': 'text-sm font-semibold text-black mb-1'}
+                }) }}
+                {{ form_widget(field, {'attr': {
+                    'class': 'h-8 px-2 rounded-md border border-gray-300 bg-[#F7F4F1] text-black text-sm shadow-sm focus:border-[#BC946F] focus:ring-[#BC946F]'
+                }}) }}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="pt-6">
+        <button type="submit" class="inline-flex justify-center items-center rounded-md bg-[#BC946F] px-4 py-2 text-sm font-semibold text-white shadow hover:bg-[#EADDD1] transition">
+            Enregistrer
+        </button>
+    </div>
+
+    {{ form_end(form) }}
+{% endblock %}

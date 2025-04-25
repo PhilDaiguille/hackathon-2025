@@ -23,20 +23,24 @@ class HotelType extends AbstractType
             ->add('adminEmail')
             ->add('stars', null, [
                 'label' => 'Nombre d’étoiles'
-            ])
-            ->add('createdAt', null, [
-                'widget' => 'single_text',
-            ])
-            ->add('updatedAt', null, [
-                'widget' => 'single_text',
-            ])
-        ;
+            ]);
+
+        if ($options['is_admin']) {
+            $builder
+                ->add('createdAt', null, [
+                    'widget' => 'single_text',
+                ])
+                ->add('updatedAt', null, [
+                    'widget' => 'single_text',
+                ]);
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Hotel::class,
+            'is_admin' => false // valeur par défaut
         ]);
     }
 }

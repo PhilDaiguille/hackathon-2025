@@ -58,3 +58,39 @@ App\Entity\User:
         isVerified: true
         roles: ['ROLE_USER']
         avatar: 'https://randomuser.me/api/portraits/women/22.jpg'
+        
+    user_6:
+        firstname: 'Hotelier'
+        lastname: 'ME'
+        email: 'hotel@hotel.com'
+        hashpassword: 'password123'
+        isActive: true
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>
+        isVerified: true
+        roles: ['ROLE_OWNER']
+        idHotel: '@hotel_1'
+        
+    user_7:
+        firstname: 'KIKI'
+        lastname: 'Toto'
+        email: 'hotelier2@hotel.com'
+        hashpassword: 'password123'
+        isActive: true
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>
+        isVerified: true
+        roles: [ 'ROLE_OWNER' ]
+        idHotel: '@hotel_2'
+        
+    user_8:
+        firstname: 'admin'
+        lastname: 'admin'
+        email: 'admin@admin.admin'
+        hashpassword: 'password123'
+        isActive: true
+        createdAt: <dateTimeBetween('-1 year', 'now')>
+        updatedAt: <dateTimeBetween('-1 year', 'now')>
+        isVerified: true
+        roles: [ 'ROLE_ADMIN' ]
+        idHotel: '@hotel_1'

@@ -20,7 +20,7 @@ class Booking
     #[ORM\JoinColumn(nullable: false)]
     private ?User $idUser = null;
 
-    #[ORM\OneToOne(inversedBy: 'booking', cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(inversedBy: 'bookings')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Offer $idOffer = null;
 

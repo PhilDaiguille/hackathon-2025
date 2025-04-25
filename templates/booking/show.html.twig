@@ -1,0 +1,63 @@
+{% extends 'base-bo.html.twig' %}
+
+{% block title %}Détail de la Réservation{% endblock %}
+
+{% block body %}
+    <div class="max-w-5xl mx-auto px-4 py-8 rounded-xl space-y-6">
+
+        <h1 class="text-3xl font-bold text-black">Détail de la Réservation</h1>
+
+        <div class="space-y-6 bg-white p-8 rounded-2xl shadow-md">
+            <table class="w-full text-sm text-left text-black border border-gray-200">
+                <tbody>
+                <tr class="border-b">
+                    <th class="py-2 px-4 font-semibold bg-[#F7F4F1] w-1/3">Id</th>
+                    <td class="py-2 px-4">{{ booking.id }}</td>
+                </tr>
+                <tr class="border-b">
+                    <th class="py-2 px-4 font-semibold bg-[#F7F4F1]">Prix Final</th>
+                    <td class="py-2 px-4">{{ booking.finalPrice }}</td>
+                </tr>
+                <tr class="border-b">
+                    <th class="py-2 px-4 font-semibold bg-[#F7F4F1]">Début</th>
+                    <td class="py-2 px-4">{{ booking.startDate ? booking.startDate|date('Y-m-d H:i') : '' }}</td>
+                </tr>
+                <tr class="border-b">
+                    <th class="py-2 px-4 font-semibold bg-[#F7F4F1]">Fin</th>
+                    <td class="py-2 px-4">{{ booking.endDate ? booking.endDate|date('Y-m-d H:i') : '' }}</td>
+                </tr>
+                <tr class="border-b">
+                    <th class="py-2 px-4 font-semibold bg-[#F7F4F1]">Status</th>
+                    <td class="py-2 px-4">{{ booking.status.label() }}</td> {# Attention : il faut appeler la méthode avec () #}
+                </tr>
+                <tr class="border-b">
+                    <th class="py-2 px-4 font-semibold bg-[#F7F4F1]">Créé le</th>
+                    <td class="py-2 px-4">{{ booking.createdAt ? booking.createdAt|date('Y-m-d H:i') : '' }}</td>
+                </tr>
+                <tr>
+                    <th class="py-2 px-4 font-semibold bg-[#F7F4F1]">Mis à jour le</th>
+                    <td class="py-2 px-4">{{ booking.updatedAt ? booking.updatedAt|date('Y-m-d H:i') : '' }}</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="pt-4">
+                <a href="{{ path('app_booking_edit', {'id': booking.id}) }}"
+                   class="inline-block bg-[#BC946F] text-white text-sm font-semibold px-4 py-2 rounded-md hover:bg-[#EADDD1] transition">
+                    Modifier
+                </a>
+            </div>
+        </div>
+
+        <div class="max-w-5xl mx-auto px-4 py-6 flex justify-between items-center">
+            <a href="{{ path('app_booking_index') }}"
+               class="inline-block bg-[#1F1F1F] text-white text-sm font-semibold px-4 py-2 rounded-md hover:bg-black transition">
+                ← Retour à la liste
+            </a>
+
+            <div class="flex gap-3">
+                {{ include('booking/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

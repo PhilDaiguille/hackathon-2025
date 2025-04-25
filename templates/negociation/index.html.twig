@@ -1,0 +1,53 @@
+{% extends 'base-bo.html.twig' %}
+
+{% block title %}Négociations en attente{% endblock %}
+
+{% block body %}
+    <div class="max-w-7xl mx-auto px-6 py-10 space-y-8">
+        <div class="flex justify-between items-center">
+            <h1 class="text-3xl font-bold text-black">Négociations en attente</h1>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-md p-6">
+            <div class="overflow-x-auto">
+                <table class="w-full table-auto border border-gray-200 text-sm text-left">
+                    <thead class="bg-[#F7F4F1] text-black">
+                    <tr>
+                        <th class="px-4 py-2">Booking ID</th>
+                        <th class="px-4 py-2">Offre ID</th>
+                        <th class="px-4 py-2">Prix proposé (€)</th>
+                        <th class="px-4 py-2">Date limite de réponse</th>
+                        <th class="px-4 py-2">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for nego in negociations %}
+                        <tr class="border-t">
+                            <td class="px-4 py-2">{{ nego.idBooking.id }}</td>
+                            <td class="px-4 py-2">{{ nego.idBooking.idOffer.id }}</td>
+                            <td class="px-4 py-2">{{ nego.newPrice }}</td>
+                            <td class="px-4 py-2">{{ nego.responseDeadline ? nego.responseDeadline|date('Y-m-d H:i') : '' }}</td>
+                            <td class="px-4 py-2">
+                                <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+                                    <a href="{{ path('app_negotiation_accept', {id: nego.id}) }}"
+                                       class="inline-flex items-center gap-2 bg-green-600 text-white text-sm font-semibold px-4 py-2 rounded-md hover:bg-green-700 transition">
+                                        Accepter
+                                    </a>
+                                    <a href="{{ path('app_negotiation_refuse', {id: nego.id}) }}"
+                                       class="inline-flex items-center gap-2 bg-red-600 text-white text-sm font-semibold px-4 py-2 rounded-md hover:bg-red-700 transition">
+                                        Refuser
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="5" class="text-center py-4 text-gray-500">Aucune négociation en attente.</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

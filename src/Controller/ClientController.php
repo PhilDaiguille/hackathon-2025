@@ -43,9 +43,27 @@ class ClientController extends AbstractController
                 'content' => '<p>Thank you <a href="https://github.com/Kocal">@Kocal</a> for this component!</p>'
             ],
         ]);
+        $offers = $offerRepository->findAll();
+        $user = $this->getUser();
+        $wishlists = $user ? $user->getWishlists() : [];
+
+        $hotelIdsInWishlist = [];
+        foreach ($wishlists as $wishlist) {
+            $hotel = $wishlist->getHotel();
+            if ($hotel) {
+                $hotelIdsInWishlist[] = $hotel->getId();
+            }
+        }
+        $offers = array_filter(
+            $offerRepository->findAll(),
+            function ($offer) use ($hotelIdsInWishlist) {
+                return !in_array($offer->getIdHotel()->getId(), $hotelIdsInWishlist, true);
+            }
+        );
+
 
         return $this->render('client/home_client/index.html.twig', [
-            'offers' => $offerRepository->findAll(),
+            'offers' => $offers,
             'map' => $map,
         ]);
     }
@@ -57,6 +75,16 @@ class ClientController extends AbstractController
 
         return $this->render('client/client_reservation.html.twig', [
             'reservations' => $reservations,
+        ]);
+    }
+
+    #[Route('/profile/wishlist', name: 'app_offer_wishlist_client', methods: ['GET'])]
+    public function wishlist(): Response
+    {
+        $wishlists = $this->getUser()->getWishlists()->toArray();
+
+        return $this->render('client/client_wishlist.html.twig', [
+            'wishlists' => $wishlists,
         ]);
     }
 }

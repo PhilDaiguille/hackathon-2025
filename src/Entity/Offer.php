@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\OfferRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: OfferRepository::class)]
 class Offer
@@ -19,7 +21,7 @@ class Offer
     private ?Hotel $idHotel = null;
 
     #[ORM\OneToOne(inversedBy: 'offer', cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Room $idRoom = null;
 
     #[ORM\Column(nullable: true)]
@@ -40,8 +42,16 @@ class Offer
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[ORM\OneToOne(mappedBy: 'idOffer', cascade: ['persist', 'remove'])]
-    private ?Booking $booking = null;
+    /**
+     * @var Collection<int, Booking>
+     */
+    #[ORM\OneToMany(mappedBy: 'idOffer', targetEntity: Booking::class)]
+    private Collection $bookings;
+
+    public function __construct()
+    {
+        $this->bookings = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -144,19 +154,40 @@ class Offer
         return $this;
     }
 
-    public function getBooking(): ?Booking
+    public function getAcceptedBooking(): ?Booking
     {
-        return $this->booking;
+        foreach ($this->bookings as $booking) {
+            if ($booking->getStatus()->value === 'accepted') {
+                return $booking;
+            }
+        }
+
+        return null;
     }
 
-    public function setBooking(Booking $booking): static
+    public function getBookings(): Collection
     {
-        // set the owning side of the relation if necessary
-        if ($booking->getIdOffer() !== $this) {
+        return $this->bookings;
+    }
+
+    public function addBooking(Booking $booking): static
+    {
+        if (!$this->bookings->contains($booking)) {
+            $this->bookings->add($booking);
             $booking->setIdOffer($this);
         }
 
-        $this->booking = $booking;
+        return $this;
+    }
+
+    public function removeBooking(Booking $booking): static
+    {
+        if ($this->bookings->removeElement($booking)) {
+            // set the owning side to null (unless already changed)
+            if ($booking->getIdOffer() === $this) {
+                $booking->setIdOffer(null);
+            }
+        }
 
         return $this;
     }

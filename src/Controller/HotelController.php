@@ -11,10 +11,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Service\SmartSearchService;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/admin/hotel')]
 final class HotelController extends AbstractController
 {
+    #[IsGranted('ROLE_ADMIN')]
     #[Route(name: 'app_hotel_index', methods: ['GET'])]
     public function index(HotelRepository $hotelRepository): Response
     {
@@ -23,6 +25,7 @@ final class HotelController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/new', name: 'app_hotel_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -43,6 +46,7 @@ final class HotelController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}', name: 'app_hotel_show', methods: ['GET'])]
     public function show(Hotel $hotel): Response
     {
@@ -51,6 +55,7 @@ final class HotelController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}/edit', name: 'app_hotel_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Hotel $hotel, EntityManagerInterface $entityManager): Response
     {
@@ -69,6 +74,7 @@ final class HotelController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}', name: 'app_hotel_delete', methods: ['POST'])]
     public function delete(Request $request, Hotel $hotel, EntityManagerInterface $entityManager): Response
     {
@@ -80,6 +86,7 @@ final class HotelController extends AbstractController
         return $this->redirectToRoute('app_hotel_index', [], Response::HTTP_SEE_OTHER);
     }
 
+    #[IsGranted('ROLE_USER')]
     #[Route('/search', name: 'app_hotel_search', methods: ['GET'])]
     public function search(Request $request, SmartSearchService $smartSearchService, HotelRepository $hotelRepository): Response
     {
