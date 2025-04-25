@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    <h2 class="text-xl font-semibold mb-6">Bonjour Éva,</h2>
+    <h2 class="text-xl font-semibold mb-6"> Bonjour {{ app.user.lastname }} {{ app.user.firstname }},</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 bg-white dark:bg-fondGrey rounded-xl shadow">
 
         <!-- Total d'utilisateurs -->
