@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\AdminProfileType;
 use App\Form\UserType;
 use App\Form\ClientProfileType;
 use App\Repository\UserRepository;
@@ -93,6 +94,36 @@ final class UserController extends AbstractController
         }
 
         return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/admin/profil', name: 'admin_profil', methods: ['GET', 'POST'])]
+    public function adminProfil(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $hasher): Response
+    {
+        /** @var User $admin */
+        $admin = $this->getUser();
+
+        $form = $this->createForm(AdminProfileType::class, $admin);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $newPassword = $form->get('password')->getData();
+
+            if ($newPassword) {
+                $hashedPassword = $hasher->hashPassword($admin, $newPassword);
+                $admin->setPassword($hashedPassword);
+            }
+
+            $admin->setUpdatedAt(new \DateTimeImmutable());
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Votre profil a bien été mis à jour.');
+
+            return $this->redirectToRoute('admin_profil');
+        }
+
+        return $this->render('admin/admin_profil.html.twig', [
+            'form' => $form,
+        ]);
     }
 
     #[Route('/profil', name: 'app_user_profil', methods: ['GET', 'POST'])]

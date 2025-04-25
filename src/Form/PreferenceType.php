@@ -22,8 +22,8 @@ class PreferenceType extends AbstractType
                     'Petit déjeuner inclus' => 'petit_dejeuner',
                     'Piscine' => 'piscine',
                 ],
-                'expanded' => true, // pour afficher sous forme de checkbox
-                'multiple' => true, // pour permettre la sélection multiple
+                'expanded' => true,
+                'multiple' => true,
                 'label'    => 'Vos préférences',
             ]);
     }
