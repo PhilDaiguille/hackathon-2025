@@ -23,7 +23,7 @@
                     {% for offer in offers %}
                         <div
                             data-hotel-id="{{ offer.idHotel.id }}"
-                            class="offer-card max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden relative mb-6 {% if not loop.first %}hidden{% endif %}">
+                            class="offer-card max-w-4xl mx-auto bg-white z-0 rounded-lg shadow-lg overflow-hidden relative mb-6 {% if not loop.first %}hidden{% endif %}">
                             <div class="flex flex-col md:flex-row">
                                 <div class="relative w-full md:w-1/2">
                                     <img src="{{ asset('images/background.jpg') }}" alt="{{ offer.idHotel.name }}"
@@ -97,7 +97,7 @@
         {% set form_id = 'my-form' %}
         {% set voice_btn_id = 'my-voice-btn' %}
 
-        {% include 'components/search.html.twig' with {
+        {% include 'components/search-client.html.twig' with {
             placeholder: 'Rechercher un hébergement',
             action: path('app_offer_client'),
             value: query|default(''),
@@ -332,7 +332,7 @@
         </section>
         <div class="container mx-auto px-8 py-12">
             <h2 class="text-4xl font-bold mb-6">Planifiez votre prochaine destination</h2>
-            <div class="max-w-6xl mx-auto my-2 rounded-lg shadow-lg bg-white">
+            <div class="max-w-6xl mx-auto my-2 rounded-lg shadow-lg bg-white z-0 relative">
                 {{ ux_map(map, {style: 'height: 600px; border-radius: .5rem;'}) }}
             </div>
         </div>
