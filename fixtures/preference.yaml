@@ -1,0 +1,20 @@
+App\Entity\Preference:
+    preference_1:
+        categories: ['campagne', 'spa', 'piscine']
+        preferenceUser: '@user_1'
+    
+    preference_2:
+        categories: ['mer', 'petit_dejeuner']
+        preferenceUser: '@user_2'
+    
+    preference_3:
+        categories: ['montagnes', 'campagne']
+        preferenceUser: '@user_3'
+    
+    preference_4:
+        categories: ['spa', 'mer', 'petit_dejeuner']
+        preferenceUser: '@user_4'
+    
+    preference_5:
+        categories: ['campagne']
+        preferenceUser: '@user_5'

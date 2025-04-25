@@ -21,6 +21,9 @@ class HotelType extends AbstractType
             ->add('country')
             ->add('rating')
             ->add('adminEmail')
+            ->add('stars', null, [
+                'label' => 'Nombre d’étoiles'
+            ])
             ->add('createdAt', null, [
                 'widget' => 'single_text',
             ])

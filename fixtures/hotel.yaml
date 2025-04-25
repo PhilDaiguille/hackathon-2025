@@ -9,6 +9,7 @@ App\Entity\Hotel:
         country: 'Pays-Bas'
         rating: 4.5
         adminEmail: 'royal@hotel.com'
+        stars: 5
         createdAt: <dateTimeBetween('-1 year', 'now')>
         updatedAt: <dateTimeBetween('-1 year', 'now')>
 
@@ -22,6 +23,7 @@ App\Entity\Hotel:
         country: 'Pays-Bas'
         rating: 3.9
         adminEmail: 'contact@auberge-tranquille.com'
+        stars: 3
         createdAt: <dateTimeBetween('-1 year', 'now')>
         updatedAt: <dateTimeBetween('-1 year', 'now')>
 
@@ -35,6 +37,7 @@ App\Entity\Hotel:
         country: 'France'
         rating: 4.8
         adminEmail: 'spa@parisien.com'
+        stars: 3
         createdAt: <dateTimeBetween('-1 year', 'now')>
         updatedAt: <dateTimeBetween('-1 year', 'now')>
 
@@ -48,6 +51,7 @@ App\Entity\Hotel:
         country: 'Allemagne'
         rating: 4.2
         adminEmail: 'info@business-inn.de'
+        stars: 4
         createdAt: <dateTimeBetween('-1 year', 'now')>
         updatedAt: <dateTimeBetween('-1 year', 'now')>
 
@@ -61,6 +65,7 @@ App\Entity\Hotel:
         country: 'Espagne'
         rating: 3.5
         adminEmail: 'contact@hostel-madrid.es'
+        stars: 3
         createdAt: <dateTimeBetween('-1 year', 'now')>
         updatedAt: <dateTimeBetween('-1 year', 'now')>
     
@@ -74,5 +79,6 @@ App\Entity\Hotel:
         country: 'France'
         rating: 4.9
         adminEmail: 'contact@hotel-nice.fr'
+        stars: 4
         createdAt: <dateTimeBetween('-1 year', 'now')>
         updatedAt: <dateTimeBetween('-1 year', 'now')>

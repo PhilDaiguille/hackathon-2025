@@ -70,6 +70,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToOne(inversedBy: 'users')]
     private ?Hotel $idHotel = null;
 
+    #[ORM\OneToOne(mappedBy: 'preferenceUser', cascade: ['persist', 'remove'])]
+    private ?Preference $preference = null;
+
     public function __construct()
     {
         $this->bookings = new ArrayCollection();
@@ -314,6 +317,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIdHotel(?Hotel $idHotel): static
     {
         $this->idHotel = $idHotel;
+
+        return $this;
+    }
+
+    public function getPreference(): ?Preference
+    {
+        return $this->preference;
+    }
+
+    public function setPreference(?Preference $preference): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($preference === null && $this->preference !== null) {
+            $this->preference->setPreferenceUser(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($preference !== null && $preference->getPreferenceUser() !== $this) {
+            $preference->setPreferenceUser($this);
+        }
+
+        $this->preference = $preference;
 
         return $this;
     }
