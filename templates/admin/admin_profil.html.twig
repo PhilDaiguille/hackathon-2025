@@ -1,0 +1,79 @@
+{% extends 'base-bo.html.twig' %}
+
+{% block title %}Mon Profil - Admin | MatchRoom{% endblock %}
+
+{% block body %}
+    <div class="bg-gray-100 min-h-screen p-10">
+        <h1 class="text-3xl font-extrabold text-gray-900 mb-6">Mon Profil</h1>
+
+        <div class="bg-white p-8 rounded-lg shadow-md max-w-6xl mx-auto">
+            {{ form_start(form) }}
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    {{ form_label(form.firstname, 'Prénom') }}
+                    {{ form_widget(form.firstname, {
+                        'attr': {
+                            'class': 'w-full mt-1 border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-secondary focus:border-secondary'
+                        }
+                    }) }}
+                </div>
+
+                <div>
+                    {{ form_label(form.lastname, 'Nom') }}
+                    {{ form_widget(form.lastname, {
+                        'attr': {
+                            'class': 'w-full mt-1 border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-secondary focus:border-secondary'
+                        }
+                    }) }}
+                </div>
+
+                <div>
+                    {{ form_label(form.email, 'Email') }}
+                    {{ form_widget(form.email, {
+                        'attr': {
+                            'class': 'w-full mt-1 border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-secondary focus:border-secondary'
+                        }
+                    }) }}
+                </div>
+
+                <div>
+                    {{ form_label(form.password, 'Nouveau mot de passe') }}
+                    {{ form_widget(form.password, {
+                        'attr': {
+                            'class': 'w-full mt-1 border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-secondary focus:border-secondary',
+                            'placeholder': '••••••••'
+                        }
+                    }) }}
+                </div>
+            </div>
+
+            <div class="mt-6">
+                <button type="submit"
+                        class="inline-flex justify-center items-center rounded-md bg-[#BC946F] px-4 py-2 text-sm font-semibold text-white shadow hover:bg-[#EADDD1] transition">
+                    Modifier
+                </button>
+            </div>
+            {{ form_rest(form) }}
+            {{ form_end(form, { 'render_rest': false }) }}
+        </div>
+
+        <div class="flex items-center justify-between mt-6 max-w-6xl mx-auto">
+            <a href="{{ path('app_user_index') }}"
+               class="inline-flex items-center px-4 py-2 bg-black text-white text-sm font-medium rounded-md shadow hover:bg-gray-800">
+                ← Retour au dashboard
+            </a>
+
+            <div class="flex space-x-3">
+                <form method="post"
+                      action="{{ path('app_user_delete', {'id': app.user.id}) }}"
+                      onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ?');">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ app.user.id) }}">
+                    <button type="submit"
+                            class="bg-red-700 hover:bg-red-800 text-white font-semibold text-sm px-6 py-2 rounded-md shadow transition">
+                        Supprimer
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
