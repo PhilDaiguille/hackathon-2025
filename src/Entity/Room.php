@@ -140,7 +140,6 @@ class Room
 
     public function setOffer(Offer $offer): static
     {
-        // set the owning side of the relation if necessary
         if ($offer->getIdRoom() !== $this) {
             $offer->setIdRoom($this);
         }
@@ -171,7 +170,6 @@ class Room
     public function removeExtra(Extras $extra): static
     {
         if ($this->extras->removeElement($extra)) {
-            // set the owning side to null (unless already changed)
             if ($extra->getIdRoom() === $this) {
                 $extra->setIdRoom(null);
             }
@@ -201,7 +199,6 @@ class Room
     public function removeExperience(Experiences $experience): static
     {
         if ($this->experiences->removeElement($experience)) {
-            // set the owning side to null (unless already changed)
             if ($experience->getIdRoom() === $this) {
                 $experience->setIdRoom(null);
             }

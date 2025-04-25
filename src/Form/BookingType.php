@@ -10,6 +10,9 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use App\Enum\BookingStatus;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+
 
 class BookingType extends AbstractType
 {
@@ -29,7 +32,11 @@ class BookingType extends AbstractType
             ->add('endDate', null, [
                 'widget' => 'single_text',
             ])
-            ->add('status')
+            ->add('status', ChoiceType::class, [
+                'choices' => BookingStatus::cases(),
+                'choice_label' => fn(BookingStatus $status) => ucfirst($status->name),
+                'choice_value' => fn(?BookingStatus $status) => $status?->value,
+            ])
             ->add('idUser', EntityType::class, [
                 'class' => User::class,
                 'choice_label' => 'id',

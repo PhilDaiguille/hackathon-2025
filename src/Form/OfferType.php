@@ -53,11 +53,7 @@ class OfferType extends AbstractType
             },
         ]);
 
-        $builder->add('booking', EntityType::class, [
-            'class' => Booking::class,
-            'choice_label' => 'id',
-            'required' => false,
-        ]);
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void
