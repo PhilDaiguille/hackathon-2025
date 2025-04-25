@@ -18,8 +18,9 @@
             </div>
 
             <div class="hidden md:flex items-center space-x-6">
-                <a href="{{ path('app_home_index') }}" class="text-gray-700 hover:text-primary font-medium">Accueil</a>
+                <a href="{{ path('app_offer_client') }}" class="text-gray-700 hover:text-primary font-medium">Accueil</a>
                 <span class="text-gray-600">{{ app.user.firstname }}</span>
+                <a href="{{ path('app_offer_wishlist_client') }}" class="text-gray-600">wishlist</a>
                 <a href="{{ path('app_offer_reservation_client') }}" class="text-gray-600">
                     <img src="{{ app.user.avatar }}" alt="Logo" class="w-10 h-10 rounded-full object-cover">
                 </a>
