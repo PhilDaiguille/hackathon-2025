@@ -8,7 +8,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 
-
 #[ORM\Entity(repositoryClass: OfferRepository::class)]
 class Offer
 {
@@ -49,27 +48,10 @@ class Offer
     #[ORM\OneToMany(mappedBy: 'idOffer', targetEntity: Booking::class)]
     private Collection $bookings;
 
-    #[ORM\OneToOne(mappedBy: 'idOffer', cascade: ['persist', 'remove'])]
-    private ?Booking $booking = null;
-
     public function __construct()
     {
         $this->bookings = new ArrayCollection();
     }
-
-
-    public function getBooking(): ?Booking
-    {
-        return $this->booking;
-    }
-
-    public function setBooking(?Booking $booking): static
-    {
-        $this->booking = $booking;
-
-        return $this;
-    }
-
 
     public function getId(): ?int
     {
@@ -209,6 +191,4 @@ class Offer
 
         return $this;
     }
-
-
 }

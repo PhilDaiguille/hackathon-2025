@@ -27,6 +27,12 @@ final class UserController extends AbstractController
             'users' => $userRepository->findUsersWithHotel(),
         ]);
     }
+    #[IsGranted('ROLE_OWNER')]
+    #[Route('/admin', name: 'admin_dashboard', methods: ['GET'])]
+    public function dashboard(): Response
+    {
+        return $this->redirectToRoute('app_user_index');
+    }
 
 
     #[IsGranted('ROLE_ADMIN')]

@@ -108,9 +108,12 @@ final class OfferController extends AbstractController
         $isOwner = $this->isGranted('ROLE_OWNER');
 
         // Protection : si OWNER mais pas le bon hôtel → accès interdit
-        if ($isOwner && $offer->getIdHotel() !== $user->getIdHotel()) {
-            throw $this->createAccessDeniedException("Vous ne pouvez modifier que les offres de votre propre hôtel.");
+        if ($this->isGranted('ROLE_OWNER') && !$this->isGranted('ROLE_ADMIN')) {
+            if ($offer->getIdHotel() !== $user->getIdHotel()) {
+                throw $this->createAccessDeniedException("Vous ne pouvez modifier que les offres de votre propre hôtel.");
+            }
         }
+
 
         // Formulaire avec options adaptées
         $form = $this->createForm(OfferType::class, $offer, [
