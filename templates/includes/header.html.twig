@@ -1,6 +1,6 @@
 <header class="bg-white">
-    <nav class=" mx-auto px-4 py-5">
-        <div class="flex items-center justify-between">
+    <nav class=" mx-auto px-4 py-5 top-0 fixed w-full z-10 bg-white shadow-md">
+        <div class="flex items-center justify-between px-6">
             <div class="flex items-center">
                 <a href="{{ path('app_home_index') }}" class="text-xl font-bold">
                     <img src="{{ asset('icons/logo.svg') }}" alt="Logo" class="w-full h-8 mr-2">
@@ -24,7 +24,7 @@
                     <div class="flex items-center space-x-2 ml-4">
                         <a href="{{ path('app_offer_client') }}" class="text-gray-600">{{ app.user.firstname }}</a>
                         <a href="{{ path('app_logout') }}"
-                           class="bg-cta hover:bg-ctaSurvol text-white px-4 py-2 rounded-lg">Déconnexion</a>
+                           class="bg-cta hover:bg-ctaSurvol hover:text-black text-white px-4 py-2 rounded-lg">Déconnexion</a>
                     </div>
                 {% else %}
                     <a href="{{ path('app_login') }}"
@@ -39,16 +39,16 @@
             <a href="{{ path('app_home_index') }}" class="text-gray-700 hover:text-primary font-medium">Accueil</a>
 
             {% if app.user %}
-                <div class="flex items-center space-x-2 ml-4">
-                    <a href="{{ path('app_offer_client') }}" class="text-gray-600">{{ app.user.firstname }}</a>
+                <div class="border-t border-gray-200 pt-2 pb-2">
+                    <a href="{{ path('app_offer_client') }}" class="block py-2 px-2 text-gray-600">{{ app.user.firstname }}</a>
                     <a href="{{ path('app_logout') }}"
-                       class="bg-secondary hover:bg-primary text-white px-4 py-2 rounded-lg">Déconnexion</a>
+                       class="block py-2 px-2 text-gray-700 hover:bg-gray-100">Déconnexion</a>
                 </div>
             {% else %}
                 <a href="{{ path('app_login') }}"
-                   class="text-gray-700 hover:text-primary font-medium">Connexion</a>
+                   class="block py-2 px-2 text-gray-700 hover:bg-gray-100">Connexion</a>
                 <a href="{{ path('app_register') }}"
-                   class="bg-cta hover:bg-ctaSurvol text-black px-4 py-2 rounded-lg">Inscription</a>
+                   class="block py-2 px-2 text-gray-700 hover:bg-gray-100">Inscription</a>
             {% endif %}
         </div>
     </nav>
