@@ -14,4 +14,13 @@ class UserRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, User::class);
     }
+
+    public function findUsersWithHotel(): array
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.idHotel IS NOT NULL')
+            ->getQuery()
+            ->getResult();
+    }
+
 }

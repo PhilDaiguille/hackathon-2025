@@ -11,19 +11,23 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use App\Repository\HotelRepository;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-
 
 final class UserController extends AbstractController
 {
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/admin/user', name: 'app_user_index', methods: ['GET'])]
     public function index(UserRepository $userRepository): Response
     {
         return $this->render('user/index.html.twig', [
-            'users' => $userRepository->findAll(),
+            'users' => $userRepository->findUsersWithHotel(),
         ]);
     }
 
+
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/admin/user/new', name: 'app_user_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -33,6 +37,7 @@ final class UserController extends AbstractController
         $now = new \DateTimeImmutable();
         $user->setCreatedAt($now);
         $user->setUpdatedAt($now);
+        $user->setIsActive(true);
 
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
@@ -50,6 +55,7 @@ final class UserController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/admin/user/{id}', name: 'app_user_show', methods: ['GET'])]
     public function show(User $user): Response
     {
@@ -58,6 +64,7 @@ final class UserController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/admin/user/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
@@ -76,6 +83,7 @@ final class UserController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/admin/user/{id}', name: 'app_user_delete', methods: ['POST'])]
     public function delete(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
