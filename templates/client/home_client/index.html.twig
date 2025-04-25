@@ -26,7 +26,7 @@
                             class="offer-card max-w-4xl mx-auto bg-white z-0 rounded-lg shadow-lg overflow-hidden relative mb-6 {% if not loop.first %}hidden{% endif %}">
                             <div class="flex flex-col md:flex-row">
                                 <div class="relative w-full md:w-1/2">
-                                    <img src="{{ asset('images/background.jpg') }}" alt="{{ offer.idHotel.name }}"
+                                    <img src="{{ asset('images/royal.jpg') }}" alt="{{ offer.idHotel.name }}"
                                          class="w-full h-full object-cover">
                                 </div>
                                 <div class="w-full md:w-1/2 p-6">
@@ -107,30 +107,30 @@
             voice_btn_id: voice_btn_id
         } %}
         <section class="container mx-auto px-8 py-12">
-            <h2 class="text-3xl font-bold">Proposition de plusieurs hôtels français</h2>
-            <p class="text-lg pb-4">Un descriptif pour cette partie qui ferait deux lignes ou plus.</p>
+            <h2 class="text-3xl font-bold">Découvrez les hôtels les mieux notés</h2>
+            <p class="text-lg pb-4">Pour un séjour a couper le souffle</p>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center mx-auto">
                 <article class="max-w-md overflow-hidden rounded-lg shadow-lg bg-white">
                     <div class="relative">
                         <img
-                            src="https://img.freepik.com/photos-gratuite/suite-chambre-coucher-moderne-luxe-rendu-3d-dans-hotel-television-armoire_105762-2276.jpg?semt=ais_hybrid&w=740"
+                            src="{{ asset('images/Villa.png') }}"
                             alt="Chambre d'hôtel luxueuse"
                             class="w-full h-64 object-cover"
                         />
                         <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
-                            <h2 class="text-white text-2xl font-bold">Hôtel Le Marais Paris</h2>
+                            <h2 class="text-white text-2xl font-bold">Doux comme du velour</h2>
                         </div>
                     </div>
                     <div class="p-4">
                         <div class="flex justify-between items-center mb-2">
-                            <div class="text-gray-800">Paris, France</div>
+                            <div class="text-gray-800">Bordeaux, France</div>
                             <div class="flex items-center">
                                 {{ ux_icon('bi:star-fill', {class: 'w-4 h-4 text-yellow-500'} ) }}
-                                <span class="ml-1 text-gray-800 font-semibold">8.5</span>
+                                <span class="ml-1 text-gray-800 font-semibold">9.7</span>
                                 <span class="ml-1 text-gray-600 text-sm">(+100)</span>
                             </div>
                         </div>
-                        <h3 class="text-lg font-semibold text-gray-800 mb-1">Hôtel Le Marais Paris</h3>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-1">Hôtel Le Fabuleux</h3>
                         <div class="flex mb-2">
                             <div class="flex color-yellow-500">
                                 {{ ux_icon('bi:star-fill', {class: 'w-4 h-4 text-yellow-500'} ) }}
@@ -141,31 +141,31 @@
                             </div>
                         </div>
                         <p class="text-gray-600 text-sm">
-                            Idéalement situé au cœur de la ville, parfait pour les voyageurs
+                            Idéalement situé au cœur de la ville rose, parfait pour les amoureux
                         </p>
                     </div>
                 </article>
                 <article class="max-w-md overflow-hidden rounded-lg shadow-lg bg-white">
                     <div class="relative">
                         <img
-                            src="https://img.freepik.com/photos-gratuite/suite-chambre-coucher-moderne-luxe-rendu-3d-dans-hotel-television-armoire_105762-2276.jpg?semt=ais_hybrid&w=740"
+                            src="{{ asset('images/hero.png') }}"
                             alt="Chambre d'hôtel luxueuse"
                             class="w-full h-64 object-cover"
                         />
                         <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
-                            <h2 class="text-white text-2xl font-bold">Hôtel Le Marais Paris</h2>
+                            <h2 class="text-white text-2xl font-bold">Hello Sunshine</h2>
                         </div>
                     </div>
                     <div class="p-4">
                         <div class="flex justify-between items-center mb-2">
-                            <div class="text-gray-800">Paris, France</div>
+                            <div class="text-gray-800">Antibes, France</div>
                             <div class="flex items-center">
                                 {{ ux_icon('bi:star-fill', {class: 'w-4 h-4 text-yellow-500'} ) }}
-                                <span class="ml-1 text-gray-800 font-semibold">8.5</span>
+                                <span class="ml-1 text-gray-800 font-semibold">9.9</span>
                                 <span class="ml-1 text-gray-600 text-sm">(+100)</span>
                             </div>
                         </div>
-                        <h3 class="text-lg font-semibold text-gray-800 mb-1">Hôtel Le Marais Paris</h3>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-1">Hôtel Le Beaux Jours</h3>
                         <div class="flex mb-2">
                             <div class="flex color-yellow-500">
                                 {{ ux_icon('bi:star-fill', {class: 'w-4 h-4 text-yellow-500'} ) }}
@@ -176,31 +176,31 @@
                             </div>
                         </div>
                         <p class="text-gray-600 text-sm">
-                            Idéalement situé au cœur de la ville, parfait pour les voyageurs
+                            Une vues imprenable sur la mer, parfait pour les amoureux de la nature
                         </p>
                     </div>
                 </article>
                 <article class="max-w-md overflow-hidden rounded-lg shadow-lg bg-white">
                     <div class="relative">
                         <img
-                            src="https://img.freepik.com/photos-gratuite/suite-chambre-coucher-moderne-luxe-rendu-3d-dans-hotel-television-armoire_105762-2276.jpg?semt=ais_hybrid&w=740"
+                            src="{{ asset('images/Royal.png') }}"
                             alt="Chambre d'hôtel luxueuse"
                             class="w-full h-64 object-cover"
                         />
                         <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
-                            <h2 class="text-white text-2xl font-bold">Hôtel Le Marais Paris</h2>
+                            <h2 class="text-white text-2xl font-bold">Comme un Pachat</h2>
                         </div>
                     </div>
                     <div class="p-4">
                         <div class="flex justify-between items-center mb-2">
-                            <div class="text-gray-800">Paris, France</div>
+                            <div class="text-gray-800">Aix-en-Provence, France</div>
                             <div class="flex items-center">
                                 {{ ux_icon('bi:star-fill', {class: 'w-4 h-4 text-yellow-500'} ) }}
-                                <span class="ml-1 text-gray-800 font-semibold">8.5</span>
+                                <span class="ml-1 text-gray-800 font-semibold">9.8</span>
                                 <span class="ml-1 text-gray-600 text-sm">(+100)</span>
                             </div>
                         </div>
-                        <h3 class="text-lg font-semibold text-gray-800 mb-1">Hôtel Le Marais Paris</h3>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-1">Hôtel Pachat</h3>
                         <div class="flex mb-2">
                             <div class="flex color-yellow-500">
                                 {{ ux_icon('bi:star-fill', {class: 'w-4 h-4 text-yellow-500'} ) }}
@@ -211,7 +211,7 @@
                             </div>
                         </div>
                         <p class="text-gray-600 text-sm">
-                            Idéalement situé au cœur de la ville, parfait pour les voyageurs
+                            Un moment de détente au cœur de la Provence et du chant des cigales
                         </p>
                     </div>
                 </article>
@@ -219,30 +219,30 @@
 
         </section>
         <section class="container mx-auto px-8 py-12">
-            <h2 class="text-3xl font-bold">Proposition de plusieurs hôtels français</h2>
-            <p class="text-lg pb-4">Un descriptif pour cette partie qui ferait deux lignes ou plus.</p>
+            <h2 class="text-3xl font-bold">Nos meilleurs expériences</h2>
+            <p class="text-lg pb-4">Vivez des moment inoubliables</p>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center mx-auto">
                 <article class="max-w-md overflow-hidden rounded-lg shadow-lg bg-white">
                     <div class="relative">
                         <img
-                            src="https://img.freepik.com/photos-gratuite/suite-chambre-coucher-moderne-luxe-rendu-3d-dans-hotel-television-armoire_105762-2276.jpg?semt=ais_hybrid&w=740"
+                            src="{{ asset('images/swim.jpg') }}"
                             alt="Chambre d'hôtel luxueuse"
                             class="w-full h-64 object-cover"
                         />
                         <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
-                            <h2 class="text-white text-2xl font-bold">Hôtel Le Marais Paris</h2>
+                            <h2 class="text-white text-2xl font-bold">Cocktail et parasol</h2>
                         </div>
                     </div>
                     <div class="p-4">
                         <div class="flex justify-between items-center mb-2">
-                            <div class="text-gray-800">Paris, France</div>
+                            <div class="text-gray-800">Nice, France</div>
                             <div class="flex items-center">
                                 {{ ux_icon('bi:star-fill', {class: 'w-4 h-4 text-yellow-500'} ) }}
-                                <span class="ml-1 text-gray-800 font-semibold">8.5</span>
+                                <span class="ml-1 text-gray-800 font-semibold">8.4</span>
                                 <span class="ml-1 text-gray-600 text-sm">(+100)</span>
                             </div>
                         </div>
-                        <h3 class="text-lg font-semibold text-gray-800 mb-1">Hôtel Le Marais Paris</h3>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-1">Hôtel Le Nicois</h3>
                         <div class="flex mb-2">
                             <div class="flex color-yellow-500">
                                 {{ ux_icon('bi:star-fill', {class: 'w-4 h-4 text-yellow-500'} ) }}
@@ -253,19 +253,19 @@
                             </div>
                         </div>
                         <p class="text-gray-600 text-sm">
-                            Idéalement situé au cœur de la ville, parfait pour les voyageurs
+                            Proche de l'inconique plage de la promenade des anglais
                         </p>
                     </div>
                 </article>
                 <article class="max-w-md overflow-hidden rounded-lg shadow-lg bg-white">
                     <div class="relative">
                         <img
-                            src="https://img.freepik.com/photos-gratuite/suite-chambre-coucher-moderne-luxe-rendu-3d-dans-hotel-television-armoire_105762-2276.jpg?semt=ais_hybrid&w=740"
+                            src="{{ asset('images/spa.jpg') }}"
                             alt="Chambre d'hôtel luxueuse"
                             class="w-full h-64 object-cover"
                         />
                         <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
-                            <h2 class="text-white text-2xl font-bold">Hôtel Le Marais Paris</h2>
+                            <h2 class="text-white text-2xl font-bold">Un temps pour soi</h2>
                         </div>
                     </div>
                     <div class="p-4">
@@ -273,11 +273,11 @@
                             <div class="text-gray-800">Paris, France</div>
                             <div class="flex items-center">
                                 {{ ux_icon('bi:star-fill', {class: 'w-4 h-4 text-yellow-500'} ) }}
-                                <span class="ml-1 text-gray-800 font-semibold">8.5</span>
+                                <span class="ml-1 text-gray-800 font-semibold">7.8</span>
                                 <span class="ml-1 text-gray-600 text-sm">(+100)</span>
                             </div>
                         </div>
-                        <h3 class="text-lg font-semibold text-gray-800 mb-1">Hôtel Le Marais Paris</h3>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-1">Hôtel Fraicheur</h3>
                         <div class="flex mb-2">
                             <div class="flex color-yellow-500">
                                 {{ ux_icon('bi:star-fill', {class: 'w-4 h-4 text-yellow-500'} ) }}
@@ -288,31 +288,31 @@
                             </div>
                         </div>
                         <p class="text-gray-600 text-sm">
-                            Idéalement situé au cœur de la ville, parfait pour les voyageurs
+                            Proche de la Tour Eiffel, idéal pour un moment de détente
                         </p>
                     </div>
                 </article>
                 <article class="max-w-md overflow-hidden rounded-lg shadow-lg bg-white">
                     <div class="relative">
                         <img
-                            src="https://img.freepik.com/photos-gratuite/suite-chambre-coucher-moderne-luxe-rendu-3d-dans-hotel-television-armoire_105762-2276.jpg?semt=ais_hybrid&w=740"
+                            src="{{ asset('images/garden.jpg') }}"
                             alt="Chambre d'hôtel luxueuse"
                             class="w-full h-64 object-cover"
                         />
                         <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
-                            <h2 class="text-white text-2xl font-bold">Hôtel Le Marais Paris</h2>
+                            <h2 class="text-white text-2xl font-bold">Comme un air de Paradis</h2>
                         </div>
                     </div>
                     <div class="p-4">
                         <div class="flex justify-between items-center mb-2">
-                            <div class="text-gray-800">Paris, France</div>
+                            <div class="text-gray-800">Antibes, France</div>
                             <div class="flex items-center">
                                 {{ ux_icon('bi:star-fill', {class: 'w-4 h-4 text-yellow-500'} ) }}
-                                <span class="ml-1 text-gray-800 font-semibold">8.5</span>
+                                <span class="ml-1 text-gray-800 font-semibold">9</span>
                                 <span class="ml-1 text-gray-600 text-sm">(+100)</span>
                             </div>
                         </div>
-                        <h3 class="text-lg font-semibold text-gray-800 mb-1">Hôtel Le Marais Paris</h3>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-1">Hôtel Paradise</h3>
                         <div class="flex mb-2">
                             <div class="flex color-yellow-500">
                                 {{ ux_icon('bi:star-fill', {class: 'w-4 h-4 text-yellow-500'} ) }}
@@ -323,7 +323,7 @@
                             </div>
                         </div>
                         <p class="text-gray-600 text-sm">
-                            Idéalement situé au cœur de la ville, parfait pour les voyageurs
+                            Amoureux de la nature, ce lieu est fait pour vous
                         </p>
                     </div>
                 </article>
