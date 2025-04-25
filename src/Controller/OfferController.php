@@ -25,18 +25,21 @@ final class OfferController extends AbstractController
     #[Route(name: 'app_offer_index', methods: ['GET'])]
     public function index(OfferRepository $offerRepository): Response
     {
+        /** @var User $user */
         $user = $this->getUser();
 
-        // Vérifie si l'utilisateur a le rôle ADMIN
         if ($this->isGranted('ROLE_ADMIN')) {
             $offers = $offerRepository->findAll();
         } elseif ($this->isGranted('ROLE_OWNER')) {
-            // Pour un OWNER, on suppose que l'utilisateur est lié à un hôtel
-            $hotel = $user->getIdHotel(); // ou un autre nom selon ta relation
-            $offers = $offerRepository->findBy(['idHotel' => $hotel]);
+            $hotel = $user->getIdHotel();
+            if ($hotel) {
+                $offers = $offerRepository->findBy(['idHotel' => $hotel]);
+            } else {
+                $this->addFlash('warning', "Aucun hôtel associé à votre compte.");
+                $offers = [];
+            }
         } else {
-            // Aucun rôle pertinent → renvoyer une page vide ou une erreur
-            $offers = [];
+            throw $this->createAccessDeniedException('Vous n’avez pas accès à cette page.');
         }
 
         return $this->render('offer/index.html.twig', [
@@ -45,14 +48,36 @@ final class OfferController extends AbstractController
     }
 
 
+
     #[Route('/new', name: 'app_offer_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        /** @var User $user */
+        $user = $this->getUser();
+        $isAdmin = $this->isGranted('ROLE_ADMIN');
+        $isOwner = $this->isGranted('ROLE_OWNER');
+
         $offer = new Offer();
-        $form = $this->createForm(OfferType::class, $offer);
+
+        // Si propriétaire d’un hôtel, on fixe l’hôtel dès le départ
+        if ($isOwner && $user->getIdHotel()) {
+            $offer->setIdHotel($user->getIdHotel());
+        }
+
+        // On passe des options personnalisées au formulaire
+        $form = $this->createForm(OfferType::class, $offer, [
+            'is_admin' => $isAdmin,
+            'user_hotel' => $user->getIdHotel(),
+        ]);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Sécurité supplémentaire : on force l’hôtel s’il est OWNER
+            if ($isOwner && $user->getIdHotel()) {
+                $offer->setIdHotel($user->getIdHotel());
+            }
+
             $entityManager->persist($offer);
             $entityManager->flush();
 
@@ -65,6 +90,7 @@ final class OfferController extends AbstractController
         ]);
     }
 
+
     #[Route('/{id}', name: 'app_offer_show', methods: ['GET'])]
     public function show(Offer $offer): Response
     {
@@ -76,10 +102,29 @@ final class OfferController extends AbstractController
     #[Route('/{id}/edit', name: 'app_offer_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Offer $offer, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(OfferType::class, $offer);
+        /** @var User $user */
+        $user = $this->getUser();
+        $isAdmin = $this->isGranted('ROLE_ADMIN');
+        $isOwner = $this->isGranted('ROLE_OWNER');
+
+        // Protection : si OWNER mais pas le bon hôtel → accès interdit
+        if ($isOwner && $offer->getIdHotel() !== $user->getIdHotel()) {
+            throw $this->createAccessDeniedException("Vous ne pouvez modifier que les offres de votre propre hôtel.");
+        }
+
+        // Formulaire avec options adaptées
+        $form = $this->createForm(OfferType::class, $offer, [
+            'is_admin' => $isAdmin,
+            'user_hotel' => $user->getIdHotel(),
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Sécurité supplémentaire : forcer l’hôtel si OWNER
+            if ($isOwner && $user->getIdHotel()) {
+                $offer->setIdHotel($user->getIdHotel());
+            }
+
             $entityManager->flush();
 
             return $this->redirectToRoute('app_offer_index', [], Response::HTTP_SEE_OTHER);
@@ -90,6 +135,7 @@ final class OfferController extends AbstractController
             'form' => $form,
         ]);
     }
+
 
     #[Route('/{id}', name: 'app_offer_delete', methods: ['POST'])]
     public function delete(Request $request, Offer $offer, EntityManagerInterface $entityManager): Response

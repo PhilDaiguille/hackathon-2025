@@ -5,6 +5,9 @@ namespace App\Entity;
 use App\Repository\OfferRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+
 
 #[ORM\Entity(repositoryClass: OfferRepository::class)]
 class Offer
@@ -40,8 +43,27 @@ class Offer
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
 
+    /**
+     * @var Collection<int, Booking>
+     */
+    #[ORM\OneToMany(mappedBy: 'idOffer', targetEntity: Booking::class)]
+    private Collection $bookings;
+
     #[ORM\OneToOne(mappedBy: 'idOffer', cascade: ['persist', 'remove'])]
     private ?Booking $booking = null;
+
+    public function getBooking(): ?Booking
+    {
+        return $this->booking;
+    }
+
+    public function setBooking(?Booking $booking): static
+    {
+        $this->booking = $booking;
+
+        return $this;
+    }
+
 
     public function getId(): ?int
     {
@@ -144,20 +166,15 @@ class Offer
         return $this;
     }
 
-    public function getBooking(): ?Booking
+    public function getAcceptedBooking(): ?Booking
     {
-        return $this->booking;
-    }
-
-    public function setBooking(Booking $booking): static
-    {
-        // set the owning side of the relation if necessary
-        if ($booking->getIdOffer() !== $this) {
-            $booking->setIdOffer($this);
+        foreach ($this->bookings as $booking) {
+            if ($booking->getStatus()->value === 'accepted') {
+                return $booking;
+            }
         }
 
-        $this->booking = $booking;
-
-        return $this;
+        return null;
     }
+
 }

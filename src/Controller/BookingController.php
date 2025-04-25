@@ -10,6 +10,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use App\Enum\BookingStatus;
+use App\Enum\NegotiationStatus;
+use App\Entity\Negociation;
+
 
 #[Route('/admin/booking')]
 final class BookingController extends AbstractController
@@ -23,15 +27,63 @@ final class BookingController extends AbstractController
     }
 
     #[Route('/new', name: 'app_booking_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $em): Response
     {
         $booking = new Booking();
         $form = $this->createForm(BookingType::class, $booking);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($booking);
-            $entityManager->flush();
+            $now = new \DateTimeImmutable();
+            $booking->setCreatedAt($now);
+            $booking->setUpdatedAt($now);
+
+            $offer = $booking->getIdOffer();
+            $room = $offer->getIdRoom();
+            $basePrice = $room->getBasePrice();
+            $finalPrice = $booking->getFinalPrice();
+
+            $acceptThreshold = $offer->getAcceptanceThreshold(); // ex : 110
+            $refuseThreshold = $offer->getRefusalThreshold();     // ex : 90
+
+            $priceAccept = $basePrice * ($acceptThreshold / 100); // 110% de 100
+            $priceRefuse = $basePrice * ($refuseThreshold / 100); // 90% de 100
+
+            if ($finalPrice >= $priceAccept) {
+                // Accepter cette réservation
+                $booking->setStatus(BookingStatus::ACCEPTED);
+
+                // Refuser toutes les autres pour la même offre
+                foreach ($offer->getBookings() as $other) {
+                    if ($other !== $booking) {
+                        $other->setStatus(BookingStatus::REFUSED);
+                        $em->persist($other);
+                    }
+                }
+
+                // Lier la réservation acceptée à l’offre
+                $offer->setBooking($booking);
+
+            } elseif ($finalPrice <= $priceRefuse) {
+                // Rejet immédiat
+                $booking->setStatus(BookingStatus::REFUSED);
+            } else {
+                // Négociation
+                $booking->setStatus(BookingStatus::PENDING);
+
+                $negociation = new Negociation();
+                $negociation->setIdBooking($booking);
+                $negociation->setNewPrice($finalPrice);
+                $negociation->setStatus(NegotiationStatus::PENDING);
+                $negociation->setCreatedAt($now);
+                $negociation->setUpdatedAt($now);
+                $negociation->setResponseDeadline((new \DateTime())->modify('+3 hours'));
+
+                $em->persist($negociation);
+            }
+
+            $em->persist($booking);
+            $em->flush();
 
             return $this->redirectToRoute('app_booking_index', [], Response::HTTP_SEE_OTHER);
         }
