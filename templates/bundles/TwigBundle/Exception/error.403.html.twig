@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accès refusé - MatchRoom{% endblock %}
+
+{% block body %}
+    <div class="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-6">
+        <h1 class="text-4xl font-bold text-red-600 mb-4">⛔ Accès refusé</h1>
+        <p class="text-gray-700 text-lg text-center max-w-xl">
+            Vous n'avez pas les autorisations nécessaires pour accéder à cette page.
+        </p>
+        <a href="{{ path('app_login') }}"
+           class="mt-6 inline-flex items-center px-6 py-2 bg-black text-white rounded shadow hover:bg-gray-800">
+            Retour à la page de connexion
+        </a>
+    </div>
+{% endblock %}
