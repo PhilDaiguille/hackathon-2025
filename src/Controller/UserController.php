@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\AdminProfileType;
 use App\Form\UserType;
+use App\Form\HotelType;
 use App\Form\ClientProfileType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -125,6 +126,57 @@ final class UserController extends AbstractController
             'form' => $form,
         ]);
     }
+
+    #[IsGranted('ROLE_OWNER')]
+    #[Route('/admin/mon-hotel', name: 'owner_hotel')]
+    public function monHotel(): Response
+    {
+        /** @var User $owner */
+        $owner = $this->getUser();
+
+        $hotel = $owner->getIdHotel();
+
+        if (!$hotel) {
+            $this->addFlash('error', 'Aucun hôtel associé à ce compte.');
+            return $this->redirectToRoute('app_user_profil');
+        }
+
+        return $this->render('admin/owner/owner_hotel_information.html.twig', [
+            'hotel' => $hotel,
+        ]);
+    }
+
+    #[IsGranted('ROLE_OWNER')]
+    #[Route('/admin/mon-hotel/edit', name: 'owner_hotel_edit')]
+    public function editOwnerHotel(
+        Request $request,
+        EntityManagerInterface $entityManager
+    ): Response {
+        /** @var User $owner */
+        $owner = $this->getUser();
+        $hotel = $owner->getIdHotel();
+
+        if (!$hotel) {
+            $this->addFlash('error', 'Aucun hôtel associé à ce compte.');
+            return $this->redirectToRoute('app_user_profil');
+        }
+
+        $form = $this->createForm(HotelType::class, $hotel);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $hotel->setUpdatedAt(new \DateTimeImmutable());
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Votre hôtel a bien été mis à jour.');
+            return $this->redirectToRoute('owner_hotel');
+        }
+
+        return $this->render('admin/owner/owner_hotel_information_edit.html.twig', [
+            'form' => $form,
+        ]);
+    }
+
 
     #[Route('/profil', name: 'app_user_profil', methods: ['GET', 'POST'])]
     public function profil(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $hasher): Response
