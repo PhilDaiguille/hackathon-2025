@@ -13,7 +13,11 @@
             {% endfor %}
 
             <div class="text-center">
-                <img src="{{ app.user.avatar }}" alt="Avatar" class="mx-auto w-16 h-16 rounded-full shadow-md mb-2">
+                {% if app.user and app.user.avatar %}
+                    <img src="{{ app.user.avatar }}" alt="Avatar" class="mx-auto w-16 h-16 rounded-full shadow-md mb-2">
+                {% else %}
+                    <img src="{{ asset('images/default-avatar.jpeg') }}" alt="Avatar par défaut" class="mx-auto w-16 h-16 rounded-full shadow-md mb-2">
+                {% endif %}
                 <h1 class="text-xl font-bold text-gray-900">Mon Profil</h1>
             </div>
 
