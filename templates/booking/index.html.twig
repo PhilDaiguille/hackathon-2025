@@ -3,43 +3,57 @@
 {% block title %}Bookings{% endblock %}
 
 {% block body %}
-    <h1>Bookings</h1>
 
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>FinalPrice</th>
-            <th>CreatedAt</th>
-            <th>UpdatedAt</th>
-            <th>StartDate</th>
-            <th>EndDate</th>
-            <th>Status</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for booking in bookings %}
-            <tr>
-                <td>{{ booking.id }}</td>
-                <td>{{ booking.finalPrice }}</td>
-                <td>{{ booking.createdAt ? booking.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ booking.updatedAt ? booking.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ booking.startDate ? booking.startDate|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ booking.endDate ? booking.endDate|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ booking.status.label() }}</td> <!-- Utilisation de la méthode label() de l'enum BookingStatus -->
-                <td>
-                    <a href="{{ path('app_booking_show', {'id': booking.id}) }}">Show</a>
-                    <a href="{{ path('app_booking_edit', {'id': booking.id}) }}">Edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8">No bookings found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    {% set input_id = 'booking-input' %}
+    {% set form_id = 'booking-form' %}
+    {% set voice_btn_id = 'booking-voice-btn' %}
 
-    <a href="{{ path('app_booking_new') }}">Create new booking</a>
+    <div class="max-w-7xl mx-auto space-y-8">
+        <div class="flex justify-between items-center">
+            <h1 class="text-3xl font-bold text-black">Bookings</h1>
+
+        </div>
+
+        <div class="bg-white rounded-xl shadow-md p-6">
+            <div class="overflow-x-auto">
+                <table class="w-full table-auto border border-gray-200 text-sm text-left">
+                    <thead class="bg-[#F7F4F1] text-black">
+                    <tr>
+                        <th class="px-4 py-2">Id</th>
+                        <th class="px-4 py-2">Prix Final</th>
+                        <th class="px-4 py-2">Début</th>
+                        <th class="px-4 py-2">Fin</th>
+                        <th class="px-4 py-2">Status</th>
+                        <th class="px-4 py-2">Créé</th>
+                        <th class="px-4 py-2">Mis à jour</th>
+                        <th class="px-4 py-2">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for booking in bookings %}
+                        <tr class="border-t">
+                            <td class="px-4 py-2">{{ booking.id }}</td>
+                            <td class="px-4 py-2">{{ booking.finalPrice }}</td>
+                            <td class="px-4 py-2">{{ booking.startDate ? booking.startDate|date('Y-m-d H:i') : '' }}</td>
+                            <td class="px-4 py-2">{{ booking.endDate ? booking.endDate|date('Y-m-d H:i') : '' }}</td>
+                            <td class="px-4 py-2">{{ booking.status.label() }}</td>
+                            <td class="px-4 py-2">{{ booking.createdAt ? booking.createdAt|date('Y-m-d H:i') : '' }}</td>
+                            <td class="px-4 py-2">{{ booking.updatedAt ? booking.updatedAt|date('Y-m-d H:i') : '' }}</td>
+                            <td class="px-4 py-2">
+                                <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+                                    <a href="{{ path('app_booking_show', {'id': booking.id}) }}" class="text-[#1F1F1F] font-medium hover:underline">Voir</a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="8" class="text-center py-4 text-gray-500">Aucune réservation trouvée.</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}

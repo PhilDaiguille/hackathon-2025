@@ -22,7 +22,7 @@ class Offer
     private ?Hotel $idHotel = null;
 
     #[ORM\OneToOne(inversedBy: 'offer', cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Room $idRoom = null;
 
     #[ORM\Column(nullable: true)]
@@ -51,6 +51,12 @@ class Offer
 
     #[ORM\OneToOne(mappedBy: 'idOffer', cascade: ['persist', 'remove'])]
     private ?Booking $booking = null;
+
+    public function __construct()
+    {
+        $this->bookings = new ArrayCollection();
+    }
+
 
     public function getBooking(): ?Booking
     {
@@ -176,5 +182,33 @@ class Offer
 
         return null;
     }
+
+    public function getBookings(): Collection
+    {
+        return $this->bookings;
+    }
+
+    public function addBooking(Booking $booking): static
+    {
+        if (!$this->bookings->contains($booking)) {
+            $this->bookings->add($booking);
+            $booking->setIdOffer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBooking(Booking $booking): static
+    {
+        if ($this->bookings->removeElement($booking)) {
+            // set the owning side to null (unless already changed)
+            if ($booking->getIdOffer() === $this) {
+                $booking->setIdOffer(null);
+            }
+        }
+
+        return $this;
+    }
+
 
 }

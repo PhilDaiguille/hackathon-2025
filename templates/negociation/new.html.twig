@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Negociation{% endblock %}
+
+{% block body %}
+    <h1>Create new Negociation</h1>
+
+    {{ include('negociation/_form.html.twig') }}
+
+    <a href="{{ path('app_negociation_index') }}">back to list</a>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Negociation{% endblock %}
+
+{% block body %}
+    <h1>Negociation</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ negociation.id }}</td>
+            </tr>
+            <tr>
+                <th>NewPrice</th>
+                <td>{{ negociation.newPrice }}</td>
+            </tr>
+            <tr>
+                <th>ResponseDeadline</th>
+                <td>{{ negociation.responseDeadline ? negociation.responseDeadline|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ negociation.createdAt ? negociation.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ negociation.updatedAt ? negociation.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ negociation.status }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_negociation_index') }}">back to list</a>
+
+    <a href="{{ path('app_negociation_edit', {'id': negociation.id}) }}">edit</a>
+
+    {{ include('negociation/_delete_form.html.twig') }}
+{% endblock %}

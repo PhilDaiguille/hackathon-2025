@@ -60,9 +60,9 @@ App\Entity\User:
         avatar: 'https://randomuser.me/api/portraits/women/22.jpg'
         
     user_6:
-        firstname: 'camille'
-        lastname: 'Doe'
-        email: 'a@s.com'
+        firstname: 'Hotelier'
+        lastname: 'ME'
+        email: 'hotel@hotel.com'
         hashpassword: 'password123'
         isActive: true
         createdAt: <dateTimeBetween('-1 year', 'now')>
@@ -72,9 +72,9 @@ App\Entity\User:
         idHotel: '@hotel_1'
         
     user_7:
-        firstname: 'lala'
-        lastname: 'titi'
-        email: 'sdqsdq@dsdqsD.dqsd'
+        firstname: 'KIKI'
+        lastname: 'Toto'
+        email: 'hotelier2@hotel.com'
         hashpassword: 'password123'
         isActive: true
         createdAt: <dateTimeBetween('-1 year', 'now')>
@@ -86,7 +86,7 @@ App\Entity\User:
     user_8:
         firstname: 'admin'
         lastname: 'admin'
-        email: 'tets@sqsq.ds'
+        email: 'admin@admin.admin'
         hashpassword: 'password123'
         isActive: true
         createdAt: <dateTimeBetween('-1 year', 'now')>
