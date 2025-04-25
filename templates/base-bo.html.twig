@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    <title>{% block title %}MatchRoom{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
     {{ encore_entry_link_tags('app') }}
-    <link rel="icon"
-          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+    <meta name="description" content="{% block description %}Bienvenue sur MatchRoom, votre plateforme de réservation d'hôtels en ligne. Trouvez l'hôtel idéal pour votre séjour, comparez les prix et réservez en toute simplicité. Profitez de nos offres exclusives et d'un service client dédié pour une expérience inoubliable. Rejoignez-nous dès maintenant !{% endblock %}">
+    <link rel="icon" href="{{ asset('icons/logo-simple.svg') }}" type="image/svg+xml">
     {% block stylesheets %}
     {% endblock %}
 
@@ -67,7 +67,7 @@
 </button>
 
 <aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 dark:bg-fondGrey" aria-label="Sidebar">
-    <div class="h-full px-3 py-4 overflow-y-auto">
+    <div class="h-full px-3 py-4 overflow-y-auto bg-white">
         <a href="{{ path('app_home_index') }}" class="text-xl font-bold">
             <picture>
                 <source srcset="{{ asset('icons/logo-white.svg') }}" media="(prefers-color-scheme: dark)">
@@ -189,13 +189,9 @@
 
 </aside>
 
-<div class="px-12 py-20 sm:ml-64 bg-gray-100 dark:bg-gray-200 min-h-screen">
+<div class="px-4 py-10 sm:px-12 sm:py-20 sm:ml-64 bg-gray-100 dark:bg-gray-200 min-h-screen">
     {% block body %}{% endblock %}
 </div>
 <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 </body>
 </html>
-
-
-
-
