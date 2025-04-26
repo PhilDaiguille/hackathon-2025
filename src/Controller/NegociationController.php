@@ -91,11 +91,9 @@ class NegociationController extends AbstractController
         $booking = $negociation->getIdBooking();
         $offer = $booking->getIdOffer();
 
-        // Met à jour cette booking
         $booking->setStatus(BookingStatus::ACCEPTED);
         $offer->setBooking($booking);
 
-        // Refuse toutes les autres bookings
         foreach ($offer->getBookings() as $otherBooking) {
             if ($otherBooking !== $booking) {
                 $otherBooking->setStatus(BookingStatus::REFUSED);
@@ -103,7 +101,6 @@ class NegociationController extends AbstractController
             }
         }
 
-        // Met à jour la négociation
         $negociation->setStatus(NegotiationStatus::ACCEPTED);
         $negociation->setUpdatedAt(new \DateTimeImmutable());
 
@@ -121,10 +118,8 @@ class NegociationController extends AbstractController
     {
         $booking = $negociation->getIdBooking();
 
-        // Refuser cette booking
         $booking->setStatus(BookingStatus::REFUSED);
 
-        // Refuser la négociation
         $negociation->setStatus(NegotiationStatus::REFUSED);
         $negociation->setUpdatedAt(new \DateTimeImmutable());
 

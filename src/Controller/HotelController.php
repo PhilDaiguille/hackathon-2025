@@ -93,11 +93,11 @@ final class HotelController extends AbstractController
         $query = $request->query->get('query', '');
         $criteria = $smartSearchService->parseQuery($query);
 
-        // Extrait les critères
+
         $city = $criteria['city'] ?? null;
         $equipment = $criteria['equipment'] ?? [];
 
-        // Exemple de recherche filtrée (à adapter selon ton modèle)
+
         $hotels = $hotelRepository->findBySmartCriteria($city, $equipment);
 
         return $this->render('hotel/search.html.twig', [

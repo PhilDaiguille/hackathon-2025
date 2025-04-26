@@ -59,12 +59,11 @@ final class OfferController extends AbstractController
 
         $offer = new Offer();
 
-        // Si propriétaire d’un hôtel, on fixe l’hôtel dès le départ
         if ($isOwner && $user->getIdHotel()) {
             $offer->setIdHotel($user->getIdHotel());
         }
 
-        // On passe des options personnalisées au formulaire
+
         $form = $this->createForm(OfferType::class, $offer, [
             'is_admin' => $isAdmin,
             'user_hotel' => $user->getIdHotel(),
@@ -73,7 +72,6 @@ final class OfferController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Sécurité supplémentaire : on force l’hôtel s’il est OWNER
             if ($isOwner && $user->getIdHotel()) {
                 $offer->setIdHotel($user->getIdHotel());
             }
@@ -107,7 +105,6 @@ final class OfferController extends AbstractController
         $isAdmin = $this->isGranted('ROLE_ADMIN');
         $isOwner = $this->isGranted('ROLE_OWNER');
 
-        // Protection : si OWNER mais pas le bon hôtel → accès interdit
         if ($this->isGranted('ROLE_OWNER') && !$this->isGranted('ROLE_ADMIN')) {
             if ($offer->getIdHotel() !== $user->getIdHotel()) {
                 throw $this->createAccessDeniedException("Vous ne pouvez modifier que les offres de votre propre hôtel.");
@@ -115,7 +112,6 @@ final class OfferController extends AbstractController
         }
 
 
-        // Formulaire avec options adaptées
         $form = $this->createForm(OfferType::class, $offer, [
             'is_admin' => $isAdmin,
             'user_hotel' => $user->getIdHotel(),
@@ -123,7 +119,6 @@ final class OfferController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Sécurité supplémentaire : forcer l’hôtel si OWNER
             if ($isOwner && $user->getIdHotel()) {
                 $offer->setIdHotel($user->getIdHotel());
             }
