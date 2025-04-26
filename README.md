@@ -19,10 +19,9 @@ with [FrankenPHP](https://frankenphp.dev) and [Caddy](https://caddyserver.com/) 
 php bin/console tailwind:build --watch
 ``
 
-## License
 
-Symfony Docker is available under the MIT License.
+## To connect to the Back Office
 
-## Credits
-
-Created by [Kévin Dunglas](https://dunglas.dev), co-maintained by [Maxime Helias](https://twitter.com/maxhelias) and sponsored by [Les-Tilleuls.coop](https://les-tilleuls.coop).
+1. **Admin Role** : login : `admin@admin.admin`, password : `password123`
+2. **User Role** : login : `alice.dupont@example.com`, password : `password123`
+3. **Owner Role** : login : `hotel@hotel.com`, password : `password123`

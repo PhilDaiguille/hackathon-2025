@@ -23,7 +23,6 @@ class OfferRepository extends ServiceEntityRepository
             ->leftJoin('o.idRoom', 'r')
             ->addSelect('h', 'r');
 
-        // Recherche par ville si précisée
         if (!empty($criteria['city'])) {
             $qb->andWhere('h.city LIKE :city')
                 ->setParameter('city', '%' . $criteria['city'] . '%');

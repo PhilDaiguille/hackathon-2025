@@ -43,17 +43,15 @@ final class BookingController extends AbstractController
             $basePrice = $room->getBasePrice();
             $finalPrice = $booking->getFinalPrice();
 
-            $acceptThreshold = $offer->getAcceptanceThreshold(); // ex : 110
-            $refuseThreshold = $offer->getRefusalThreshold();     // ex : 90
+            $acceptThreshold = $offer->getAcceptanceThreshold();
+            $refuseThreshold = $offer->getRefusalThreshold();
 
-            $priceAccept = $basePrice * ($acceptThreshold / 100); // 110% de 100
-            $priceRefuse = $basePrice * ($refuseThreshold / 100); // 90% de 100
+            $priceAccept = $basePrice * ($acceptThreshold / 100);
+            $priceRefuse = $basePrice * ($refuseThreshold / 100);
 
             if ($finalPrice >= $priceAccept) {
-                // Accepter cette réservation
                 $booking->setStatus(BookingStatus::ACCEPTED);
 
-                // Refuser toutes les autres pour la même offre
                 foreach ($offer->getBookings() as $other) {
                     if ($other !== $booking) {
                         $other->setStatus(BookingStatus::REFUSED);
@@ -61,14 +59,12 @@ final class BookingController extends AbstractController
                     }
                 }
 
-                // Lier la réservation acceptée à l’offre
                 $offer->setBooking($booking);
 
             } elseif ($finalPrice <= $priceRefuse) {
-                // Rejet immédiat
+
                 $booking->setStatus(BookingStatus::REFUSED);
             } else {
-                // Négociation
                 $booking->setStatus(BookingStatus::PENDING);
 
                 $negociation = new Negociation();

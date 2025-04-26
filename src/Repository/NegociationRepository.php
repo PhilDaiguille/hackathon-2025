@@ -16,5 +16,5 @@ class NegociationRepository extends ServiceEntityRepository
         parent::__construct($registry, Negociation::class);
     }
 
-    // Ici tu pourras ajouter des méthodes personnalisées si besoin
+
 }
